@@ -1,20 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { router } from 'expo-router';
+import { useEffect } from 'react';
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>홈</Text>
-    </View>
-  );
+export default function Index() {
+  useEffect(() => {
+    // 약간의 지연 후 로그인 화면으로 이동
+    const timer = setTimeout(() => {
+      router.replace('/login');
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return null;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 24,
-  },
-});
