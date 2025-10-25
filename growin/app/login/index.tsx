@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function LoginScreen() {
   const handleKakaoLogin = () => {
@@ -24,22 +24,28 @@ export default function LoginScreen() {
       </View>
       
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleKakaoLogin}>
-          <Image 
-            source={require('../../assets/images/login/kakao_login_button.png')} 
-            style={styles.kakaoLoginIcon} 
-            resizeMode="contain" 
-          />
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={handleAppleLogin}>
-          <Image 
-            source={require('../../assets/images/login/apple_login_button.png')} 
-            style={styles.appleLoginIcon} 
-            resizeMode="contain" 
-          />
+          <TouchableOpacity onPress={handleKakaoLogin} style={styles.kakaoLoginContainer}>
+            <View style={styles.kakaoLoginContent}>
+              <Image 
+                source={require('../../assets/images/login/logo_kakao.png')}
+                style={styles.kakaoLoginLogo}
+                resizeMode="contain"
+              />
+              <Text style={styles.kakaoLoginText}>카카오로 시작하기</Text>
+            </View>
+          </TouchableOpacity>
+        <TouchableOpacity onPress={handleAppleLogin} style={styles.appleLoginContainer}>
+          <View style={styles.appleLoginContent}>
+            <Image 
+              source={require('../../assets/images/login/logo_apple.png')}
+              style={styles.appleLoginLogo}
+              resizeMode="contain"
+            />
+            <Text style={styles.appleLoginText}>Apple로 시작하기</Text>
+          </View>
         </TouchableOpacity>
       </View>
+    
     </View>
   );
 }
@@ -66,14 +72,57 @@ const styles = StyleSheet.create({
     width: 171.81,
     height: 286.1,
   },
-  kakaoLoginIcon: {
+  kakaoLoginContainer: {
     width: 350,
     height: 56,
+    backgroundColor: '#FEE500',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 10,
   },
-  appleLoginIcon: {
+  kakaoLoginContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  kakaoLoginLogo: {
+    width: 24,
+    height: 24,
+    marginRight: 10,
+  },
+  kakaoLoginText: {
+    fontSize: 18,
+    lineHeight: 23.4,
+    fontFamily: 'Pretendard',
+    fontWeight: '600',
+    color: 'black',
+  },
+  appleLoginContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  appleLoginLogo: {
+    width: 24,
+    height: 24,
+    marginRight: 10,
+  },
+  appleLoginContainer: {
     width: 350,
     height: 56,
-    marginBottom: 30,
+    backgroundColor: 'white',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  appleLoginText: {
+    fontSize: 18,
+    lineHeight: 23.4,
+    fontFamily: 'Pretendard',
+    fontWeight: '600',
+    color: 'black',
   },
 });
