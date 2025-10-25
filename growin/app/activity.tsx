@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function HomeScreen() {
+export default function ActivityScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>홈</Text>
+      <Text style={styles.text}>활동</Text>
     </View>
   );
 }
