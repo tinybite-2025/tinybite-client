@@ -62,11 +62,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonContainer: {
     alignItems: 'center',
     width: '100%',
     paddingHorizontal: 20,
+    marginBottom: 20,
   },
   logo: {
     width: 171.81,
