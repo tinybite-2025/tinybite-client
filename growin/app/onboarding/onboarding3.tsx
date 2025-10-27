@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   previousButton: {
     width: 110,
     height: 56,
-    backgroundColor: '#2A2C45',
+    backgroundColor: '#3F4360',
     borderRadius: 15,
     paddingVertical: 15,
     alignItems: 'center',
