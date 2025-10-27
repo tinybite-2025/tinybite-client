@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   kakaoLoginLogo: {
     width: 24,
     height: 24,
-    marginRight: 10,
+    marginRight: 8,
   },
   kakaoLoginText: {
     fontSize: 18,
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   appleLoginLogo: {
     width: 24,
     height: 24,
-    marginRight: 10,
+    marginRight: 8,
   },
   appleLoginContainer: {
     width: 350,
