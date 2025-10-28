@@ -68,7 +68,12 @@ export default function ScheduleCard() {
         </View>
 
         <TouchableOpacity>
-          <Ionicons name="ellipsis-vertical" size={25} color="#3F4360" />
+          <Ionicons
+            name="ellipsis-vertical"
+            size={25}
+            color="#3F4360"
+            style={{ marginRight: -2 }}
+          />
         </TouchableOpacity>
       </View>
     </View>
