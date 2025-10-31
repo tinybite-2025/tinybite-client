@@ -1,4 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
+import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
 
 interface TaskItemProps {
   id: string;
@@ -15,32 +17,82 @@ export default function TaskItem({
   useDashed = false,
   onToggle,
 }: TaskItemProps) {
-  return (
-    <TouchableOpacity
-      style={styles.taskItem}
-      onPress={() => onToggle(id)}
-      activeOpacity={0.7}
-    >
-      <Text
-        style={[
-          styles.taskText,
-          completed && styles.taskTextCompleted,
-        ]}
-      >
-        {title}
-      </Text>
-      <View style={styles.toggleContainer}>
-        {completed ? (
-          <View style={styles.toggleChecked}>
-            <View style={styles.toggleCheckedInner} />
-          </View>
-        ) : useDashed ? (
-          <View style={styles.toggleUncheckedDashed} />
-        ) : (
-          <View style={styles.toggleUnchecked} />
-        )}
+  const [swipeableRef, setSwipeableRef] = useState<any>(null);
+
+  const renderRightActions = (
+    progress: Animated.AnimatedInterpolation<number>,
+    dragX: Animated.AnimatedInterpolation<number>
+  ) => {
+    const scale = dragX.interpolate({
+      inputRange: [-100, 0],
+      outputRange: [1, 0],
+      extrapolate: "clamp",
+    });
+
+    return (
+      <View style={styles.rightActions}>
+        <TouchableOpacity
+          style={[styles.actionButton]}
+          onPress={() => swipeableRef?.close()}
+        >
+          <Animated.View style={{ transform: [{ scale }] }}>
+            <Image 
+              source={require('../../assets/images/task/taskEdit.png')} 
+              style={styles.actionIcon}
+              resizeMode="contain"
+            />
+            <Text style={styles.actionText}>수정</Text>
+          </Animated.View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.actionButton]}
+          onPress={() => swipeableRef?.close()}
+        >
+          <Animated.View style={{ transform: [{ scale }] }}>
+            <Image 
+              source={require('../../assets/images/task/tastDelete.png')} 
+              style={styles.actionIcon}
+              resizeMode="contain"
+            />
+            <Text style={styles.actionText}>삭제</Text>
+          </Animated.View>
+        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    );
+  };
+
+  return (
+    <Swipeable
+      ref={(ref) => setSwipeableRef(ref)}
+      renderRightActions={renderRightActions}
+      rightThreshold={40}
+    >
+      <TouchableOpacity
+        style={styles.taskItem}
+        onPress={() => onToggle(id)}
+        activeOpacity={0.7}
+      >
+        <Text
+          style={[
+            styles.taskText,
+            completed && styles.taskTextCompleted,
+          ]}
+        >
+          {title}
+        </Text>
+        <View style={styles.toggleContainer}>
+          {completed ? (
+            <View style={styles.toggleChecked}>
+              <View style={styles.toggleCheckedInner} />
+            </View>
+          ) : useDashed ? (
+            <View style={styles.toggleUncheckedDashed} />
+          ) : (
+            <View style={styles.toggleUnchecked} />
+          )}
+        </View>
+      </TouchableOpacity>
+    </Swipeable>
   );
 }
 
@@ -57,6 +109,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     paddingBottom: 8,
     paddingLeft: 15,
+    marginBottom: 4,
   },
   taskText: {
     fontSize: 13,
@@ -64,6 +117,7 @@ const styles = StyleSheet.create({
     fontFamily: "Pretendard",
     fontWeight: "500",
     color: "#FFFFFF",
+    flex: 1,
   },
   taskTextCompleted: {
     color: "#8E8E93",
@@ -107,6 +161,31 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#3F4360",
     borderStyle: "solid",
+  },
+  rightActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    width: 120,
+  },
+  actionButton: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 15,
+  },
+  actionIcon: {
+    width: 18,
+    height: 18,
+  },
+  actionText: {
+    fontSize: 8,
+    fontFamily: "Pretendard",
+    fontWeight: "500",
+    color: "#8E8E93",
+    marginTop: 4,
+    textAlign: "center",
   },
 });
 
