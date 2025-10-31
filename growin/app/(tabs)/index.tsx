@@ -10,15 +10,28 @@ interface Task {
 }
 
 export default function HomeScreen() {
-  const [tasks, setTasks] = useState<Task[]>([
+  const [todayTasks, setTodayTasks] = useState<Task[]>([
     { id: "1", title: "물 2L 마시기", completed: false },
     { id: "2", title: "강아지 산책", completed: true },
     { id: "3", title: "세탁물 픽업", completed: false },
   ]);
 
-  const toggleTask = (id: string) => {
-    setTasks(
-      tasks.map((task) =>
+  const [somedayTasks, setSomedayTasks] = useState<Task[]>([
+    { id: "4", title: "책 읽기", completed: false },
+    { id: "5", title: "운동하기", completed: false },
+  ]);
+
+  const toggleTodayTask = (id: string) => {
+    setTodayTasks(
+      todayTasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const toggleSomedayTask = (id: string) => {
+    setSomedayTasks(
+      somedayTasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
@@ -29,14 +42,33 @@ export default function HomeScreen() {
       <View style={styles.contentContainer}>
         <Text style={styles.title}>오늘의 할 일</Text>
         <View style={styles.taskList}>
-          {tasks.map((task) => (
+          {todayTasks.map((task) => (
             <TaskItem
               key={task.id}
               id={task.id}
               title={task.title}
               completed={task.completed}
               useDashed={task.id === "1"}
-              onToggle={toggleTask}
+              onToggle={toggleTodayTask}
+            />
+          ))}
+          <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7}>
+            <View style={styles.addTaskCircle}>
+              <Ionicons name="add" size={20} color="#FFFFFF" />
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <Text style={[styles.title, styles.secondTitle]}>언젠가 할 일</Text>
+        <View style={styles.taskList}>
+          {somedayTasks.map((task) => (
+            <TaskItem
+              key={task.id}
+              id={task.id}
+              title={task.title}
+              completed={task.completed}
+              useDashed={task.id === "4"}
+              onToggle={toggleSomedayTask}
             />
           ))}
           <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7}>
@@ -68,6 +100,9 @@ const styles = StyleSheet.create({
     textAlign: "left",
     marginBottom: 8,
     width: 350,
+  },
+  secondTitle: {
+    marginTop: 12,
   },
   taskList: {
     gap: 4,
