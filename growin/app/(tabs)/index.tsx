@@ -10,27 +10,32 @@ interface Task {
 }
 
 export default function HomeScreen() {
+  // 오늘의 할 일 상태 관리
   const [todayTasks, setTodayTasks] = useState<Task[]>([
     { id: "1", title: "물 2L 마시기", completed: false },
     { id: "2", title: "강아지 산책", completed: true },
     { id: "3", title: "세탁물 픽업", completed: false },
   ]);
 
+  // 언젠가 할 일 상태 관리
   const [somedayTasks, setSomedayTasks] = useState<Task[]>([
     { id: "4", title: "책 읽기", completed: false },
     { id: "5", title: "운동하기", completed: false },
   ]);
 
+  // 새로운 할 일 추가 (빈 제목으로 추가되어 자동으로 편집 모드 활성화)
   const addTodayTask = () => {
     const newId = `today-${Date.now()}`;
     setTodayTasks([...todayTasks, { id: newId, title: "", completed: false }]);
   };
 
+  // 새로운 할 일 추가 (빈 제목으로 추가되어 자동으로 편집 모드 활성화)
   const addSomedayTask = () => {
     const newId = `someday-${Date.now()}`;
     setSomedayTasks([...somedayTasks, { id: newId, title: "", completed: false }]);
   };
 
+  // 기존 할 일 제목 업데이트 (텍스트 입력 시 호출됨)
   const updateTodayTask = (id: string, newTitle: string) => {
     setTodayTasks(
       todayTasks.map((task) =>
@@ -39,6 +44,7 @@ export default function HomeScreen() {
     );
   };
 
+  // 기존 할 일 제목 업데이트 (텍스트 입력 시 호출됨)
   const updateSomedayTask = (id: string, newTitle: string) => {
     setSomedayTasks(
       somedayTasks.map((task) =>
@@ -47,6 +53,7 @@ export default function HomeScreen() {
     );
   };
 
+  // 할 일 완료/미완료 상태 토글
   const toggleTodayTask = (id: string) => {
     setTodayTasks(
       todayTasks.map((task) =>
@@ -55,6 +62,7 @@ export default function HomeScreen() {
     );
   };
 
+  // 할 일 완료/미완료 상태 토글
   const toggleSomedayTask = (id: string) => {
     setSomedayTasks(
       somedayTasks.map((task) =>
@@ -74,7 +82,7 @@ export default function HomeScreen() {
               id={task.id}
               title={task.title}
               completed={task.completed}
-              useDashed={task.id === "1"}
+              useDashed={task.id === "1"} // 점선으로 표시
               onToggle={toggleTodayTask}
               onTitleChange={(title) => updateTodayTask(task.id, title)}
             />
@@ -94,8 +102,7 @@ export default function HomeScreen() {
               id={task.id}
               title={task.title}
               completed={task.completed}
-              
-              showRepeat={false}
+              showRepeat={false} // 언젠가 할 일은 반복 버튼 숨김
               onToggle={toggleSomedayTask}
               onTitleChange={(title) => updateSomedayTask(task.id, title)}
             />

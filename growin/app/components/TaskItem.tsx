@@ -22,24 +22,28 @@ export default function TaskItem({
   onTitleChange,
 }: TaskItemProps) {
   const [swipeableRef, setSwipeableRef] = useState<any>(null);
-  const [isEditing, setIsEditing] = useState(title === "");
+  const [isEditing, setIsEditing] = useState(title === ""); // 제목이 비어있으면 편집 모드
   const [editTitle, setEditTitle] = useState(title);
   const inputRef = useRef<TextInput>(null);
 
+  // 편집 모드가 되면 자동으로 포커스
   useEffect(() => {
     if (isEditing && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isEditing]);
 
+  // title이 변경되면 editTitle도 업데이트
   useEffect(() => {
     setEditTitle(title);
   }, [title]);
 
+  // 스와이프 시 나타나는 오른쪽 액션 버튼들
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<number>,
     dragX: Animated.AnimatedInterpolation<number>
   ) => {
+    // 스와이프 애니메이션 효과
     const scale = dragX.interpolate({
       inputRange: [-100, 0],
       outputRange: [1, 0],
@@ -48,6 +52,7 @@ export default function TaskItem({
 
     return (
       <View style={[styles.rightActions, { width: showRepeat ? 160 : 110 }]}>
+        {/* 반복 버튼 (언젠가 할 일에서는 숨김) */}
         {showRepeat && (
           <TouchableOpacity
             style={[styles.actionButton]}
@@ -63,6 +68,7 @@ export default function TaskItem({
             </Animated.View>
           </TouchableOpacity>
         )}
+        {/* 수정 버튼 */}
         <TouchableOpacity
           style={[styles.actionButton]}
           onPress={() => swipeableRef?.close()}
@@ -76,6 +82,7 @@ export default function TaskItem({
             <Text style={styles.actionText}>수정</Text>
           </Animated.View>
         </TouchableOpacity>
+        {/* 삭제 버튼 */}
         <TouchableOpacity
           style={[styles.actionButton]}
           onPress={() => swipeableRef?.close()}
@@ -93,6 +100,7 @@ export default function TaskItem({
     );
   };
 
+  // 편집 모드: 텍스트 입력 필드 표시
   if (isEditing) {
     return (
       <View style={styles.taskItem}>
@@ -104,6 +112,7 @@ export default function TaskItem({
           placeholder="할 일 입력..."
           placeholderTextColor="#8E8E93"
           onBlur={() => {
+            // 포커스가 벗어나면 제목 업데이트하고 편집 모드 종료
             onTitleChange?.(editTitle);
             setIsEditing(false);
           }}
@@ -112,6 +121,7 @@ export default function TaskItem({
     );
   }
 
+  // 일반 모드: 스와이프 가능한 할 일 항목 표시
   return (
     <Swipeable
       ref={(ref) => setSwipeableRef(ref)}
@@ -127,12 +137,13 @@ export default function TaskItem({
           <Text
             style={[
               styles.taskText,
-              completed && styles.taskTextCompleted,
+              completed && styles.taskTextCompleted, // 완료된 항목은 회색 표시
             ]}
           >
             {title}
           </Text>
           <View style={styles.toggleContainer}>
+            {/* 완료/미완료 토글 표시 */}
             {completed ? (
               <View style={styles.toggleChecked}>
                 <View style={styles.toggleCheckedInner} />
