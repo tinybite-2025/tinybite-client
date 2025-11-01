@@ -67,7 +67,8 @@ export default function HomeScreen() {
               id={task.id}
               title={task.title}
               completed={task.completed}
-              useDashed={task.id === "4"}
+              
+              showRepeat={false}
               onToggle={toggleSomedayTask}
             />
           ))}
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   taskList: {
-    gap: 4,
+    gap: 2,
     alignItems: "center",
   },
   addTaskButton: {

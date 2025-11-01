@@ -7,6 +7,7 @@ interface TaskItemProps {
   title: string;
   completed: boolean;
   useDashed?: boolean;
+  showRepeat?: boolean;
   onToggle: (id: string) => void;
 }
 
@@ -15,6 +16,7 @@ export default function TaskItem({
   title,
   completed,
   useDashed = false,
+  showRepeat = true,
   onToggle,
 }: TaskItemProps) {
   const [swipeableRef, setSwipeableRef] = useState<any>(null);
@@ -30,7 +32,22 @@ export default function TaskItem({
     });
 
     return (
-      <View style={styles.rightActions}>
+      <View style={[styles.rightActions, { width: showRepeat ? 160 : 110 }]}>
+        {showRepeat && (
+          <TouchableOpacity
+            style={[styles.actionButton]}
+            onPress={() => swipeableRef?.close()}
+          >
+            <Animated.View style={{ transform: [{ scale }] }}>
+              <Image 
+                source={require('../../assets/images/task/taskRepeat.png')} 
+                style={styles.actionIcon}
+                resizeMode="contain"
+              />
+              <Text style={styles.actionText}>반복</Text>
+            </Animated.View>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity
           style={[styles.actionButton]}
           onPress={() => swipeableRef?.close()}
@@ -166,11 +183,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-end",
-    width: 120,
+    width: 150,
   },
   actionButton: {
     width: 50,
-    height: 50,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
