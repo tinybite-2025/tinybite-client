@@ -74,7 +74,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>오늘의 할 일</Text>
+        <Text style={styles.taskTitle}>오늘의 할 일</Text>
         <View style={styles.taskList}>
           {todayTasks.map((task) => (
             <TaskItem
@@ -87,14 +87,14 @@ export default function HomeScreen() {
               onTitleChange={(title) => updateTodayTask(task.id, title)}
             />
           ))}
-          <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7} onPress={addTodayTask}>
-            <View style={styles.addTaskCircle}>
+          <TouchableOpacity style={styles.taskAddButton} activeOpacity={0.7} onPress={addTodayTask}>
+            <View style={styles.taskAddCircle}>
               <Ionicons name="add" size={20} color="#FFFFFF" />
             </View>
           </TouchableOpacity>
         </View>
 
-        <Text style={[styles.title, styles.secondTitle]}>언젠가 할 일</Text>
+        <Text style={[styles.taskTitle, styles.taskTitleSecond]}>언젠가 할 일</Text>
         <View style={styles.taskList}>
           {somedayTasks.map((task) => (
             <TaskItem
@@ -107,8 +107,8 @@ export default function HomeScreen() {
               onTitleChange={(title) => updateSomedayTask(task.id, title)}
             />
           ))}
-          <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7} onPress={addSomedayTask}>
-            <View style={styles.addTaskCircle}>
+          <TouchableOpacity style={styles.taskAddButton} activeOpacity={0.7} onPress={addSomedayTask}>
+            <View style={styles.taskAddCircle}>
               <Ionicons name="add" size={20} color="#FFFFFF" />
             </View>
           </TouchableOpacity>
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     alignItems: "center",
   },
-  title: {
+  taskTitle: {
     fontSize: 18,
     lineHeight: 23.4, 
     fontFamily: "Pretendard",
@@ -137,14 +137,14 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     width: 350,
   },
-  secondTitle: {
+  taskTitleSecond: {
     marginTop: 12,
   },
   taskList: {
     gap: 2,
     alignItems: "center",
   },
-  addTaskButton: {
+  taskAddButton: {
     width: 350,
     height: 40,
     flexDirection: "row",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2A2C45",
     borderRadius: 15,
   },
-  addTaskCircle: {
+  taskAddCircle: {
     width: 28,
     height: 28,
     borderRadius: 14,
