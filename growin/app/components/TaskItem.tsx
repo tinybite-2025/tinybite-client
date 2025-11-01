@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Animated, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
 interface TaskItemProps {
@@ -9,6 +9,7 @@ interface TaskItemProps {
   useDashed?: boolean;
   showRepeat?: boolean;
   onToggle: (id: string) => void;
+  onTitleChange?: (title: string) => void;
 }
 
 export default function TaskItem({
@@ -18,8 +19,22 @@ export default function TaskItem({
   useDashed = false,
   showRepeat = true,
   onToggle,
+  onTitleChange,
 }: TaskItemProps) {
   const [swipeableRef, setSwipeableRef] = useState<any>(null);
+  const [isEditing, setIsEditing] = useState(title === "");
+  const [editTitle, setEditTitle] = useState(title);
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isEditing]);
+
+  useEffect(() => {
+    setEditTitle(title);
+  }, [title]);
 
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<number>,
@@ -78,37 +93,58 @@ export default function TaskItem({
     );
   };
 
+  if (isEditing) {
+    return (
+      <View style={styles.taskItem}>
+        <TextInput
+          ref={inputRef}
+          style={styles.taskInput}
+          value={editTitle}
+          onChangeText={setEditTitle}
+          placeholder="할 일 입력..."
+          placeholderTextColor="#8E8E93"
+          onBlur={() => {
+            onTitleChange?.(editTitle);
+            setIsEditing(false);
+          }}
+        />
+      </View>
+    );
+  }
+
   return (
     <Swipeable
       ref={(ref) => setSwipeableRef(ref)}
       renderRightActions={renderRightActions}
       rightThreshold={40}
     >
-      <TouchableOpacity
-        style={styles.taskItem}
-        onPress={() => onToggle(id)}
-        activeOpacity={0.7}
-      >
-        <Text
-          style={[
-            styles.taskText,
-            completed && styles.taskTextCompleted,
-          ]}
+      <View style={styles.taskItem}>
+        <TouchableOpacity
+          style={styles.taskContent}
+          onPress={() => onToggle(id)}
+          activeOpacity={0.7}
         >
-          {title}
-        </Text>
-        <View style={styles.toggleContainer}>
-          {completed ? (
-            <View style={styles.toggleChecked}>
-              <View style={styles.toggleCheckedInner} />
-            </View>
-          ) : useDashed ? (
-            <View style={styles.toggleUncheckedDashed} />
-          ) : (
-            <View style={styles.toggleUnchecked} />
-          )}
-        </View>
-      </TouchableOpacity>
+          <Text
+            style={[
+              styles.taskText,
+              completed && styles.taskTextCompleted,
+            ]}
+          >
+            {title}
+          </Text>
+          <View style={styles.toggleContainer}>
+            {completed ? (
+              <View style={styles.toggleChecked}>
+                <View style={styles.toggleCheckedInner} />
+              </View>
+            ) : useDashed ? (
+              <View style={styles.toggleUncheckedDashed} />
+            ) : (
+              <View style={styles.toggleUnchecked} />
+            )}
+          </View>
+        </TouchableOpacity>
+      </View>
     </Swipeable>
   );
 }
@@ -127,6 +163,21 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     paddingLeft: 15,
     marginBottom: 4,
+  },
+  taskContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  taskInput: {
+    fontSize: 13,
+    lineHeight: 16.9,
+    fontFamily: "Pretendard",
+    fontWeight: "500",
+    color: "#FFFFFF",
+    flex: 1,
+    width: "100%",
   },
   taskText: {
     fontSize: 13,

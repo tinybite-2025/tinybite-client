@@ -21,6 +21,32 @@ export default function HomeScreen() {
     { id: "5", title: "운동하기", completed: false },
   ]);
 
+  const addTodayTask = () => {
+    const newId = `today-${Date.now()}`;
+    setTodayTasks([...todayTasks, { id: newId, title: "", completed: false }]);
+  };
+
+  const addSomedayTask = () => {
+    const newId = `someday-${Date.now()}`;
+    setSomedayTasks([...somedayTasks, { id: newId, title: "", completed: false }]);
+  };
+
+  const updateTodayTask = (id: string, newTitle: string) => {
+    setTodayTasks(
+      todayTasks.map((task) =>
+        task.id === id ? { ...task, title: newTitle } : task
+      )
+    );
+  };
+
+  const updateSomedayTask = (id: string, newTitle: string) => {
+    setSomedayTasks(
+      somedayTasks.map((task) =>
+        task.id === id ? { ...task, title: newTitle } : task
+      )
+    );
+  };
+
   const toggleTodayTask = (id: string) => {
     setTodayTasks(
       todayTasks.map((task) =>
@@ -50,9 +76,10 @@ export default function HomeScreen() {
               completed={task.completed}
               useDashed={task.id === "1"}
               onToggle={toggleTodayTask}
+              onTitleChange={(title) => updateTodayTask(task.id, title)}
             />
           ))}
-          <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7} onPress={addTodayTask}>
             <View style={styles.addTaskCircle}>
               <Ionicons name="add" size={20} color="#FFFFFF" />
             </View>
@@ -70,9 +97,10 @@ export default function HomeScreen() {
               
               showRepeat={false}
               onToggle={toggleSomedayTask}
+              onTitleChange={(title) => updateSomedayTask(task.id, title)}
             />
           ))}
-          <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7}>
+          <TouchableOpacity style={styles.addTaskButton} activeOpacity={0.7} onPress={addSomedayTask}>
             <View style={styles.addTaskCircle}>
               <Ionicons name="add" size={20} color="#FFFFFF" />
             </View>
