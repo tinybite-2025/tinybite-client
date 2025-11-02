@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import TaskItem from "../components/TaskItem";
+import { useCallback, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AddButton from "../components/AddButton";
+import TaskBottomSheet from "../components/TaskBottomSheet";
+import TaskItem from "../components/TaskItem";
 
 interface Task {
   id: string;
@@ -10,6 +11,18 @@ interface Task {
 }
 
 export default function HomeScreen() {
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+  // 바텀시트 열기
+  const handleOpenBottomSheet = useCallback(() => {
+    setIsBottomSheetOpen(true);
+  }, []);
+
+  // 바텀시트 닫기
+  const handleCloseBottomSheet = useCallback(() => {
+    setIsBottomSheetOpen(false);
+  }, []);
+
   // 오늘의 할 일 상태 관리
   const [todayTasks, setTodayTasks] = useState<Task[]>([
     { id: "1", title: "물 2L 마시기", completed: false },
@@ -73,6 +86,14 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.text}>홈</Text>
+      <TouchableOpacity 
+        style={styles.openButton} 
+        onPress={handleOpenBottomSheet}
+      >
+        <Text style={styles.openButtonText}>바텀시트 열기</Text>
+      </TouchableOpacity>
+
       <View style={styles.contentContainer}>
         <Text style={styles.taskTitle}>오늘의 할 일</Text>
         <View style={styles.taskList}>
@@ -106,6 +127,10 @@ export default function HomeScreen() {
           <AddButton onPress={addSomedayTask} />
         </View>
       </View>
+
+      {isBottomSheetOpen && (
+        <TaskBottomSheet onClose={handleCloseBottomSheet} />
+      )}
     </View>
   );
 }
@@ -136,21 +161,20 @@ const styles = StyleSheet.create({
     gap: 2,
     alignItems: "center",
   },
-  taskAddButton: {
-    width: 350,
-    height: 40,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#2A2C45",
-    borderRadius: 15,
+  text: {
+    fontSize: 24,
+    color: "#FFFFFF",
+    marginBottom: 20,
   },
-  taskAddCircle: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+  openButton: {
     backgroundColor: "#3F4360",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8
+  },
+  openButtonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
