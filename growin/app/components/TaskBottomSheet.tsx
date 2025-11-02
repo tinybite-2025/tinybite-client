@@ -15,6 +15,7 @@ export default function TaskBottomSheet({ onClose }: TaskBottomSheetProps) {
     { id: "2", title: "회의록 작성", completed: true },
   ]);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   // 바텀시트 스냅 포인트 설정
   const snapPoints = useMemo(() => ["90%"], []);
@@ -96,9 +97,26 @@ export default function TaskBottomSheet({ onClose }: TaskBottomSheetProps) {
           <View style={styles.titleColorBar} />
           <View style={styles.titleContent}>
             <Text style={styles.titleText}>잇타 회의</Text>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.moreButton} onPress={() => setShowMenu(!showMenu)}>
               <Ionicons name="ellipsis-horizontal" size={20} color="#3F4360" />
             </TouchableOpacity>
+            {showMenu && (
+              <View style={styles.menuContainer}>
+                <TouchableOpacity style={styles.menuItem} onPress={() => setShowMenu(false)}>
+                  <Text style={styles.menuItemTextDelete}>삭제하기</Text>
+                  <Image
+                    source={require('../../assets/images/event/eventTrash.png')}
+                    style={styles.menuIcon}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+                <View style={styles.menuDivider} />
+                <TouchableOpacity style={styles.menuItem} onPress={() => setShowMenu(false)}>
+                  <Text style={styles.menuItemText}>공유하기</Text>
+                  <Ionicons name="share-outline" size={20} color="#FFFFFF" />
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         </View>
         <View style={styles.divider} />
@@ -224,14 +242,62 @@ const styles = StyleSheet.create({
   titleContent: {
     flex: 1,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-between",
+    position: "relative",
   },
   titleText: {
     fontSize: 20,
     fontFamily: "Pretendard",
     fontWeight: "700",
     color: "#FFFFFF",
+  },
+  moreButton: {
+    marginTop: -20,
+  },
+  menuContainer: {
+    position: "absolute",
+    top: -5,
+    right: -10,
+    backgroundColor: "rgba(37, 37, 37, 0.5)",
+    borderRadius: 15,
+    overflow: "hidden",
+    width: 254,
+    zIndex: 1000,
+  },
+  menuItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 254,
+    height: 46,
+    paddingTop: 11,
+    paddingRight: 16,
+    paddingBottom: 11,
+    paddingLeft: 16,
+  },
+  menuDivider: {
+    height: 5,
+    backgroundColor: "#000000",
+    opacity: 0.1,
+  },
+  menuIcon: {
+    width: 20,
+    height: 20,
+    marginLeft: 12,
+  },
+  menuItemText: {
+    fontSize: 16,
+    fontFamily: "Pretendard",
+    fontWeight: "500",
+    color: "#FFFFFF",
+    flex: 1,
+  },
+  menuItemTextDelete: {
+    fontSize: 16,
+    fontFamily: "Pretendard",
+    fontWeight: "500",
+    color: "#FF008B",
   },
   // 섹션 공통
   section: {
