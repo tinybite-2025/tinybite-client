@@ -151,66 +151,77 @@ const CalendarUI = () => {
 
       {/* 그리드 */}
       <View style={styles.calendarScroll}>
-        {renderCalendar().map((week, weekIndex) => (
-          <View key={weekIndex} style={styles.weekRow}>
-            {week.map((day, dayIndex) => {
-              const isToday =
-                day.isCurrentMonth &&
-                day.day === todayDay &&
-                currentDate.getMonth() === todayMonth &&
-                currentDate.getFullYear() === todayYear;
+        {renderCalendar().map((week, weekIndex) => {
+          return (
+            <View key={weekIndex} style={styles.weekRow}>
+              {week.map((day, dayIndex) => {
+                const isBorderRight = (dayIndex + 1) % 7 !== 0;
+                const isToday =
+                  day.isCurrentMonth &&
+                  day.day === todayDay &&
+                  currentDate.getMonth() === todayMonth &&
+                  currentDate.getFullYear() === todayYear;
 
-              return (
-                <View key={dayIndex} style={styles.dayCell}>
-                  {/* 일자 */}
-                  <View style={styles.dayHeader}>
-                    {/* 오늘 표시 */}
-                    {isToday && <View style={styles.todayIndicator} />}
+                return (
+                  <View
+                    key={dayIndex}
+                    style={[
+                      styles.dayCell,
+                      isBorderRight && styles.borderRight,
+                    ]}
+                  >
+                    {/* 일자 */}
+                    <View style={styles.dayHeader}>
+                      {/* 오늘 표시 */}
+                      {isToday && <View style={styles.todayIndicator} />}
 
-                    <View style={styles.dayNumberContainer}>
-                      {/* 숫자 */}
-                      <Text
-                        style={[
-                          styles.dayNumber,
-                          !day.isCurrentMonth && styles.inactiveDay,
-                        ]}
-                      >
-                        {day.day}
-                      </Text>
-
-                      {/* 할 일 4개 이상 */}
-                      {day.isCurrentMonth &&
-                        events[day.day] &&
-                        events[day.day].length > 3 && (
-                          <Image
-                            source={require("@/assets/images/icon/plus-calendar-day.png")}
-                            style={styles.plusIcon}
-                          />
-                        )}
-                    </View>
-                  </View>
-
-                  {/* 할 일 목록 */}
-                  {day.isCurrentMonth &&
-                    events[day.day] &&
-                    events[day.day].slice(0, 3).map((eventItem, eventIndex) => (
-                      <View
-                        key={eventIndex}
-                        style={[
-                          styles.eventTag,
-                          { backgroundColor: eventItem.color },
-                        ]}
-                      >
-                        <Text style={styles.eventText} numberOfLines={1}>
-                          {eventItem.title}
+                      <View style={styles.dayNumberContainer}>
+                        {/* 숫자 */}
+                        <Text
+                          style={[
+                            styles.dayNumber,
+                            !day.isCurrentMonth && styles.inactiveDay,
+                          ]}
+                        >
+                          {day.day}
                         </Text>
+
+                        {/* 할 일 4개 이상 */}
+                        {day.isCurrentMonth &&
+                          events[day.day] &&
+                          events[day.day].length > 3 && (
+                            <Image
+                              source={require("@/assets/images/icon/plus-calendar-day.png")}
+                              style={styles.plusIcon}
+                            />
+                          )}
                       </View>
-                    ))}
-                </View>
-              );
-            })}
-          </View>
-        ))}
+                    </View>
+
+                    {/* 할 일 목록 */}
+                    {day.isCurrentMonth &&
+                      events[day.day] &&
+                      events[day.day]
+                        .slice(0, 3)
+                        .map((eventItem, eventIndex) => (
+                          <View
+                            key={eventIndex}
+                            style={[
+                              styles.eventTag,
+                              { backgroundColor: eventItem.color },
+                            ]}
+                          >
+                            <Text style={styles.eventText} numberOfLines={1}>
+                              {eventItem.title}
+                            </Text>
+                          </View>
+                        ))}
+                  </View>
+                );
+              })}
+            </View>
+          );
+        })}
       </View>
     </View>
   );
@@ -261,8 +272,6 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     alignItems: "center",
     gap: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: "#3F4360",
   },
   weekDay: {
     flex: 1,
@@ -281,8 +290,8 @@ const styles = StyleSheet.create({
   },
   weekRow: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: "#3F4360",
+    borderTopWidth: 1,
+    borderTopColor: "#3F4360",
   },
   dayCell: {
     flex: 1,
@@ -291,6 +300,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 2,
     flexShrink: 0,
+  },
+  borderRight: {
     borderRightWidth: 1,
     borderRightColor: "#3F4360",
   },
