@@ -82,7 +82,7 @@ export default function HomeScreen() {
               id={task.id}
               title={task.title}
               completed={task.completed}
-              useDashed={task.id === "1"} // 점선으로 표시
+              isRepeatable={true}
               onToggle={toggleTodayTask}
               onTitleChange={(title) => updateTodayTask(task.id, title)}
             />
@@ -102,7 +102,7 @@ export default function HomeScreen() {
               id={task.id}
               title={task.title}
               completed={task.completed}
-              showRepeat={false} // 언젠가 할 일은 반복 버튼 숨김
+              isRepeatable={false}
               onToggle={toggleSomedayTask}
               onTitleChange={(title) => updateSomedayTask(task.id, title)}
             />

@@ -6,7 +6,7 @@ interface TaskItemProps {
   id: string;
   title: string;
   completed: boolean;
-  showRepeat?: boolean;
+  isRepeatable: boolean;
   onToggle: (id: string) => void;
   onTitleChange?: (title: string) => void;
 }
@@ -15,7 +15,7 @@ export default function TaskItem({
   id,
   title,
   completed,
-  showRepeat = true,
+  isRepeatable,
   onToggle,
   onTitleChange,
 }: TaskItemProps) {
@@ -49,9 +49,9 @@ export default function TaskItem({
     });
 
     return (
-      <View style={[styles.rightActions, { width: showRepeat ? 160 : 110 }]}>
+      <View style={[styles.rightActions, { width: isRepeatable ? 160 : 110 }]}>
         {/* 반복 버튼 (언젠가 할 일에서는 숨김) */}
-        {showRepeat && (
+        {isRepeatable && (
           <TouchableOpacity
             style={[styles.actionButton]}
             onPress={() => swipeableRef?.close()}
