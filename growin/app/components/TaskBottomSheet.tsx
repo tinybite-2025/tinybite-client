@@ -1,8 +1,8 @@
+import TaskBottomSheetTaskList from "@/components/TaskBottomSheetTaskList";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useMemo, useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import TaskBottomSheetTaskList from "./TaskBottomSheetTaskList";
 
 interface TaskBottomSheetProps {
   onClose: () => void;
