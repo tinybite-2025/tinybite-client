@@ -1,8 +1,8 @@
+import AddButton from "@/app/components/AddButton";
+import TaskBottomSheet from "@/app/components/TaskBottomSheet";
+import TaskItem from "@/app/components/TaskItem";
 import { useCallback, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import AddButton from "../components/AddButton";
-import TaskBottomSheet from "../components/TaskBottomSheet";
-import TaskItem from "../components/TaskItem";
 
 interface Task {
   id: string;
