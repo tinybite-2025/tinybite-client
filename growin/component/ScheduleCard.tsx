@@ -1,8 +1,17 @@
+import ScheduleCardTodo from "@/component/ScheduleCardTodo";
+import { ScheduleCardTodoType } from "@/types/Schedule";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-const ScheduleCard = () => {
+interface ScheduleCardProps {
+  id: number;
+  title: string;
+  time: string;
+  todos: ScheduleCardTodoType[];
+}
+
+const ScheduleCard = ({ id, title, time, todos }: ScheduleCardProps) => {
   return (
     <View
       style={{
@@ -53,7 +62,7 @@ const ScheduleCard = () => {
               lineHeight: 18.9241,
             }}
           >
-            잇타 회의
+            {title}
           </Text>
           <Text
             style={{
@@ -63,7 +72,7 @@ const ScheduleCard = () => {
               lineHeight: 18.9241,
             }}
           >
-            12:00 - 13:00
+            {time}
           </Text>
         </View>
 
@@ -77,94 +86,9 @@ const ScheduleCard = () => {
         </TouchableOpacity>
       </View>
 
-      {/* 일정 투두 */}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          width: "100%",
-          justifyContent: "space-between",
-          paddingTop: 6.5,
-          borderTopWidth: 1,
-          borderTopColor: "#ffffff1a",
-        }}
-      >
-        <Text
-          style={{
-            color: "#fff",
-            fontSize: 13,
-            fontWeight: 500,
-            lineHeight: 18.9241,
-          }}
-        >
-          회의록 작성
-        </Text>
-
-        {/* 체크 비활성 */}
-        <TouchableOpacity>
-          <View
-            style={{
-              width: 20,
-              height: 20,
-              borderRadius: 10,
-              borderWidth: 2,
-              borderColor: "#3F4360",
-            }}
-          />
-        </TouchableOpacity>
-      </View>
-
-      {/* 일정 투두 */}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          width: "100%",
-          justifyContent: "space-between",
-          paddingTop: 6.5,
-          borderTopWidth: 1,
-          borderTopColor: "#ffffff1a",
-        }}
-      >
-        <Text
-          style={{
-            color: "#8E8E93",
-            fontSize: 13,
-            fontWeight: 500,
-            lineHeight: 18.9241,
-          }}
-        >
-          회의록 작성
-        </Text>
-
-        {/* 체크 활성 */}
-        <TouchableOpacity>
-          <View
-            style={{
-              width: 20,
-              height: 20,
-              flexShrink: 0,
-              aspectRatio: 1 / 1,
-              borderWidth: 2,
-              borderRadius: 10,
-              borderColor: "#FF008B",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <View
-              style={{
-                width: 12,
-                height: 12,
-                flexShrink: 0,
-                aspectRatio: 1 / 1,
-                borderRadius: 6,
-                backgroundColor: "#FF008B",
-              }}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
+      {todos.map((value, index) => (
+        <ScheduleCardTodo key={index} todo={value} />
+      ))}
     </View>
   );
 };
