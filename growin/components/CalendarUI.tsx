@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CalendarUI = () => {
-  const [currentDate, setCurrentDate] = useState(new Date(2025, 10, 1));
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const today = new Date();
+  const todayDay = today.getDate();
+  const todayMonth = today.getMonth();
+  const todayYear = today.getFullYear();
 
   // 샘플 이벤트 데이터
   type EventItem = { title: string; color: string };
@@ -38,6 +37,9 @@ const CalendarUI = () => {
       { title: "해커톤", color: "#EF4444" },
     ],
     26: [
+      { title: "잇타 회의", color: "#A855F7" },
+      { title: "도서관 대출", color: "#F97316" },
+      { title: "디자인 스크럼", color: "#3B82F6" },
       { title: "잇타 회의", color: "#A855F7" },
       { title: "도서관 대출", color: "#F97316" },
       { title: "디자인 스크럼", color: "#3B82F6" },
@@ -111,20 +113,34 @@ const CalendarUI = () => {
       {/* 헤더 */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <View style={styles.logo}>
-            <Text style={styles.logoText}>G</Text>
+          <Image
+            source={require("@/assets/images/logo/growin-logo-home-small.png")}
+            style={styles.logo}
+          />
+          <View style={styles.headerMenu}>
+            <TouchableOpacity>
+              <Text style={styles.dateText}>
+                {currentDate.getFullYear()}년 {currentDate.getMonth() + 1}월
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image
+                source={require("@/assets/images/icon/arrow/arrow-down.png")}
+                style={styles.arrow}
+              />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.dateSelector}>
-            <Text style={styles.dateText}>2025년 9월</Text>
-            <Text style={styles.arrow}>▼</Text>
-          </TouchableOpacity>
         </View>
-        <View style={styles.profileIcon}>
-          <Text style={styles.profileText}>👤</Text>
-        </View>
+        <TouchableOpacity>
+          <Image
+            source={require("@/assets/images/icon/user.png")}
+            style={styles.profileImage}
+          />
+        </TouchableOpacity>
       </View>
 
-      {/* 요일 헤더 */}
+      {/* 달력 */}
+      {/* 요일 */}
       <View style={styles.weekDaysContainer}>
         {weekDays.map((day, index) => (
           <View key={index} style={styles.weekDay}>
@@ -133,48 +149,69 @@ const CalendarUI = () => {
         ))}
       </View>
 
-      {/* 달력 그리드 */}
-      <ScrollView style={styles.calendarScroll}>
+      {/* 그리드 */}
+      <View style={styles.calendarScroll}>
         {renderCalendar().map((week, weekIndex) => (
           <View key={weekIndex} style={styles.weekRow}>
-            {week.map((day, dayIndex) => (
-              <View key={dayIndex} style={styles.dayCell}>
-                <Text
-                  style={[
-                    styles.dayNumber,
-                    !day.isCurrentMonth && styles.inactiveDay,
-                    day.day === 26 && day.isCurrentMonth && styles.todayNumber,
-                  ]}
-                >
-                  {day.day}
-                </Text>
-                {day.isCurrentMonth && events[day.day] && (
-                  <View style={styles.eventsContainer}>
-                    {events[day.day].map((event, eventIndex) => (
+            {week.map((day, dayIndex) => {
+              const isToday =
+                day.isCurrentMonth &&
+                day.day === todayDay &&
+                currentDate.getMonth() === todayMonth &&
+                currentDate.getFullYear() === todayYear;
+
+              return (
+                <View key={dayIndex} style={styles.dayCell}>
+                  {/* 일자 */}
+                  <View style={styles.dayHeader}>
+                    {/* 오늘 표시 */}
+                    {isToday && <View style={styles.todayIndicator} />}
+
+                    <View style={styles.dayNumberContainer}>
+                      {/* 숫자 */}
+                      <Text
+                        style={[
+                          styles.dayNumber,
+                          !day.isCurrentMonth && styles.inactiveDay,
+                        ]}
+                      >
+                        {day.day}
+                      </Text>
+
+                      {/* 할 일 4개 이상 */}
+                      {day.isCurrentMonth &&
+                        events[day.day] &&
+                        events[day.day].length > 3 && (
+                          <Image
+                            source={require("@/assets/images/icon/plus-calendar-day.png")}
+                            style={styles.plusIcon}
+                          />
+                        )}
+                    </View>
+                  </View>
+
+                  {/* 할 일 목록 */}
+                  {day.isCurrentMonth &&
+                    events[day.day] &&
+                    events[day.day].slice(0, 3).map((eventItem, eventIndex) => (
                       <View
                         key={eventIndex}
                         style={[
                           styles.eventTag,
-                          { backgroundColor: event.color },
+                          { backgroundColor: eventItem.color },
                         ]}
                       >
                         <Text style={styles.eventText} numberOfLines={1}>
-                          {event.title}
+                          {eventItem.title}
                         </Text>
                       </View>
                     ))}
-                  </View>
-                )}
-                {day.day === 26 && day.isCurrentMonth && (
-                  <View style={styles.todayIndicator}>
-                    <Text style={styles.todayText}>26</Text>
-                  </View>
-                )}
-              </View>
-            ))}
+                </View>
+              );
+            })}
           </View>
         ))}
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -187,68 +224,57 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    padding: 16,
-    paddingTop: 50,
+    alignItems: "flex-end",
+    paddingTop: 10,
   },
   headerLeft: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
+    gap: 10,
   },
-  logo: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: "#EC4899",
+  logo: { width: 31.812, height: 23.471 },
+  headerMenu: {
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 12,
-  },
-  logoText: {
-    color: "#FFFFFF",
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  dateSelector: {
-    flexDirection: "row",
-    alignItems: "center",
+    gap: 5,
   },
   dateText: {
     color: "#FFFFFF",
-    fontSize: 24,
+    textAlign: "center",
+    fontSize: 20,
     fontWeight: "600",
-    marginRight: 8,
+    lineHeight: 26,
   },
   arrow: {
-    color: "#FFFFFF",
-    fontSize: 14,
+    width: 24,
+    height: 24,
+    flexShrink: 0,
   },
-  profileIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: "#FFFFFF",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  profileText: {
-    fontSize: 20,
+  profileImage: {
+    width: 23,
+    height: 26,
+    flexShrink: 0,
   },
   weekDaysContainer: {
     flexDirection: "row",
+    paddingVertical: 2,
+    alignItems: "center",
+    gap: 1,
     borderBottomWidth: 1,
-    borderBottomColor: "#334155",
-    paddingVertical: 12,
+    borderBottomColor: "#3F4360",
   },
   weekDay: {
     flex: 1,
+    flexShrink: 0,
     alignItems: "center",
   },
   weekDayText: {
-    color: "#94A3B8",
-    fontSize: 14,
+    color: "#FFFFFF",
+    textAlign: "center",
+    fontSize: 13,
     fontWeight: "500",
+    lineHeight: 16.9,
   },
   calendarScroll: {
     flex: 1,
@@ -256,60 +282,74 @@ const styles = StyleSheet.create({
   weekRow: {
     flexDirection: "row",
     borderBottomWidth: 1,
-    borderBottomColor: "#1E293B",
+    borderBottomColor: "#3F4360",
   },
   dayCell: {
     flex: 1,
-    minHeight: 100,
-    padding: 4,
+    height: 56,
+    paddingVertical: 2,
+    alignItems: "center",
+    gap: 2,
+    flexShrink: 0,
     borderRightWidth: 1,
-    borderRightColor: "#1E293B",
+    borderRightColor: "#3F4360",
+  },
+  dayHeader: {
+    width: "100%",
     position: "relative",
-  },
-  dayNumber: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "500",
-    textAlign: "center",
-    marginBottom: 4,
-  },
-  inactiveDay: {
-    color: "#475569",
-  },
-  todayNumber: {
-    opacity: 0,
+    alignItems: "center",
+    justifyContent: "center",
   },
   todayIndicator: {
     position: "absolute",
-    top: 4,
-    left: 0,
-    right: 0,
+    width: 20,
+    height: 13,
+    flexShrink: 0,
+    backgroundColor: "#FF008B",
+    borderRadius: 15,
+    alignSelf: "center",
+  },
+  dayNumberContainer: {
+    width: 40,
+    position: "relative",
     alignItems: "center",
+    justifyContent: "center",
   },
-  todayText: {
+  dayNumber: {
+    position: "relative",
+    alignItems: "center",
     color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "700",
-    backgroundColor: "#EC4899",
-    width: 32,
-    height: 32,
     textAlign: "center",
-    lineHeight: 32,
-    borderRadius: 16,
-  },
-  eventsContainer: {
-    gap: 2,
-  },
-  eventTag: {
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    borderRadius: 4,
-    marginBottom: 2,
-  },
-  eventText: {
-    color: "#FFFFFF",
     fontSize: 10,
     fontWeight: "500",
+    lineHeight: 13,
+  },
+  inactiveDay: {
+    color: "#8E8E93",
+  },
+  plusIcon: {
+    position: "absolute",
+    width: 16,
+    height: 8,
+    flexShrink: 0,
+    right: 0,
+  },
+  eventTag: {
+    flexDirection: "row",
+    minWidth: "100%",
+    // paddingVertical: 1,
+    paddingHorizontal: 2,
+    alignItems: "center",
+    flexShrink: 0,
+    borderRadius: 3,
+    height: 11,
+  },
+  eventText: {
+    flexShrink: 0,
+    overflow: "hidden",
+    color: "#FFFFFF",
+    fontSize: 8,
+    lineHeight: 10.4,
   },
 });
 
