@@ -1,11 +1,10 @@
-import CalendarCustom from "@/components/Cal";
-import { StyleSheet, Text, View } from "react-native";
+import CalendarUI from "@/components/CalendarUI";
+import { StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>홈</Text>
-      <CalendarCustom />
+      <CalendarUI />
     </View>
   );
 }
@@ -13,8 +12,10 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#0F172A",
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 20,
   },
   text: {
     fontSize: 24,
