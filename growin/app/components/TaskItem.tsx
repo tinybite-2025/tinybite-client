@@ -6,7 +6,6 @@ interface TaskItemProps {
   id: string;
   title: string;
   completed: boolean;
-  useDashed?: boolean;
   showRepeat?: boolean;
   onToggle: (id: string) => void;
   onTitleChange?: (title: string) => void;
@@ -16,7 +15,6 @@ export default function TaskItem({
   id,
   title,
   completed,
-  useDashed = false,
   showRepeat = true,
   onToggle,
   onTitleChange,
@@ -148,8 +146,6 @@ export default function TaskItem({
               <View style={styles.toggleChecked}>
                 <View style={styles.toggleCheckedInner} />
               </View>
-            ) : useDashed ? (
-              <View style={styles.toggleUncheckedDashed} />
             ) : (
               <View style={styles.toggleUnchecked} />
             )}
