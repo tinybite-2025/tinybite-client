@@ -1,9 +1,11 @@
+import CalendarCustom from "@/components/Cal";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>홈</Text>
+      <CalendarCustom />
     </View>
   );
 }
