@@ -6,7 +6,7 @@ interface AddButtonProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export default function AddButton({ onPress, style }: AddButtonProps) {
+const AddButton = ({ onPress, style }: AddButtonProps) => {
   return (
     <TouchableOpacity style={[styles.taskAddButton, style]} activeOpacity={0.7} onPress={onPress}>
       <View style={styles.taskAddCircle}>
@@ -14,7 +14,9 @@ export default function AddButton({ onPress, style }: AddButtonProps) {
       </View>
     </TouchableOpacity>
   );
-}
+};
+
+export default AddButton;
 
 const styles = StyleSheet.create({
   taskAddButton: {

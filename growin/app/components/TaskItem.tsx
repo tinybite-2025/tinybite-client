@@ -11,14 +11,14 @@ interface TaskItemProps {
   onTitleChange?: (title: string) => void;
 }
 
-export default function TaskItem({
+const TaskItem = ({
   id,
   title,
   completed,
   isRepeatable,
   onToggle,
   onTitleChange,
-}: TaskItemProps) {
+}: TaskItemProps) => {
   const [swipeableRef, setSwipeableRef] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(title === ""); // 제목이 비어있으면 편집 모드
   const [editTitle, setEditTitle] = useState(title);
@@ -154,7 +154,9 @@ export default function TaskItem({
       </View>
     </Swipeable>
   );
-}
+};
+
+export default TaskItem;
 
 const styles = StyleSheet.create({
   taskItem: {
