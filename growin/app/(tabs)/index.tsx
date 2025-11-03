@@ -1,6 +1,6 @@
-import AddButton from "@/app/components/AddButton";
-import TaskBottomSheet from "@/app/components/TaskBottomSheet";
-import TaskList from "@/app/components/TaskList";
+import AddButton from "@/components/AddButton";
+import TaskBottomSheet from "@/components/TaskBottomSheet";
+import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
