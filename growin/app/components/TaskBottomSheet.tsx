@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useMemo, useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import TaskBottomSheetTasklist from "./TaskBottomSheetTasklist";
+import TaskBottomSheetTaskList from "./TaskBottomSheetTaskList";
 
 interface TaskBottomSheetProps {
   onClose: () => void;
@@ -95,7 +95,7 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
         <View style={styles.divider} />
 
         {/* 할 일 섹션 */}
-        <TaskBottomSheetTasklist
+        <TaskBottomSheetTaskList
           todos={todos}
           editingId={editingId}
           setEditingId={setEditingId}
