@@ -5,7 +5,7 @@ import { Swipeable } from "react-native-gesture-handler";
 
 type Todo = { id: string; title: string; completed: boolean };
 
-interface TaskBottomSheetTasklistProps {
+interface TaskBottomSheetTaskListProps {
   todos: Todo[];
   editingId: string | null;
   setEditingId: (id: string | null) => void;
@@ -14,8 +14,8 @@ interface TaskBottomSheetTasklistProps {
   addTodo: () => void;
 }
 
-const TaskBottomSheetTasklist = 
-({ todos, editingId, setEditingId, toggleTodo, deleteTodo, addTodo }: TaskBottomSheetTasklistProps) => {
+const TaskBottomSheetTaskList = 
+({ todos, editingId, setEditingId, toggleTodo, deleteTodo, addTodo }: TaskBottomSheetTaskListProps) => {
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<number>,
     dragX: Animated.AnimatedInterpolation<number>,
@@ -221,6 +221,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TaskBottomSheetTasklist;
+export default TaskBottomSheetTaskList;
 
 
