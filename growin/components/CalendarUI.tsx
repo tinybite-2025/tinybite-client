@@ -52,20 +52,20 @@ const CalendarUI = () => {
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
-    return new Date(year, month + 1, 0).getDate();
+    return new Date(year, month + 1, 0).getDate(); // 28, 30, 31
   };
 
   const getFirstDayOfMonth = (date: Date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
-    return new Date(year, month, 1).getDay();
+    return new Date(year, month, 1).getDay(); // 요일 of 1
   };
 
   const renderCalendar = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDay = getFirstDayOfMonth(currentDate);
     const days = [];
-    const prevMonthDays = firstDay === 0 ? 6 : firstDay - 1;
+    const prevMonthDays = firstDay === 0 ? 6 : firstDay - 1; // 전달의 마지막 요일
 
     // 이전 달 날짜
     const prevMonth = new Date(
@@ -73,7 +73,7 @@ const CalendarUI = () => {
       currentDate.getMonth(),
       0
     );
-    const prevMonthDaysCount = prevMonth.getDate();
+    const prevMonthDaysCount = prevMonth.getDate(); // 28, 30, 31
     for (let i = prevMonthDays; i > 0; i--) {
       days.push({
         day: prevMonthDaysCount - i + 1,
@@ -90,12 +90,14 @@ const CalendarUI = () => {
     }
 
     // 다음 달 날짜
-    const remainingDays = 42 - days.length;
-    for (let i = 1; i <= remainingDays; i++) {
-      days.push({
-        day: i,
-        isCurrentMonth: false,
-      });
+    if (days.length % 7) {
+      const remainingDays = 42 - days.length;
+      for (let i = 1; i <= remainingDays; i++) {
+        days.push({
+          day: i,
+          isCurrentMonth: false,
+        });
+      }
     }
 
     const weeks = [];
