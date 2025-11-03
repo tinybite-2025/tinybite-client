@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import TaskItem from "../components/TaskItem";
+import AddButton from "../components/AddButton";
 
 interface Task {
   id: string;
@@ -87,11 +88,7 @@ export default function HomeScreen() {
               onTitleChange={(title) => updateTodayTask(task.id, title)}
             />
           ))}
-          <TouchableOpacity style={styles.taskAddButton} activeOpacity={0.7} onPress={addTodayTask}>
-            <View style={styles.taskAddCircle}>
-              <Ionicons name="add" size={20} color="#FFFFFF" />
-            </View>
-          </TouchableOpacity>
+          <AddButton onPress={addTodayTask} />
         </View>
 
         <Text style={[styles.taskTitle, styles.taskTitleSecond]}>언젠가 할 일</Text>
@@ -107,11 +104,7 @@ export default function HomeScreen() {
               onTitleChange={(title) => updateSomedayTask(task.id, title)}
             />
           ))}
-          <TouchableOpacity style={styles.taskAddButton} activeOpacity={0.7} onPress={addSomedayTask}>
-            <View style={styles.taskAddCircle}>
-              <Ionicons name="add" size={20} color="#FFFFFF" />
-            </View>
-          </TouchableOpacity>
+          <AddButton onPress={addSomedayTask} />
         </View>
       </View>
     </View>
