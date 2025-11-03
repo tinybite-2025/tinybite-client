@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Animated, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
-interface TaskItemProps {
+interface TaskListProps {
   id: string;
   title: string;
   completed: boolean;
@@ -11,14 +11,14 @@ interface TaskItemProps {
   onTitleChange?: (title: string) => void;
 }
 
-const TaskItem = ({
+const TaskList = ({
   id,
   title,
   completed,
   isRepeatable,
   onToggle,
   onTitleChange,
-}: TaskItemProps) => {
+}: TaskListProps) => {
   const [swipeableRef, setSwipeableRef] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(title === ""); // 제목이 비어있으면 편집 모드
   const [editTitle, setEditTitle] = useState(title);
@@ -156,7 +156,7 @@ const TaskItem = ({
   );
 };
 
-export default TaskItem;
+export default TaskList;
 
 const styles = StyleSheet.create({
   taskItem: {

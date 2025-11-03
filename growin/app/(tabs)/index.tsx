@@ -1,6 +1,6 @@
 import AddButton from "@/app/components/AddButton";
 import TaskBottomSheet from "@/app/components/TaskBottomSheet";
-import TaskItem from "@/app/components/TaskItem";
+import TaskList from "@/app/components/TaskList";
 import { useCallback, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -98,14 +98,14 @@ export default function HomeScreen() {
         <Text style={styles.taskTitle}>오늘의 할 일</Text>
         <View style={styles.taskList}>
           {todayTasks.map((task) => (
-            <TaskItem
+            <TaskList
               key={task.id}
               id={task.id}
               title={task.title}
               completed={task.completed}
               isRepeatable={true}
               onToggle={toggleTodayTask}
-              onTitleChange={(title) => updateTodayTask(task.id, title)}
+              onTitleChange={(title: string) => updateTodayTask(task.id, title)}
             />
           ))}
           <AddButton onPress={addTodayTask} />
@@ -114,14 +114,14 @@ export default function HomeScreen() {
         <Text style={[styles.taskTitle, styles.taskTitleSecond]}>언젠가 할 일</Text>
         <View style={styles.taskList}>
           {somedayTasks.map((task) => (
-            <TaskItem
+            <TaskList
               key={task.id}
               id={task.id}
               title={task.title}
               completed={task.completed}
               isRepeatable={false}
               onToggle={toggleSomedayTask}
-              onTitleChange={(title) => updateSomedayTask(task.id, title)}
+              onTitleChange={(title: string) => updateSomedayTask(task.id, title)}
             />
           ))}
           <AddButton onPress={addSomedayTask} />
