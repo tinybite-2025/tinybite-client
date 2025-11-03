@@ -1,14 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useMemo, useRef, useState } from "react";
-import { Animated, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { Swipeable } from "react-native-gesture-handler";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import TaskBottomSheetTasklist from "./TaskBottomSheetTasklist";
 
 interface TaskBottomSheetProps {
   onClose: () => void;
 }
 
-export default function TaskBottomSheet({ onClose }: TaskBottomSheetProps) {
+const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [todos, setTodos] = useState([
     { id: "1", title: "회의록 작성", completed: false },
@@ -19,68 +19,6 @@ export default function TaskBottomSheet({ onClose }: TaskBottomSheetProps) {
 
   // 바텀시트 스냅 포인트 설정
   const snapPoints = useMemo(() => ["90%"], []);
-
-  // 할 일 토글
-  const toggleTodo = (id: string) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-
-  // 할 일 추가
-  const addTodo = () => {
-    const newId = `todo-${Date.now()}`;
-    setTodos((prevTodos) => [...prevTodos, { id: newId, title: "", completed: false }]);
-    setEditingId(newId);
-  };
-
-  // 할 일 삭제
-  const deleteTodo = (id: string) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-  };
-
-  // 스와이프 액션 렌더링 (왼쪽에서 오른쪽으로 스와이프)
-  const renderRightActions = (
-    progress: Animated.AnimatedInterpolation<number>,
-    dragX: Animated.AnimatedInterpolation<number>,
-    itemId: string
-  ) => {
-    const scale = dragX.interpolate({
-      inputRange: [-100, 0],
-      outputRange: [1, 0],
-      extrapolate: "clamp",
-    });
-
-    return (
-      <View style={styles.rightActions}>
-        <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity style={styles.actionButton}>
-            <Image
-              source={require('../../assets/images/task/taskEdit.png')}
-              style={styles.actionIcon}
-              resizeMode="contain"
-            />
-            <Text style={styles.actionText}>수정</Text>
-          </TouchableOpacity>
-        </Animated.View>
-        <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity 
-            style={styles.actionButton}
-            onPress={() => deleteTodo(itemId)}
-          >
-            <Image
-              source={require('../../assets/images/task/tastDelete.png')}
-              style={styles.actionIcon}
-              resizeMode="contain"
-            />
-            <Text style={styles.actionText}>삭제</Text>
-          </TouchableOpacity>
-        </Animated.View>
-      </View>
-    );
-  };
 
   return (
     <BottomSheet
@@ -157,65 +95,30 @@ export default function TaskBottomSheet({ onClose }: TaskBottomSheetProps) {
         <View style={styles.divider} />
 
         {/* 할 일 섹션 */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>할 일</Text>
-          {todos.map((todo) => (
-            editingId === todo.id ? (
-              <View key={todo.id} style={styles.todoItem}>
-                <TextInput
-                  style={styles.todoInput}
-                  placeholder="할 일 입력..."
-                  placeholderTextColor="#8E8E93"
-                  autoFocus
-                  returnKeyType="done"
-                  onChangeText={(text) => {
-                    setTodos((prevTodos) =>
-                      prevTodos.map((t) =>
-                        t.id === todo.id ? { ...t, title: text } : t
-                      )
-                    );
-                  }}
-                  onSubmitEditing={() => {
-                    setEditingId(null);
-                  }}
-                />
-              </View>
-            ) : (
-              <Swipeable
-                key={todo.id}
-                renderRightActions={(progress, dragX) => renderRightActions(progress, dragX, todo.id)}
-                rightThreshold={40}
-              >
-                <View style={styles.todoItem}>
-                  <Text style={[styles.todoText, todo.completed && styles.todoTextCompleted]}>
-                    {todo.title}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => toggleTodo(todo.id)}
-                    style={styles.todoToggle}
-                  >
-                    {todo.completed ? (
-                      <View style={styles.todoChecked}>
-                        <View style={styles.todoCheckedInner} />
-                      </View>
-                    ) : (
-                      <View style={styles.todoUnchecked} />
-                    )}
-                  </TouchableOpacity>
-                </View>
-              </Swipeable>
-            )
-          ))}
-            <TouchableOpacity style={styles.taskAddButton} onPress={addTodo}>
-                <View style={styles.taskAddCircle}>
-                    <Ionicons name="add" size={20} color="#FFFFFF" />
-                </View>
-            </TouchableOpacity>
-        </View>
+        <TaskBottomSheetTasklist
+          todos={todos}
+          editingId={editingId}
+          setEditingId={setEditingId}
+          toggleTodo={(id) => {
+            setTodos((prevTodos) =>
+              prevTodos.map((todo) =>
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+              )
+            );
+          }}
+          deleteTodo={(id) => {
+            setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+          }}
+          addTodo={() => {
+            const newId = `todo-${Date.now()}`;
+            setTodos((prevTodos) => [...prevTodos, { id: newId, title: "", completed: false }]);
+            setEditingId(newId);
+          }}
+        />
       </BottomSheetView>
     </BottomSheet>
   );
-}
+};
 
 const styles = StyleSheet.create({
   bottomSheetBackground: {
@@ -390,106 +293,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#FFFFFF",
   },
-  // 할 일 섹션
-  todoItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#3F4360",
-    borderRadius: 15,
-    width: 350,
-    height: 40,
-    paddingHorizontal: 13,
-    marginBottom: 4,
-  },
-  todoText: {
-    flex: 1,
-    fontSize: 13,
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-    color: "#FFFFFF",
-  },
-  todoTextCompleted: {
-    color: "#8E8E93",
-  },
-  todoInput: {
-    flex: 1,
-    fontSize: 13,
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-    color: "#FFFFFF",
-  },
-  todoToggle: {
-    width: 24,
-    height: 24,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  todoUnchecked: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "#2A2C45",
-    borderStyle: "solid"
-  },
-  todoChecked: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: "#FF008B",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  todoCheckedInner: {
-    width: 20,
-    height: 20,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "#3F4360",
-    borderStyle: "solid"
-  },
-  rightActions: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    width: 100,
-  },
-  actionButton: {
-    width: 50,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 15,
-  },
-  actionIcon: {
-    width: 18,
-    height: 18,
-  },
-  actionText: {
-    fontSize: 8,
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-    color: "#8E8E93",
-    marginTop: 4,
-    textAlign: "center",
-  },
-  // 추가 버튼
-  taskAddButton: {
-    width: 350,
-    height: 40,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#3F4360",
-    borderRadius: 15,
-  },
-  taskAddCircle: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: "#2A2C45",
-    alignItems: "center",
-    justifyContent: "center",
-  },
 });
+
+export default TaskBottomSheet;
 
