@@ -1,6 +1,6 @@
 // 마이페이지 화면 - 사용자 프로필과 설정, 메뉴 항목을 보여주는 화면
+import ProfileHeader from "@/components/ProfileHeader";
 import { Ionicons } from "@expo/vector-icons";
-import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -12,13 +12,7 @@ import {
     View
 } from "react-native";
 
-// 프로필 정보에 표시할 메타 데이터 리스트
-const PROFILE_METADATA_LIST = [
-  { label: "관심 분야", value: "IT" },
-  { label: "나의 목표", value: "취직 · 이직" },
-];
-
-// 마이페이지 메뉴 항목 리스트
+// 마이페이지 설정 항목 리스트
 const MY_PAGE_SETTINGS_LIST = [
   { label: "내 정보 변경", onPress: () => {} },
   {
@@ -60,25 +54,8 @@ export default function MyPageScreen() {
             <View style={styles.headerRightPlaceholder} />
           </View>
 
-          {/* 프로필 영역 (이름, 관심 분야/목표) */}
-          <View style={styles.profileSection}>
-            <Image
-              source={require("@/assets/images/logo/growin-logo-home-small.png")}
-              style={styles.profileImage}
-              resizeMode="contain"
-            />
-            <View style={styles.profileInfo}>
-              <Text style={styles.profileName}>랜덤닉네임123</Text>
-              <View style={styles.profileMetaContainer}>
-                {PROFILE_METADATA_LIST.map((metadataItem) => (
-                  <View key={metadataItem.label} style={styles.profileMetaItem}>
-                    <Text style={styles.profileMetaLabel}>{metadataItem.label}</Text>
-                    <Text style={styles.profileMetaValue}>{metadataItem.value}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          </View>
+          {/* 프로필 영역 */}
+          <ProfileHeader />
 
           <View style={styles.profileDivider} />
 
@@ -162,48 +139,14 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
   },
-  profileSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 23,
-  },
-  profileImage: {
-    width: 46.5,
-    height: 34.5,
-  },
-  profileInfo: {
-    marginLeft: 16,
-    flex: 1,
-  },
-  profileName: { 
-    fontSize: 18,
-    lineHeight: 23.4,
-    fontFamily: "Pretendard",
-    fontWeight: "600",
-    color: "#FFFFFF",
-  },
-  profileMetaContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 16,
-    marginTop: 5,
-  },
-  profileMetaItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  profileMetaLabel: {
-    fontSize: 14,
-    color: "#8E8E93",
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-  },
-  profileMetaValue: {
-    fontSize: 14,
-    color: "#FFFFFF",
-    fontFamily: "Pretendard",
-    fontWeight: "500",
+  profileDivider: {
+    width: 350,
+    height: 4,
+    marginTop: 20,
+    marginBottom: 17,
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 2,
+    alignSelf: "center",
   },
   sectionRow: {
     flexDirection: "row",
@@ -257,14 +200,5 @@ const styles = StyleSheet.create({
     fontFamily: "Pretendard",
     fontWeight: "600",
     color: "#FFFFFF",
-  },
-  profileDivider: {
-    width: 350,
-    height: 4,
-    marginTop: 20,
-    marginBottom: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: 2,
-    alignSelf: "center",
   },
 });

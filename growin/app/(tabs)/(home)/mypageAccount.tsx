@@ -1,9 +1,9 @@
 // 마이페이지 > 계정 설정 화면 - 로그아웃 및 회원 탈퇴 등 계정 관련 기능 안내
+import ProfileHeader from "@/components/ProfileHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-    Image,
     SafeAreaView,
     ScrollView,
     StyleSheet,
@@ -11,11 +11,6 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-
-const PROFILE_METADATA_LIST = [
-  { label: "관심 분야", value: "IT" },
-  { label: "나의 목표", value: "취직 · 이직" },
-];
 
 const ACCOUNT_ACTIONS = [
   { label: "로그아웃", onPress: () => {} },
@@ -46,25 +41,8 @@ export default function MyPageAccountScreen() {
             <View style={styles.headerRightPlaceholder} />
           </View>
 
-          {/* 프로필 영역과 메타 정보 */}
-          <View style={styles.profileSection}>
-            <Image
-              source={require("@/assets/images/logo/growin-logo-home-small.png")}
-              style={styles.profileImage}
-              resizeMode="contain"
-            />
-            <View style={styles.profileInfo}>
-              <Text style={styles.profileName}>랜덤닉네임123</Text>
-              <View style={styles.profileMetaContainer}>
-                {PROFILE_METADATA_LIST.map((metadataItem) => (
-                  <View key={metadataItem.label} style={styles.profileMetaItem}>
-                    <Text style={styles.profileMetaLabel}>{metadataItem.label}</Text>
-                    <Text style={styles.profileMetaValue}>{metadataItem.value}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          </View>
+          {/* 프로필 영역 */}
+          <ProfileHeader />
 
           <View style={styles.profileDivider} />
 
@@ -127,49 +105,6 @@ const styles = StyleSheet.create({
   headerRightPlaceholder: {
     width: 32,
     height: 32,
-  },
-  profileSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 23,
-  },
-  profileImage: {
-    width: 46.5,
-    height: 34.5,
-  },
-  profileInfo: {
-    marginLeft: 16,
-    flex: 1,
-  },
-  profileName: {
-    fontSize: 18,
-    lineHeight: 23.4,
-    fontFamily: "Pretendard",
-    fontWeight: "600",
-    color: "#FFFFFF",
-  },
-  profileMetaContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 16,
-    marginTop: 5,
-  },
-  profileMetaItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-  },
-  profileMetaLabel: {
-    fontSize: 14,
-    color: "#8E8E93",
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-  },
-  profileMetaValue: {
-    fontSize: 14,
-    color: "#FFFFFF",
-    fontFamily: "Pretendard",
-    fontWeight: "500",
   },
   profileDivider: {
     width: 350,
