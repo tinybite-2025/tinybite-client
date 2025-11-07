@@ -2,6 +2,7 @@ import { events } from "@/mock/calendarEvent";
 import { DayGridType } from "@/types/calendar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, Text, View } from "react-native";
+import EventTag from "./EventTag";
 
 interface DayGridProps {
   dayIndex: number;
@@ -44,16 +45,15 @@ const DayGrid = ({ dayIndex, isBorderRight, isToday, day }: DayGridProps) => {
       {/* 할 일 목록 */}
       {day.isCurrentMonth &&
         events[day.day] &&
-        events[day.day].slice(0, 3).map((eventItem, eventIndex) => (
-          <View
-            key={eventIndex}
-            style={[styles.eventTag, { backgroundColor: eventItem.color }]}
-          >
-            <Text style={styles.eventText} numberOfLines={1}>
-              {eventItem.title}
-            </Text>
-          </View>
-        ))}
+        events[day.day]
+          .slice(0, 3)
+          .map((eventItem, eventIndex) => (
+            <EventTag
+              key={eventIndex}
+              eventItem={eventItem}
+              eventIndex={eventIndex}
+            />
+          ))}
     </View>
   );
 };
@@ -108,23 +108,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexShrink: 0,
     right: 0,
-  },
-  eventTag: {
-    flexDirection: "row",
-    minWidth: "100%",
-    // paddingVertical: 1,
-    paddingHorizontal: 2,
-    alignItems: "center",
-    flexShrink: 0,
-    borderRadius: 3,
-    height: 11,
-  },
-  eventText: {
-    flexShrink: 0,
-    overflow: "hidden",
-    color: "#FFFFFF",
-    fontSize: 8,
-    lineHeight: 10.4,
   },
 });
 
