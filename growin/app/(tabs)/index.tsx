@@ -1,6 +1,7 @@
 import AddButton from "@/components/AddButton";
 import CalendarHeader from "@/components/calendar/CalendarHeader";
 import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
+import ScheduleCard from "@/components/ScheduleCard";
 import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
@@ -20,6 +21,11 @@ interface Task {
 
 export default function HomeScreen() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+  const todos = [
+    { id: 0, text: "동역사 스타벅스 가기", done: false },
+    { id: 1, text: "노트북 환경 설정", done: true },
+  ];
 
   // 바텀시트 열기
   const handleOpenBottomSheet = useCallback(() => {
@@ -100,6 +106,13 @@ export default function HomeScreen() {
       <CalendarHeader />
       <ScrollView contentContainerStyle={{ paddingBottom: 12, gap: 12 }}>
         <MonthlyCalendar />
+
+        <ScheduleCard
+          id={0}
+          title="FE 회의"
+          time="16:00 - 18:00"
+          todos={todos}
+        />
 
         <TouchableOpacity
           style={styles.openButton}
