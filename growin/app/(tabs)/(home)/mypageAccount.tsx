@@ -1,53 +1,39 @@
-// 마이페이지 화면 - 사용자 프로필과 설정, 메뉴 항목을 보여주는 화면
+// 마이페이지 > 계정 설정 화면 - 로그아웃 및 회원 탈퇴 등 계정 관련 기능 안내
 import { Ionicons } from "@expo/vector-icons";
-import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React from "react";
 import {
+    Image,
     SafeAreaView,
     ScrollView,
     StyleSheet,
     Text,
     TouchableOpacity,
-    View
+    View,
 } from "react-native";
 
-// 프로필 정보에 표시할 메타 데이터 리스트
 const PROFILE_METADATA_LIST = [
   { label: "관심 분야", value: "IT" },
   { label: "나의 목표", value: "취직 · 이직" },
 ];
 
-// 마이페이지 메뉴 항목 리스트
-const MY_PAGE_SETTINGS_LIST = [
-  { label: "내 정보 변경", onPress: () => {} },
-  {
-    label: "로그아웃 및 회원 탈퇴",
-    onPress: (router: ReturnType<typeof useRouter>) => {
-      router.push("/(tabs)/(home)/mypageAccount");
-    },
-  },
+const ACCOUNT_ACTIONS = [
+  { label: "로그아웃", onPress: () => {} },
+  { label: "회원 탈퇴", onPress: () => {} },
 ];
 
-export default function MyPageScreen() {
+export default function MyPageAccountScreen() {
   const router = useRouter();
-  const [isPushNotificationEnabled, setIsPushNotificationEnabled] = useState(true);
 
-  // 홈으로 돌아가기 (이전 화면으로 복귀)
   const handlePressBack = () => {
     router.back();
-  };
-
-  // 푸시 알람 설정 토글 핸들러
-  const handleTogglePushNotification = (value: boolean) => {
-    setIsPushNotificationEnabled(value);
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.wrapper}>
-          {/* 헤더 영역 */}
+          {/* 헤더 */}
           <View style={styles.header}>
             <TouchableOpacity
               style={styles.headerBackButton}
@@ -56,11 +42,11 @@ export default function MyPageScreen() {
             >
               <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            <Text style={styles.headerTitle}>마이페이지</Text>
+            <Text style={styles.headerTitle}>로그아웃 및 회원 탈퇴</Text>
             <View style={styles.headerRightPlaceholder} />
           </View>
 
-          {/* 프로필 영역 (이름, 관심 분야/목표) */}
+          {/* 프로필 영역과 메타 정보 */}
           <View style={styles.profileSection}>
             <Image
               source={require("@/assets/images/logo/growin-logo-home-small.png")}
@@ -82,38 +68,18 @@ export default function MyPageScreen() {
 
           <View style={styles.profileDivider} />
 
-          {/* 푸시 알람 설정 토글 */}
-          <View style={[styles.sectionRow, styles.sectionRowCompact]}>
-            <Text style={styles.sectionLabel}>푸시 알람 설정</Text>
+          {/* 계정 관련 액션 */}
+          {ACCOUNT_ACTIONS.map((action, index) => (
             <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => handleTogglePushNotification(!isPushNotificationEnabled)}
-            >
-              <View
-                style={[
-                  styles.toggleTrack,
-                  isPushNotificationEnabled && styles.toggleTrackActive,
-                ]}
-              >
-                <View
-                  style={[
-                    styles.toggleThumb,
-                    isPushNotificationEnabled && styles.toggleThumbActive,
-                  ]}
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          {/* 설정 리스트 */}
-          {MY_PAGE_SETTINGS_LIST.map((settingsItem) => (
-            <TouchableOpacity
-              key={settingsItem.label}
-              style={styles.settingsRow}
+              key={action.label}
+              style={[
+                styles.actionRow,
+                index === 0 && styles.actionRowFirst,
+              ]}
               activeOpacity={0.7}
-              onPress={() => settingsItem.onPress(router)}
+              onPress={action.onPress}
             >
-              <Text style={styles.settingsLabel}>{settingsItem.label}</Text>
+              <Text style={styles.actionLabel}>{action.label}</Text>
               <Ionicons name="chevron-forward" size={20} color="#FFFFFF" />
             </TouchableOpacity>
           ))}
@@ -175,7 +141,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     flex: 1,
   },
-  profileName: { 
+  profileName: {
     fontSize: 18,
     lineHeight: 23.4,
     fontFamily: "Pretendard",
@@ -205,44 +171,16 @@ const styles = StyleSheet.create({
     fontFamily: "Pretendard",
     fontWeight: "500",
   },
-  sectionRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: 16,
+  profileDivider: {
+    width: 350,
+    height: 4,
+    marginTop: 20,
+    marginBottom: 17,
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 2,
+    alignSelf: "center",
   },
-  sectionLabel: {
-    flex: 1,
-    fontSize: 18,
-    lineHeight: 23.4,
-    fontFamily: "Pretendard",
-    fontWeight: "600",
-    color: "#FFFFFF",
-  },
-  sectionRowCompact: {
-    marginTop: -4,
-  },
-  toggleTrack: {
-    width: 56,
-    height: 30,
-    borderRadius: 100,
-    backgroundColor: "#3F4360",
-    padding: 4,
-    justifyContent: "center",
-  },
-  toggleTrackActive: {
-    backgroundColor: "#FF008B",
-  },
-  toggleThumb: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: "#FFFFFF",
-  },
-  toggleThumbActive: {
-    alignSelf: "flex-end",
-  },
-  settingsRow: {
+  actionRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -250,21 +188,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "rgba(255, 255, 255, 0.05)",
   },
-  settingsLabel: {
+  actionRowFirst: {
+    borderTopWidth: 0,
+  },
+  actionLabel: {
     flex: 1,
     fontSize: 18,
     lineHeight: 23.4,
     fontFamily: "Pretendard",
     fontWeight: "600",
     color: "#FFFFFF",
-  },
-  profileDivider: {
-    width: 350,
-    height: 4,
-    marginTop: 20,
-    marginBottom: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: 2,
-    alignSelf: "center",
   },
 });
