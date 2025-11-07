@@ -1,8 +1,16 @@
 import AddButton from "@/components/AddButton";
+import CalendarHeader from "@/components/calendar/CalendarHeader";
+import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
 import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 interface Task {
   id: string;
@@ -45,7 +53,10 @@ export default function HomeScreen() {
   // 새로운 할 일 추가 (빈 제목으로 추가되어 자동으로 편집 모드 활성화)
   const addSomedayTask = () => {
     const newId = `someday-${Date.now()}`;
-    setSomedayTasks([...somedayTasks, { id: newId, title: "", completed: false }]);
+    setSomedayTasks([
+      ...somedayTasks,
+      { id: newId, title: "", completed: false },
+    ]);
   };
 
   // 기존 할 일 제목 업데이트 (텍스트 입력 시 호출됨)
@@ -86,51 +97,61 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>홈</Text>
-      <TouchableOpacity 
-        style={styles.openButton} 
-        onPress={handleOpenBottomSheet}
-      >
-        <Text style={styles.openButtonText}>바텀시트 열기</Text>
-      </TouchableOpacity>
+      <CalendarHeader />
+      <ScrollView contentContainerStyle={{ gap: 12 }}>
+        <MonthlyCalendar />
 
-      <View style={styles.contentContainer}>
-        <Text style={styles.taskTitle}>오늘의 할 일</Text>
-        <View style={styles.taskList}>
-          {todayTasks.map((task) => (
-            <TaskList
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              completed={task.completed}
-              isRepeatable={true}
-              onToggle={toggleTodayTask}
-              onTitleChange={(title: string) => updateTodayTask(task.id, title)}
-            />
-          ))}
-          <AddButton onPress={addTodayTask} />
+        <TouchableOpacity
+          style={styles.openButton}
+          onPress={handleOpenBottomSheet}
+        >
+          <Text style={styles.openButtonText}>바텀시트 열기</Text>
+        </TouchableOpacity>
+
+        <View style={styles.contentContainer}>
+          <Text style={styles.taskTitle}>오늘의 할 일</Text>
+          <View style={styles.taskList}>
+            {todayTasks.map((task) => (
+              <TaskList
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                completed={task.completed}
+                isRepeatable={true}
+                onToggle={toggleTodayTask}
+                onTitleChange={(title: string) =>
+                  updateTodayTask(task.id, title)
+                }
+              />
+            ))}
+            <AddButton onPress={addTodayTask} />
+          </View>
+
+          <Text style={[styles.taskTitle, styles.taskTitleSecond]}>
+            언젠가 할 일
+          </Text>
+          <View style={styles.taskList}>
+            {somedayTasks.map((task) => (
+              <TaskList
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                completed={task.completed}
+                isRepeatable={false}
+                onToggle={toggleSomedayTask}
+                onTitleChange={(title: string) =>
+                  updateSomedayTask(task.id, title)
+                }
+              />
+            ))}
+            <AddButton onPress={addSomedayTask} />
+          </View>
         </View>
 
-        <Text style={[styles.taskTitle, styles.taskTitleSecond]}>언젠가 할 일</Text>
-        <View style={styles.taskList}>
-          {somedayTasks.map((task) => (
-            <TaskList
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              completed={task.completed}
-              isRepeatable={false}
-              onToggle={toggleSomedayTask}
-              onTitleChange={(title: string) => updateSomedayTask(task.id, title)}
-            />
-          ))}
-          <AddButton onPress={addSomedayTask} />
-        </View>
-      </View>
-
-      {isBottomSheetOpen && (
-        <TaskBottomSheet onClose={handleCloseBottomSheet} />
-      )}
+        {isBottomSheetOpen && (
+          <TaskBottomSheet onClose={handleCloseBottomSheet} />
+        )}
+      </ScrollView>
     </View>
   );
 }
@@ -140,13 +161,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#10121F",
     paddingTop: 60,
+    paddingHorizontal: 20,
+    gap: 8,
   },
   contentContainer: {
     alignItems: "center",
   },
   taskTitle: {
     fontSize: 18,
-    lineHeight: 23.4, 
+    lineHeight: 23.4,
     fontFamily: "Pretendard",
     fontWeight: "500",
     color: "#FFFFFF",
@@ -170,7 +193,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#3F4360",
     paddingHorizontal: 24,
     paddingVertical: 12,
-    borderRadius: 8
+    borderRadius: 8,
   },
   openButtonText: {
     color: "#FFFFFF",
