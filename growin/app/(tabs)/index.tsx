@@ -1,9 +1,17 @@
 import AddButton from "@/components/AddButton";
+import CalendarHeader from "@/components/calendar/CalendarHeader";
+import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
 import ScheduleCard from "@/components/ScheduleCard";
 import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 interface Task {
   id: string;
@@ -95,58 +103,68 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>홈</Text>
+      <CalendarHeader />
+      <ScrollView contentContainerStyle={{ paddingBottom: 12, gap: 12 }}>
+        <MonthlyCalendar />
 
-      <ScheduleCard id={0} title="FE 회의" time="16:00 - 18:00" todos={todos} />
+        <ScheduleCard
+          id={0}
+          title="FE 회의"
+          time="16:00 - 18:00"
+          todos={todos}
+        />
 
-      <TouchableOpacity
-        style={styles.openButton}
-        onPress={handleOpenBottomSheet}
-      >
-        <Text style={styles.openButtonText}>바텀시트 열기</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.openButton}
+          onPress={handleOpenBottomSheet}
+        >
+          <Text style={styles.openButtonText}>바텀시트 열기</Text>
+        </TouchableOpacity>
 
-      <View style={styles.contentContainer}>
-        <Text style={styles.taskTitle}>오늘의 할 일</Text>
-        <View style={styles.taskList}>
-          {todayTasks.map((task) => (
-            <TaskList
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              completed={task.completed}
-              isRepeatable={true}
-              onToggle={toggleTodayTask}
-              onTitleChange={(title: string) => updateTodayTask(task.id, title)}
-            />
-          ))}
-          <AddButton onPress={addTodayTask} />
+        <View style={styles.contentContainer}>
+          <Text style={styles.taskTitle}>오늘의 할 일</Text>
+          <View style={styles.taskList}>
+            {todayTasks.map((task) => (
+              <TaskList
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                completed={task.completed}
+                isRepeatable={true}
+                onToggle={toggleTodayTask}
+                onTitleChange={(title: string) =>
+                  updateTodayTask(task.id, title)
+                }
+              />
+            ))}
+            <AddButton onPress={addTodayTask} />
+          </View>
+
+          <Text style={[styles.taskTitle, styles.taskTitleSecond]}>
+            언젠가 할 일
+          </Text>
+          <View style={styles.taskList}>
+            {somedayTasks.map((task) => (
+              <TaskList
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                completed={task.completed}
+                isRepeatable={false}
+                onToggle={toggleSomedayTask}
+                onTitleChange={(title: string) =>
+                  updateSomedayTask(task.id, title)
+                }
+              />
+            ))}
+            <AddButton onPress={addSomedayTask} />
+          </View>
         </View>
 
-        <Text style={[styles.taskTitle, styles.taskTitleSecond]}>
-          언젠가 할 일
-        </Text>
-        <View style={styles.taskList}>
-          {somedayTasks.map((task) => (
-            <TaskList
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              completed={task.completed}
-              isRepeatable={false}
-              onToggle={toggleSomedayTask}
-              onTitleChange={(title: string) =>
-                updateSomedayTask(task.id, title)
-              }
-            />
-          ))}
-          <AddButton onPress={addSomedayTask} />
-        </View>
-      </View>
-
-      {isBottomSheetOpen && (
-        <TaskBottomSheet onClose={handleCloseBottomSheet} />
-      )}
+        {isBottomSheetOpen && (
+          <TaskBottomSheet onClose={handleCloseBottomSheet} />
+        )}
+      </ScrollView>
     </View>
   );
 }
@@ -156,6 +174,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#10121F",
     paddingTop: 60,
+    paddingHorizontal: 20,
+    gap: 8,
   },
   contentContainer: {
     alignItems: "center",
