@@ -1,13 +1,13 @@
+import CategoryColorPicker from "@/components/CategoryColorPicker";
+import { CategoryColorPalette, CategoryIndex } from "@/types/category";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import React, { useEffect, useMemo, useRef } from "react";
 import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
-type CalendarIndex = { id: string; color: string; name: string };
-
 interface TaskBottomSheetCategoryProps {
-  calendarIndexes: CalendarIndex[];
+  calendarIndexes: CategoryIndex[];
   selectedIndex: number;
   selectedColor: string;
   onIndexChange: (index: number) => void;
@@ -16,6 +16,13 @@ interface TaskBottomSheetCategoryProps {
   onClose: () => void;
   isVisible: boolean;
 }
+
+const COLOR_PALETTE: CategoryColorPalette = [
+  "#FF383C", "#EF534F", "#FF8D28", "#FFCC00", "#34C759",
+  "#00C8B3", "#00C0E8", "#0088FF", "#6155F5", "#C11BEF",
+  "#A218A0", "#EC417A", "#FF2D55", "#F6AFC7", "#B2EE71",
+  "#95E1BA", "#26C6DC", "#AC7F5E", "#7E7E7E",
+];
 
 const TaskBottomSheetCategory = ({
   calendarIndexes,
@@ -102,22 +109,11 @@ const TaskBottomSheetCategory = ({
 
         <View style={styles.colorSection}>
           <Text style={styles.sectionTitle}>컬러</Text>
-          <View style={styles.colorGrid}>
-            {[
-              "#FF383C", "#EF534F", "#FF8D28", "#FFCC00", "#34C759",
-              "#00C8B3", "#00C0E8", "#0088FF", "#6155F5", "#C11BEF",
-              "#A218A0", "#EC417A", "#FF2D55", "#F6AFC7", "#B2EE71",
-              "#95E1BA", "#26C6DC", "#AC7F5E", "#7E7E7E",
-            ].map((color, index) => (
-              <TouchableOpacity key={index} style={styles.colorSwatch} onPress={() => onColorChange(color)}>
-                <View style={[styles.colorCircle, { backgroundColor: color }]}>
-                  {selectedColor === color && (
-                    <Ionicons name="checkmark" size={24} color="#FFFFFF" />
-                  )}
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <CategoryColorPicker
+            colors={COLOR_PALETTE}
+            selectedColor={selectedColor}
+            onSelect={onColorChange}
+          />
         </View>
 
         {/* 인덱스 섹션 */}
@@ -193,26 +189,6 @@ const styles = StyleSheet.create({
   },
   colorSection: { 
     marginBottom: 24 
-  },
-  colorGrid: { 
-    flexDirection: "row", 
-    flexWrap: "wrap", 
-    backgroundColor: "#3F4360", 
-    borderRadius: 15, 
-    padding: 15, 
-    marginTop: 4 
-  },
-  colorSwatch: { 
-    width: "12.5%", 
-    padding: 4 
-  },
-  colorCircle: {
-    width: 32,
-    height: 32,
-    aspectRatio: 1,
-    borderRadius: 1000,
-    justifyContent: "center",
-    alignItems: "center",
   },
   indexSection: {},
   indexList: {
