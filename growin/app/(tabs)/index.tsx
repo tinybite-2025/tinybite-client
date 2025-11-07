@@ -98,7 +98,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <CalendarHeader />
-      <ScrollView contentContainerStyle={{ gap: 12 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 12, gap: 12 }}>
         <MonthlyCalendar />
 
         <TouchableOpacity
