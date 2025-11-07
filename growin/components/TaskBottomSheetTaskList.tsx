@@ -1,6 +1,14 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Animated, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Animated,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
 type Todo = { id: string; title: string; completed: boolean };
@@ -14,8 +22,14 @@ interface TaskBottomSheetTaskListProps {
   addTodo: () => void;
 }
 
-const TaskBottomSheetTaskList = 
-({ todos, editingId, setEditingId, toggleTodo, deleteTodo, addTodo }: TaskBottomSheetTaskListProps) => {
+const TaskBottomSheetTaskList = ({
+  todos,
+  editingId,
+  setEditingId,
+  toggleTodo,
+  deleteTodo,
+  addTodo,
+}: TaskBottomSheetTaskListProps) => {
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<number>,
     dragX: Animated.AnimatedInterpolation<number>,
@@ -32,7 +46,7 @@ const TaskBottomSheetTaskList =
         <Animated.View style={{ transform: [{ scale }] }}>
           <TouchableOpacity style={styles.actionButton}>
             <Image
-              source={require('../../assets/images/task/taskEdit.png')}
+              source={require("@/assets/images/task/taskEdit.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />
@@ -40,12 +54,12 @@ const TaskBottomSheetTaskList =
           </TouchableOpacity>
         </Animated.View>
         <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={() => deleteTodo(itemId)}
           >
             <Image
-              source={require('../../assets/images/task/tastDelete.png')}
+              source={require("@/assets/images/task/tastDelete.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />
@@ -59,7 +73,7 @@ const TaskBottomSheetTaskList =
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>할 일</Text>
-      {todos.map((todo) => (
+      {todos.map((todo) =>
         editingId === todo.id ? (
           <View key={todo.id} style={styles.todoItem}>
             <TextInput
@@ -68,7 +82,9 @@ const TaskBottomSheetTaskList =
               placeholderTextColor="#8E8E93"
               autoFocus
               returnKeyType="done"
-              onChangeText={() => { /* 상위에서 상태 업데이트 처리 */ }}
+              onChangeText={() => {
+                /* 상위에서 상태 업데이트 처리 */
+              }}
               onSubmitEditing={() => {
                 setEditingId(null);
               }}
@@ -77,11 +93,18 @@ const TaskBottomSheetTaskList =
         ) : (
           <Swipeable
             key={todo.id}
-            renderRightActions={(progress, dragX) => renderRightActions(progress, dragX, todo.id)}
+            renderRightActions={(progress, dragX) =>
+              renderRightActions(progress, dragX, todo.id)
+            }
             rightThreshold={40}
           >
             <View style={styles.todoItem}>
-              <Text style={[styles.todoText, todo.completed && styles.todoTextCompleted]}>
+              <Text
+                style={[
+                  styles.todoText,
+                  todo.completed && styles.todoTextCompleted,
+                ]}
+              >
                 {todo.title}
               </Text>
               <TouchableOpacity
@@ -99,7 +122,7 @@ const TaskBottomSheetTaskList =
             </View>
           </Swipeable>
         )
-      ))}
+      )}
       <TouchableOpacity style={styles.taskAddButton} onPress={addTodo}>
         <View style={styles.taskAddCircle}>
           <Ionicons name="add" size={20} color="#FFFFFF" />
@@ -159,7 +182,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     borderColor: "#2A2C45",
-    borderStyle: "solid"
+    borderStyle: "solid",
   },
   todoChecked: {
     width: 24,
@@ -175,7 +198,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     borderColor: "#3F4360",
-    borderStyle: "solid"
+    borderStyle: "solid",
   },
   rightActions: {
     flexDirection: "row",
@@ -222,5 +245,3 @@ const styles = StyleSheet.create({
 });
 
 export default TaskBottomSheetTaskList;
-
-

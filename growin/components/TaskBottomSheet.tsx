@@ -35,21 +35,30 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
           <View style={styles.titleColorBar} />
           <View style={styles.titleContent}>
             <Text style={styles.titleText}>잇타 회의</Text>
-            <TouchableOpacity style={styles.moreButton} onPress={() => setShowMenu(!showMenu)}>
+            <TouchableOpacity
+              style={styles.moreButton}
+              onPress={() => setShowMenu(!showMenu)}
+            >
               <Ionicons name="ellipsis-horizontal" size={20} color="#3F4360" />
             </TouchableOpacity>
             {showMenu && (
               <View style={styles.menuContainer}>
-                <TouchableOpacity style={styles.menuItem} onPress={() => setShowMenu(false)}>
+                <TouchableOpacity
+                  style={styles.menuItem}
+                  onPress={() => setShowMenu(false)}
+                >
                   <Text style={styles.menuItemTextDelete}>삭제하기</Text>
                   <Image
-                    source={require('../../assets/images/event/eventTrash.png')}
+                    source={require("@/assets/images/event/eventTrash.png")}
                     style={styles.menuIcon}
                     resizeMode="contain"
                   />
                 </TouchableOpacity>
                 <View style={styles.menuDivider} />
-                <TouchableOpacity style={styles.menuItem} onPress={() => setShowMenu(false)}>
+                <TouchableOpacity
+                  style={styles.menuItem}
+                  onPress={() => setShowMenu(false)}
+                >
                   <Text style={styles.menuItemText}>공유하기</Text>
                   <Ionicons name="share-outline" size={20} color="#FFFFFF" />
                 </TouchableOpacity>
@@ -67,8 +76,11 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
               <Text style={styles.timeDate}>9월 26일 (토)</Text>
               <Text style={styles.timeValue}>12:00</Text>
             </View>
-            <Ionicons name="chevron-forward" 
-            style={styles.timeArrow} resizeMode="contain" />
+            <Ionicons
+              name="chevron-forward"
+              style={styles.timeArrow}
+              resizeMode="contain"
+            />
             <View style={styles.timeBlock}>
               <Text style={styles.timeDate}>9월 26일 (토)</Text>
               <Text style={styles.timeValue}>13:00</Text>
@@ -111,7 +123,10 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
           }}
           addTodo={() => {
             const newId = `todo-${Date.now()}`;
-            setTodos((prevTodos) => [...prevTodos, { id: newId, title: "", completed: false }]);
+            setTodos((prevTodos) => [
+              ...prevTodos,
+              { id: newId, title: "", completed: false },
+            ]);
             setEditingId(newId);
           }}
         />
@@ -218,7 +233,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     marginBottom: 12,
-   
   },
   // 일정 섹션
   timeContainer: {
@@ -296,4 +310,3 @@ const styles = StyleSheet.create({
 });
 
 export default TaskBottomSheet;
-
