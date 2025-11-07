@@ -37,7 +37,12 @@ const DayGrid = ({ dayIndex, isBorderRight, isToday, day }: DayGridProps) => {
           {day.isCurrentMonth &&
             events[day.day] &&
             events[day.day].length > 3 && (
-              <Ionicons name="add" size={6} color="white" />
+              <Ionicons
+                name="add"
+                size={6}
+                color="white"
+                style={styles.plusIcon}
+              />
             )}
         </View>
       </View>
@@ -87,7 +92,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   dayNumberContainer: {
-    width: 40,
+    width: 38,
     position: "relative",
     alignItems: "center",
     justifyContent: "center",
