@@ -2,17 +2,11 @@ import CategoryColorPicker from "@/components/CategoryColorPicker";
 import { CategoryColorPalette, CategoryIndex } from "@/types/category";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
 interface TaskBottomSheetCategoryProps {
-  calendarIndexes: CategoryIndex[];
-  selectedIndex: number;
-  selectedColor: string;
-  onIndexChange: (index: number) => void;
-  onColorChange: (color: string) => void;
-  onIndexDelete: (id: string) => void;
   onClose: () => void;
   isVisible: boolean;
 }
@@ -24,18 +18,25 @@ const COLOR_PALETTE: CategoryColorPalette = [
   "#95E1BA", "#26C6DC", "#AC7F5E", "#7E7E7E",
 ];
 
+const INITIAL_INDEXES: CategoryIndex[] = [
+  { id: "cal-1", color: "#C11BEF", name: "잇타 회의" },
+  { id: "cal-2", color: "#FF383C", name: "과제" },
+  { id: "cal-3", color: "#FF8D28", name: "도서관" },
+];
+
 const TaskBottomSheetCategory = ({
-  calendarIndexes,
-  selectedIndex,
-  selectedColor,
-  onIndexChange,
-  onColorChange,
-  onIndexDelete,
   onClose,
   isVisible,
 }: TaskBottomSheetCategoryProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ["85%"], []);
+  const [calendarIndexes, setCalendarIndexes] = useState<CategoryIndex[]>(
+    INITIAL_INDEXES
+  );
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(
+    INITIAL_INDEXES[0]?.color ?? COLOR_PALETTE[0]
+  );
 
   useEffect(() => {
     if (isVisible) {
@@ -73,7 +74,7 @@ const TaskBottomSheetCategory = ({
         <Animated.View style={{ transform: [{ scale }] }}>
           <TouchableOpacity 
             style={styles.actionButton}
-            onPress={() => onIndexDelete(itemId)}
+            onPress={() => handleIndexDelete(itemId)}
           >
             <Image
               source={require("@/assets/images/task/tastDelete.png")}
@@ -87,6 +88,17 @@ const TaskBottomSheetCategory = ({
     );
   };
 
+  const handleClose = () => {
+    bottomSheetRef.current?.close();
+    onClose();
+  };
+
+  const handleIndexDelete = (id: string) => {
+    setCalendarIndexes((prev) => 
+      prev.filter((category) => 
+        category.id !== id));
+  };
+
   return (
     <BottomSheet
       ref={bottomSheetRef}
@@ -98,11 +110,11 @@ const TaskBottomSheetCategory = ({
     >
       <BottomSheetView style={styles.calendarBottomSheetContent}>
         <View style={styles.calendarHeader}>
-          <TouchableOpacity onPress={() => { bottomSheetRef.current?.close(); onClose(); }}>
+          <TouchableOpacity onPress={handleClose}>
             <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
           </TouchableOpacity>
           <Text style={styles.calendarBottomSheetTitle}>캘린더</Text>
-          <TouchableOpacity onPress={() => { bottomSheetRef.current?.close(); onClose(); }}>
+          <TouchableOpacity onPress={handleClose}>
             <Text style={styles.calendarConfirmButton}>확인</Text>
           </TouchableOpacity>
         </View>
@@ -112,7 +124,7 @@ const TaskBottomSheetCategory = ({
           <CategoryColorPicker
             colors={COLOR_PALETTE}
             selectedColor={selectedColor}
-            onSelect={onColorChange}
+            onSelect={setSelectedColor}
           />
         </View>
 
@@ -128,7 +140,7 @@ const TaskBottomSheetCategory = ({
               >
                 <TouchableOpacity 
                   style={styles.indexItem}
-                  onPress={() => onIndexChange(i)}
+                  onPress={() => setSelectedIndex(i)}
                 >
                   <View style={[styles.indexColor, { backgroundColor: indexItem.color }]} />
                   <Text style={styles.indexName}>{indexItem.name}</Text>

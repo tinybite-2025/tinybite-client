@@ -13,13 +13,6 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [showMenu, setShowMenu] = useState(false);
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);
-  const [calendarIndexes, setCalendarIndexes] = useState([
-    { id: "cal-1", color: "#C11BEF", name: "잇타 회의" },
-    { id: "cal-2", color: "#FF383C", name: "과제" },
-    { id: "cal-3", color: "#FF8D28", name: "도서관" },
-  ]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedColor, setSelectedColor] = useState("#C11BEF");
 
   // 바텀시트 스냅 포인트 설정
   const snapPoints = useMemo(() => ["90%"], []);
@@ -119,14 +112,6 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
         </BottomSheetView>
       </BottomSheet>
       <TaskBottomSheetCategory
-        calendarIndexes={calendarIndexes}
-        selectedIndex={selectedIndex}
-        selectedColor={selectedColor}
-        onIndexChange={(idx: number) => setSelectedIndex(idx)}
-        onColorChange={(color: string) => setSelectedColor(color)}
-        onIndexDelete={(id: string) =>
-          setCalendarIndexes((prev) => prev.filter((calendar) => calendar.id !== id))
-        }
         onClose={() => setIsCalendarVisible(false)}
         isVisible={isCalendarVisible}
       />
