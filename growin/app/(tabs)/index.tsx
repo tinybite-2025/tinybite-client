@@ -6,6 +6,7 @@ import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -165,6 +166,17 @@ export default function HomeScreen() {
           <TaskBottomSheet onClose={handleCloseBottomSheet} />
         )}
       </ScrollView>
+      <TouchableOpacity
+        style={styles.floatingButton}
+        onPress={() => {}}
+        activeOpacity={0.8}
+      >
+        <Image
+          source={require("@/assets/images/task/taskEdit.png")}
+          style={styles.floatingIcon}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -212,5 +224,26 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "600",
+  },
+  floatingButton: {
+    position: "absolute",
+    right: 20,
+    bottom: 20,
+    width: 58,
+    height: 58,
+    borderRadius: 29,
+    backgroundColor: "#3F4360",
+    padding: 19,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  floatingIcon: {
+    width: 20,
+    height: 20,
   },
 });
