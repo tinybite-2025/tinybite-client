@@ -1,3 +1,4 @@
+import TaskBottomSheetCategory from "@/components/TaskBottomSheetCategory";
 import TaskBottomSheetTaskList from "@/components/TaskBottomSheetTaskList";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
@@ -16,20 +17,29 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
   ]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showMenu, setShowMenu] = useState(false);
+  const [isCalendarVisible, setIsCalendarVisible] = useState(false);
+  const [calendarIndexes, setCalendarIndexes] = useState([
+    { id: "cal-1", color: "#C11BEF", name: "잇타 회의" },
+    { id: "cal-2", color: "#FF383C", name: "과제" },
+    { id: "cal-3", color: "#FF8D28", name: "도서관" },
+  ]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedColor, setSelectedColor] = useState("#C11BEF");
 
   // 바텀시트 스냅 포인트 설정
   const snapPoints = useMemo(() => ["90%"], []);
 
   return (
-    <BottomSheet
-      ref={bottomSheetRef}
-      index={0}
-      snapPoints={snapPoints}
-      enablePanDownToClose
-      onClose={onClose}
-      backgroundStyle={styles.bottomSheetBackground}
-    >
-      <BottomSheetView style={styles.bottomSheetContent}>
+    <>
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={0}
+        snapPoints={snapPoints}
+        enablePanDownToClose
+        onClose={onClose}
+        backgroundStyle={styles.bottomSheetBackground}
+      >
+        <BottomSheetView style={styles.bottomSheetContent}>
         {/* 제목 섹션 */}
         <View style={styles.titleSection}>
           <View style={styles.titleColorBar} />
@@ -91,7 +101,10 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
         {/* 캘린더 섹션 */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>캘린더</Text>
-          <TouchableOpacity style={styles.calendarButton}>
+          <TouchableOpacity
+            style={styles.calendarButton}
+            onPress={() => setIsCalendarVisible(true)}
+          >
             <View style={styles.calendarIcon} />
             <Text style={styles.calendarText}>잇타 회의</Text>
           </TouchableOpacity>
@@ -130,8 +143,21 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
             setEditingId(newId);
           }}
         />
-      </BottomSheetView>
-    </BottomSheet>
+        </BottomSheetView>
+      </BottomSheet>
+      <TaskBottomSheetCategory
+        calendarIndexes={calendarIndexes}
+        selectedIndex={selectedIndex}
+        selectedColor={selectedColor}
+        onIndexChange={(idx: number) => setSelectedIndex(idx)}
+        onColorChange={(color: string) => setSelectedColor(color)}
+        onIndexDelete={(id: string) =>
+          setCalendarIndexes((prev) => prev.filter((calendar) => calendar.id !== id))
+        }
+        onClose={() => setIsCalendarVisible(false)}
+        isVisible={isCalendarVisible}
+      />
+    </>
   );
 };
 

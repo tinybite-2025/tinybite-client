@@ -135,6 +135,7 @@ const TaskBottomSheetTaskList = ({
 const styles = StyleSheet.create({
   section: {
     marginBottom: 12,
+    width: 350,
   },
   sectionTitle: {
     fontSize: 18,

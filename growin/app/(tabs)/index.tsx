@@ -160,11 +160,10 @@ export default function HomeScreen() {
             <AddButton onPress={addSomedayTask} />
           </View>
         </View>
-
-        {isBottomSheetOpen && (
-          <TaskBottomSheet onClose={handleCloseBottomSheet} />
-        )}
       </ScrollView>
+      {isBottomSheetOpen && (
+        <TaskBottomSheet onClose={handleCloseBottomSheet} />
+      )}
     </View>
   );
 }
