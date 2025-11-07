@@ -1,12 +1,10 @@
+import { DayGridType } from "@/types/calendar";
 import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import WeekGrid from "./WeekGrid";
 
 const MonthlyCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-
-  const today = new Date();
-  const todayDay = today.getDate();
-  const todayMonth = today.getMonth();
-  const todayYear = today.getFullYear();
 
   // 선택한 달의 마지막 일자 계산 함수
   const getDaysInMonth = (date: Date) => {
@@ -26,7 +24,7 @@ const MonthlyCalendar = () => {
   const renderCalendar = () => {
     const daysInMonth = getDaysInMonth(currentDate);
     const firstDay = getFirstDayOfMonth(currentDate);
-    const days = [];
+    const days: DayGridType[] = [];
     const prevMonthDays = firstDay === 0 ? 6 : firstDay - 1; // 전달의 마지막 요일
 
     // 이전 달 날짜
@@ -72,7 +70,54 @@ const MonthlyCalendar = () => {
 
   const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
-  return <></>;
+  return (
+    <View style={styles.container}>
+      {/* 요일 */}
+      <View style={styles.weekDaysContainer}>
+        {weekDays.map((day, index) => (
+          <View key={index} style={styles.weekDay}>
+            <Text style={styles.weekDayText}>{day}</Text>
+          </View>
+        ))}
+      </View>
+
+      {/* 그리드 */}
+      <View style={styles.calendarScroll}>
+        {renderCalendar().map((week, weekIndex) => {
+          return <WeekGrid key={weekIndex} week={week} weekIndex={weekIndex} />;
+        })}
+      </View>
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    paddingVertical: 8,
+  },
+  weekDaysContainer: {
+    flexDirection: "row",
+    paddingVertical: 2,
+    alignItems: "center",
+    gap: 1,
+  },
+  weekDay: {
+    flex: 1,
+    flexShrink: 0,
+    alignItems: "center",
+  },
+  weekDayText: {
+    color: "#FFFFFF",
+    textAlign: "center",
+    fontSize: 13,
+    fontWeight: "500",
+    lineHeight: 16.9,
+  },
+  calendarScroll: {
+    flex: 1,
+  },
+});
 
 export default MonthlyCalendar;
