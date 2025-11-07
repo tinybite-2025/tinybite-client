@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Animated, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Animated,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
 interface TaskListProps {
@@ -57,8 +65,8 @@ const TaskList = ({
             onPress={() => swipeableRef?.close()}
           >
             <Animated.View style={{ transform: [{ scale }] }}>
-              <Image 
-                source={require('../../assets/images/task/taskRepeat.png')} 
+              <Image
+                source={require("@/assets/images/task/taskRepeat.png")}
                 style={styles.actionIcon}
                 resizeMode="contain"
               />
@@ -72,8 +80,8 @@ const TaskList = ({
           onPress={() => swipeableRef?.close()}
         >
           <Animated.View style={{ transform: [{ scale }] }}>
-            <Image 
-              source={require('../../assets/images/task/taskEdit.png')} 
+            <Image
+              source={require("@/assets/images/task/taskEdit.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />
@@ -86,8 +94,8 @@ const TaskList = ({
           onPress={() => swipeableRef?.close()}
         >
           <Animated.View style={{ transform: [{ scale }] }}>
-            <Image 
-              source={require('../../assets/images/task/tastDelete.png')} 
+            <Image
+              source={require("@/assets/images/task/tastDelete.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />
@@ -265,4 +273,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
