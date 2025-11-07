@@ -168,7 +168,7 @@ export default TaskList;
 
 const styles = StyleSheet.create({
   taskItem: {
-    width: 350,
+    width: "100%",
     height: 40,
     flexDirection: "row",
     alignItems: "center",

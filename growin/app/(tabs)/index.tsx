@@ -9,8 +9,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 interface Task {
@@ -114,12 +113,10 @@ export default function HomeScreen() {
           todos={todos}
         />
 
-        <TouchableOpacity
-          style={styles.openButton}
+        <AddButton
           onPress={handleOpenBottomSheet}
-        >
-          <Text style={styles.openButtonText}>바텀시트 열기</Text>
-        </TouchableOpacity>
+          style={styles.openButton}
+        />
 
         <View style={styles.contentContainer}>
           <Text style={styles.taskTitle}>오늘의 할 일</Text>
@@ -193,7 +190,8 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   taskList: {
-    gap: 2,
+    gap: 1,
+    width: "100%",
     alignItems: "center",
   },
   text: {
@@ -202,14 +200,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   openButton: {
-    backgroundColor: "#3F4360",
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 8,
-  },
-  openButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "600",
+    width: "100%",
+    alignSelf: "center",
+    
   },
 });
