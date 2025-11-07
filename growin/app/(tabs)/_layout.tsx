@@ -23,18 +23,18 @@ export default function Layout() {
         tabBarIcon: ({ focused }) => {
           let icon;
 
-          if (route.name === "index") {
+          if (route.name === "(home)") {
             icon = focused
-              ? require("../../assets/images/gnb/gnb-home-selected.png")
-              : require("../../assets/images/gnb/gnb-home.png");
+              ? require("@/assets/images/gnb/gnb-home-selected.png")
+              : require("@/assets/images/gnb/gnb-home.png");
           } else if (route.name === "activity") {
             icon = focused
-              ? require("../../assets/images/gnb/gnb-activity-selected.png")
-              : require("../../assets/images/gnb/gnb-activity.png");
+              ? require("@/assets/images/gnb/gnb-activity-selected.png")
+              : require("@/assets/images/gnb/gnb-activity.png");
           } else if (route.name === "record") {
             icon = focused
-              ? require("../../assets/images/gnb/gnb-record-selected.png")
-              : require("../../assets/images/gnb/gnb-record.png");  
+              ? require("@/assets/images/gnb/gnb-record-selected.png")
+              : require("@/assets/images/gnb/gnb-record.png");  
           }
 
           return (
@@ -50,7 +50,7 @@ export default function Layout() {
         },
         tabBarLabel: ({ focused }) => {
           let label = "";
-          if (route.name === "index") label = "홈";
+          if (route.name === "(home)") label = "홈";
           else if (route.name === "activity") label = "활동";
           else if (route.name === "record") label = "기록";
 
@@ -69,7 +69,7 @@ export default function Layout() {
         },
       })}
     >
-      <Tabs.Screen name="index" options={{ title: "홈" }} />
+      <Tabs.Screen name="(home)" options={{ title: "홈" }} />
       <Tabs.Screen name="activity" options={{ title: "활동" }} />
       <Tabs.Screen name="record" options={{ title: "기록" }} />
     </Tabs>

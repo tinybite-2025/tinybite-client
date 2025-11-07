@@ -1,8 +1,10 @@
 import { useDateStore } from "@/store/useDateStore";
+import { useRouter } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CalendarHeader = () => {
   const { currentDate } = useDateStore();
+  const router = useRouter();
 
   return (
     <View style={styles.header}>
@@ -25,7 +27,10 @@ const CalendarHeader = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => router.push("/mypage")}
+        activeOpacity={0.7}
+      >
         <Image
           source={require("@/assets/images/icon/user.png")}
           style={styles.profileImage}

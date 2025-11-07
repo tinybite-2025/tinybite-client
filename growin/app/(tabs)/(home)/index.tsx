@@ -6,11 +6,11 @@ import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
 import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 interface Task {
@@ -26,7 +26,6 @@ export default function HomeScreen() {
     { id: 0, text: "동역사 스타벅스 가기", done: false },
     { id: 1, text: "노트북 환경 설정", done: true },
   ];
-
   // 바텀시트 열기
   const handleOpenBottomSheet = useCallback(() => {
     setIsBottomSheetOpen(true);
@@ -50,13 +49,13 @@ export default function HomeScreen() {
     { id: "5", title: "운동하기", completed: false },
   ]);
 
-  // 새로운 할 일 추가 (빈 제목으로 추가되어 자동으로 편집 모드 활성화)
+  // 오늘의 할 일 추가
   const addTodayTask = () => {
     const newId = `today-${Date.now()}`;
     setTodayTasks([...todayTasks, { id: newId, title: "", completed: false }]);
   };
 
-  // 새로운 할 일 추가 (빈 제목으로 추가되어 자동으로 편집 모드 활성화)
+  // 언젠가 할 일 추가
   const addSomedayTask = () => {
     const newId = `someday-${Date.now()}`;
     setSomedayTasks([
@@ -65,7 +64,7 @@ export default function HomeScreen() {
     ]);
   };
 
-  // 기존 할 일 제목 업데이트 (텍스트 입력 시 호출됨)
+  // 오늘의 할 일 업데이트
   const updateTodayTask = (id: string, newTitle: string) => {
     setTodayTasks(
       todayTasks.map((task) =>
@@ -74,7 +73,7 @@ export default function HomeScreen() {
     );
   };
 
-  // 기존 할 일 제목 업데이트 (텍스트 입력 시 호출됨)
+  // 언젠가 할 일 업데이트
   const updateSomedayTask = (id: string, newTitle: string) => {
     setSomedayTasks(
       somedayTasks.map((task) =>
@@ -83,7 +82,7 @@ export default function HomeScreen() {
     );
   };
 
-  // 할 일 완료/미완료 상태 토글
+  // 오늘의 할 일 완료/미완료 상태 토글
   const toggleTodayTask = (id: string) => {
     setTodayTasks(
       todayTasks.map((task) =>
@@ -92,7 +91,7 @@ export default function HomeScreen() {
     );
   };
 
-  // 할 일 완료/미완료 상태 토글
+  // 언젠가 할 일 완료/미완료 상태 토글
   const toggleSomedayTask = (id: string) => {
     setSomedayTasks(
       somedayTasks.map((task) =>
