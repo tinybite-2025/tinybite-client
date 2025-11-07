@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useDateStore } from "@/store/useDateStore";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CalendarHeader = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const { currentDate } = useDateStore();
 
   return (
     <View style={styles.header}>

@@ -1,6 +1,6 @@
 import DayGrid from "@/components/calendar/DayGrid";
+import { useDateStore } from "@/store/useDateStore";
 import { DayGridType } from "@/types/calendar";
-import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 interface WeekGridProps {
@@ -9,12 +9,7 @@ interface WeekGridProps {
 }
 
 const WeekGrid = ({ week, weekIndex }: WeekGridProps) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  const today = new Date();
-  const todayDay = today.getDate();
-  const todayMonth = today.getMonth();
-  const todayYear = today.getFullYear();
+  const { todayYear, todayMonth, todayDay, currentDate } = useDateStore();
 
   return (
     <View key={weekIndex} style={styles.weekRow}>

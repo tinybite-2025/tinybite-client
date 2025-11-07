@@ -1,10 +1,11 @@
+import { useDateStore } from "@/store/useDateStore";
 import { DayGridType } from "@/types/calendar";
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import WeekGrid from "./WeekGrid";
 
 const MonthlyCalendar = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const { currentDate } = useDateStore();
 
   // 선택한 달의 마지막 일자 계산 함수
   const getDaysInMonth = (date: Date) => {
