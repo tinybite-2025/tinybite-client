@@ -1,5 +1,6 @@
+import { TaskBottomSheetTodoList, TaskBottomSheetTodoType } from "@/types/task";
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 import {
   Animated,
   Image,
@@ -11,29 +12,51 @@ import {
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
-type Todo = { id: string; title: string; completed: boolean };
+const INITIAL_TODOS: TaskBottomSheetTodoList = [
+  { id: "todo-1", title: "회의록 작성", completed: false },
+  { id: "todo-2", title: "회의 준비", completed: true },
+];
 
-interface TaskBottomSheetTaskListProps {
-  todos: Todo[];
-  editingId: string | null;
-  setEditingId: (id: string | null) => void;
-  toggleTodo: (id: string) => void;
-  deleteTodo: (id: string) => void;
-  addTodo: () => void;
-}
+const TaskBottomSheetTaskList = () => {
+  const [todos, setTodos] = useState<TaskBottomSheetTodoList>(INITIAL_TODOS);
+  const [editingId, setEditingId] = useState<string | null>(null);
 
-const TaskBottomSheetTaskList = ({
-  todos,
-  editingId,
-  setEditingId,
-  toggleTodo,
-  deleteTodo,
-  addTodo,
-}: TaskBottomSheetTaskListProps) => {
+  const toggleTodo = (id: TaskBottomSheetTodoType["id"]) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const deleteTodo = (id: TaskBottomSheetTodoType["id"]) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    if (editingId === id) {
+      setEditingId(null);
+    }
+  };
+
+  const updateTodoTitle = (id: TaskBottomSheetTodoType["id"], title: string) => {
+    setTodos((prev) =>
+      prev.map((todo) => (todo.id === id ? { ...todo, title } : todo))
+    );
+  };
+
+  const addTodo = () => {
+    const newId = `todo-${Date.now()}`;
+    const newTodo: TaskBottomSheetTodoType = {
+      id: newId,
+      title: "",
+      completed: false,
+    };
+    setTodos((prev) => [...prev, newTodo]);
+    setEditingId(newId);
+  };
+
   const renderRightActions = (
     progress: Animated.AnimatedInterpolation<number>,
     dragX: Animated.AnimatedInterpolation<number>,
-    itemId: string
+    itemId: TaskBottomSheetTodoType["id"]
   ) => {
     const scale = dragX.interpolate({
       inputRange: [-100, 0],
@@ -44,7 +67,10 @@ const TaskBottomSheetTaskList = ({
     return (
       <View style={styles.rightActions}>
         <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={() => setEditingId(itemId)}
+          >
             <Image
               source={require("@/assets/images/task/taskEdit.png")}
               style={styles.actionIcon}
@@ -78,16 +104,14 @@ const TaskBottomSheetTaskList = ({
           <View key={todo.id} style={styles.todoItem}>
             <TextInput
               style={styles.todoInput}
+              value={todo.title}
               placeholder="할 일 입력..."
               placeholderTextColor="#8E8E93"
               autoFocus
               returnKeyType="done"
-              onChangeText={() => {
-                /* 상위에서 상태 업데이트 처리 */
-              }}
-              onSubmitEditing={() => {
-                setEditingId(null);
-              }}
+              onChangeText={(text) => updateTodoTitle(todo.id, text)}
+              onSubmitEditing={() => setEditingId(null)}
+              onBlur={() => setEditingId(null)}
             />
           </View>
         ) : (
@@ -100,10 +124,7 @@ const TaskBottomSheetTaskList = ({
           >
             <View style={styles.todoItem}>
               <Text
-                style={[
-                  styles.todoText,
-                  todo.completed && styles.todoTextCompleted,
-                ]}
+                style={[styles.todoText, todo.completed && styles.todoTextCompleted]}
               >
                 {todo.title}
               </Text>

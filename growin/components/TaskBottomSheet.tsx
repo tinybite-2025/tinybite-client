@@ -11,11 +11,6 @@ interface TaskBottomSheetProps {
 
 const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const [todos, setTodos] = useState([
-    { id: "1", title: "회의록 작성", completed: false },
-    { id: "2", title: "회의록 작성", completed: true },
-  ]);
-  const [editingId, setEditingId] = useState<string | null>(null);
   const [showMenu, setShowMenu] = useState(false);
   const [isCalendarVisible, setIsCalendarVisible] = useState(false);
   const [calendarIndexes, setCalendarIndexes] = useState([
@@ -120,29 +115,7 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
         <View style={styles.divider} />
 
         {/* 할 일 섹션 */}
-        <TaskBottomSheetTaskList
-          todos={todos}
-          editingId={editingId}
-          setEditingId={setEditingId}
-          toggleTodo={(id) => {
-            setTodos((prevTodos) =>
-              prevTodos.map((todo) =>
-                todo.id === id ? { ...todo, completed: !todo.completed } : todo
-              )
-            );
-          }}
-          deleteTodo={(id) => {
-            setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-          }}
-          addTodo={() => {
-            const newId = `todo-${Date.now()}`;
-            setTodos((prevTodos) => [
-              ...prevTodos,
-              { id: newId, title: "", completed: false },
-            ]);
-            setEditingId(newId);
-          }}
-        />
+        <TaskBottomSheetTaskList />
         </BottomSheetView>
       </BottomSheet>
       <TaskBottomSheetCategory
