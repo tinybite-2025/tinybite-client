@@ -1,4 +1,4 @@
-import ScheduleCardTodo from "@/components/ScheduleCardTaskItem";
+import ScheduleCardTodo from "@/components/task/schedule/ScheduleCardTaskItem";
 import { ScheduleCardTaskItemType } from "@/types/Schedule";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
