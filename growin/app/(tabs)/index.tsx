@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   scheduleCardWrapper: {
-    gap: 4,
+    gap: 8,
   },
   taskTitle: {
     fontSize: 18,
