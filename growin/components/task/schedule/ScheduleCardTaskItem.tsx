@@ -1,12 +1,12 @@
-import { ScheduleCardTodoType } from "@/types/Schedule";
+import { ScheduleCardTaskItemType } from "@/types/Schedule";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-interface ScheduleCardTodoProps {
-  todo: ScheduleCardTodoType;
+interface ScheduleCardTaskItemProps {
+  todo: ScheduleCardTaskItemType;
 }
 
-const ScheduleCardTodo = ({ todo }: ScheduleCardTodoProps) => {
+const ScheduleCardTaskItem = ({ todo }: ScheduleCardTaskItemProps) => {
   return (
     <View
       style={{
@@ -70,4 +70,4 @@ const ScheduleCardTodo = ({ todo }: ScheduleCardTodoProps) => {
   );
 };
 
-export default ScheduleCardTodo;
+export default ScheduleCardTaskItem;

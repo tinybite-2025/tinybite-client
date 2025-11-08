@@ -1,7 +1,7 @@
 import AddButton from "@/components/AddButton";
 import CalendarHeader from "@/components/calendar/CalendarHeader";
 import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
-import ScheduleCard from "@/components/ScheduleCard";
+import ScheduleCard from "@/components/task/schedule/ScheduleCard";
 import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
