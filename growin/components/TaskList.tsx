@@ -95,7 +95,7 @@ const TaskList = ({
         >
           <Animated.View style={{ transform: [{ scale }] }}>
             <Image
-              source={require("@/assets/images/task/tastDelete.png")}
+              source={require("@/assets/images/task/taskDelete.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />
