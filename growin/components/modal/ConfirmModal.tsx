@@ -1,35 +1,56 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface ConfirmModalProps {
+  visible: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
   title: string;
   text_15_500?: string;
   text_18_600?: string;
 }
 
 const ConfirmModal = ({
+  visible,
+  onClose,
+  onConfirm,
   title,
   text_15_500,
   text_18_600,
 }: ConfirmModalProps) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.text_15_500}>{text_15_500}</Text>
-      <Text style={styles.text_18_600}>{text_18_600}</Text>
+    <Modal
+      visible={visible}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={onClose}
+    >
+      <View style={styles.overlay}>
+        <View style={styles.container}>
+          <Text style={styles.title}>{title}</Text>
+          {text_15_500 && <Text style={styles.text_15_500}>{text_15_500}</Text>}
+          {text_18_600 && <Text style={styles.text_18_600}>{text_18_600}</Text>}
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttonYes}>
-          <Text style={styles.buttonText}>예</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonNo}>
-          <Text style={styles.buttonText}>아니오</Text>
-        </TouchableOpacity>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonYes} onPress={onConfirm}>
+              <Text style={styles.buttonText}>예</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonNo} onPress={onClose}>
+              <Text style={styles.buttonText}>아니오</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
-    </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   container: {
     width: 350,
     paddingVertical: 20,
@@ -43,21 +64,21 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     color: "white",
     fontSize: 20,
-    fontWeight: 700,
+    fontWeight: "700",
     lineHeight: 26,
   },
   text_15_500: {
     alignSelf: "stretch",
     color: "white",
     fontSize: 15,
-    fontWeight: 500,
+    fontWeight: "500",
     lineHeight: 19.5,
   },
   text_18_600: {
     alignSelf: "stretch",
     color: "white",
     fontSize: 18,
-    fontWeight: 600,
+    fontWeight: "600",
     lineHeight: 23.4,
   },
   buttonContainer: {
@@ -65,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 10,
+    alignSelf: "stretch",
   },
   buttonYes: {
     width: 155,
@@ -88,7 +110,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 18,
-    fontWeight: 600,
+    fontWeight: "600",
     lineHeight: 23.4,
   },
 });
