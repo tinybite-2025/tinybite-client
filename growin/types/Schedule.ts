@@ -1,4 +1,4 @@
-export type ScheduleCardTodoType = {
+export type ScheduleCardTaskItemType = {
   id: number;
   text: string;
   done: boolean;
