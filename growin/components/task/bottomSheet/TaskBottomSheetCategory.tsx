@@ -168,7 +168,6 @@ const TaskBottomSheetCategory = ({
           />
         ) : (
           <View style={styles.indexSection}>
-            <Text style={styles.sectionTitle}>인덱스</Text>
             <View style={styles.indexList}>
               {calendarIndexes.map((indexItem, i) => (
                 <CategoryIndexItem
@@ -226,13 +225,6 @@ const styles = StyleSheet.create({
   },
   calendarConfirmButtonDisabled: {
     color: "#6D728F",
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-    color: "#FFFFFF",
-    marginBottom: 8,
   },
   indexSection: {},
   indexList: {
