@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Animated,
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    Animated,
+    Image,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
-interface TaskListProps {
+interface TodaySomedayTaskItemProps {
   id: string;
   title: string;
   completed: boolean;
@@ -19,16 +19,16 @@ interface TaskListProps {
   onTitleChange?: (title: string) => void;
 }
 
-const TaskList = ({
+const TodaySomedayTaskItem = ({
   id,
   title,
   completed,
   isRepeatable,
   onToggle,
   onTitleChange,
-}: TaskListProps) => {
+}: TodaySomedayTaskItemProps) => {
   const [swipeableRef, setSwipeableRef] = useState<any>(null);
-  const [isEditing, setIsEditing] = useState(title === ""); // 제목이 비어있으면 편집 모드
+  const [isEditing, setIsEditing] = useState(title === "");
   const [editTitle, setEditTitle] = useState(title);
   const inputRef = useRef<TextInput>(null);
 
@@ -127,7 +127,6 @@ const TaskList = ({
     );
   }
 
-  // 일반 모드: 스와이프 가능한 할 일 항목 표시
   return (
     <Swipeable
       ref={(ref) => setSwipeableRef(ref)}
@@ -164,7 +163,7 @@ const TaskList = ({
   );
 };
 
-export default TaskList;
+export default TodaySomedayTaskItem;
 
 const styles = StyleSheet.create({
   taskItem: {
@@ -220,14 +219,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#3F4360",
     borderStyle: "solid",
-  },
-  toggleUncheckedDashed: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "#3F4360",
-    borderStyle: "dashed",
   },
   toggleChecked: {
     width: 24,

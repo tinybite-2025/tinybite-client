@@ -2,13 +2,13 @@ import { TaskBottomSheetTodoList, TaskBottomSheetTodoType } from "@/types/task";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
-  Animated,
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    Animated,
+    Image,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
@@ -23,23 +23,23 @@ const TaskBottomSheetTaskList = () => {
 
   const toggleTodo = (id: TaskBottomSheetTodoType["id"]) => {
     setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+      prev.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
     );
   };
 
   const deleteTodo = (id: TaskBottomSheetTodoType["id"]) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    setTodos((prev) => 
+        prev.filter((todo) => 
+            todo.id !== id));
     if (editingId === id) {
       setEditingId(null);
     }
   };
 
   const updateTodoTitle = (id: TaskBottomSheetTodoType["id"], title: string) => {
-    setTodos((prev) =>
-      prev.map((todo) => (todo.id === id ? { ...todo, title } : todo))
-    );
+    setTodos((prev) => 
+        prev.map((todo) => 
+            (todo.id === id ? { ...todo, title } : todo)));
   };
 
   const addTodo = () => {
@@ -67,10 +67,10 @@ const TaskBottomSheetTaskList = () => {
     return (
       <View style={styles.rightActions}>
         <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => setEditingId(itemId)}
-          >
+          <TouchableOpacity 
+                style={styles.actionButton} 
+                onPress={() => setEditingId(itemId)}
+                >
             <Image
               source={require("@/assets/images/task/taskEdit.png")}
               style={styles.actionIcon}
@@ -80,10 +80,10 @@ const TaskBottomSheetTaskList = () => {
           </TouchableOpacity>
         </Animated.View>
         <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={() => deleteTodo(itemId)}
-          >
+          <TouchableOpacity 
+                style={styles.actionButton} 
+                onPress={() => deleteTodo(itemId)}
+                >
             <Image
               source={require("@/assets/images/task/taskDelete.png")}
               style={styles.actionIcon}
@@ -117,21 +117,17 @@ const TaskBottomSheetTaskList = () => {
         ) : (
           <Swipeable
             key={todo.id}
-            renderRightActions={(progress, dragX) =>
-              renderRightActions(progress, dragX, todo.id)
-            }
+            renderRightActions={(progress, dragX) => renderRightActions(progress, dragX, todo.id)}
             rightThreshold={40}
           >
             <View style={styles.todoItem}>
-              <Text
-                style={[styles.todoText, todo.completed && styles.todoTextCompleted]}
-              >
+              <Text style={[styles.todoText, todo.completed && styles.todoTextCompleted]}>
                 {todo.title}
               </Text>
-              <TouchableOpacity
-                onPress={() => toggleTodo(todo.id)}
-                style={styles.todoToggle}
-              >
+              <TouchableOpacity 
+                    onPress={() => toggleTodo(todo.id)} 
+                    style={styles.todoToggle}
+                    >
                 {todo.completed ? (
                   <View style={styles.todoChecked}>
                     <View style={styles.todoCheckedInner} />
@@ -144,7 +140,10 @@ const TaskBottomSheetTaskList = () => {
           </Swipeable>
         )
       )}
-      <TouchableOpacity style={styles.taskAddButton} onPress={addTodo}>
+      <TouchableOpacity 
+            style={styles.taskAddButton} 
+            onPress={addTodo}
+            >
         <View style={styles.taskAddCircle}>
           <Ionicons name="add" size={20} color="#FFFFFF" />
         </View>

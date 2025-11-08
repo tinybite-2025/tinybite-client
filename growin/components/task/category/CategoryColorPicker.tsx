@@ -1,4 +1,4 @@
-import CategoryColorSwatchItem from "@/components/CategoryColorSwatchItem";
+import CategoryColorSwatchItem from "@/components/task/category/CategoryColorSwatchItem";
 import { CategoryColor, CategoryColorPalette } from "@/types/category";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -9,8 +9,8 @@ interface CategoryColorPickerProps {
   onSelect: (color: CategoryColor) => void;
 }
 
-const CategoryColorPicker = ({ colors, selectedColor, onSelect }: 
-  CategoryColorPickerProps) => {
+const CategoryColorPicker = 
+({ colors, selectedColor, onSelect }: CategoryColorPickerProps) => {
   return (
     <View style={styles.colorGrid}>
       {colors.map((color) => (
@@ -37,4 +37,3 @@ const styles = StyleSheet.create({
 });
 
 export default CategoryColorPicker;
-

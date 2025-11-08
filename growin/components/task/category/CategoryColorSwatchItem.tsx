@@ -2,11 +2,11 @@ import { CategoryColor } from "@/types/category";
 import { Ionicons } from "@expo/vector-icons";
 import React, { memo } from "react";
 import {
-    StyleProp,
-    StyleSheet,
-    TouchableOpacity,
-    View,
-    ViewStyle,
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from "react-native";
 
 interface CategoryColorSwatchItemProps {
@@ -32,8 +32,13 @@ const CategoryColorSwatchItem = memo(({
       activeOpacity={0.8}
       onPress={handlePress}
     >
-      <View style={[styles.circle, { backgroundColor: color }]}> 
-        {isSelected && <Ionicons name="checkmark" size={24} color="#FFFFFF" />}
+      <View style={[styles.circle, { backgroundColor: color }]}>
+        {isSelected && <Ionicons 
+                          name="checkmark" 
+                          size={24} 
+                          color="#FFFFFF" 
+                          />
+                      }
       </View>
     </TouchableOpacity>
   );

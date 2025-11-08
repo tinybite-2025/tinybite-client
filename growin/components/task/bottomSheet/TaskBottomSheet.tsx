@@ -1,5 +1,5 @@
-import TaskBottomSheetCategory from "@/components/TaskBottomSheetCategory";
-import TaskBottomSheetTaskList from "@/components/TaskBottomSheetTaskList";
+import TaskBottomSheetCategory from "@/components/task/bottomSheet/TaskBottomSheetCategory";
+import TaskBottomSheetTaskList from "@/components/task/bottomSheet/TaskBottomSheetTaskList";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useMemo, useRef, useState } from "react";
@@ -28,93 +28,93 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
         backgroundStyle={styles.bottomSheetBackground}
       >
         <BottomSheetView style={styles.bottomSheetContent}>
-        {/* 제목 섹션 */}
-        <View style={styles.titleSection}>
-          <View style={styles.titleColorBar} />
-          <View style={styles.titleContent}>
-            <Text style={styles.titleText}>잇타 회의</Text>
-            <TouchableOpacity
-              style={styles.moreButton}
-              onPress={() => setShowMenu(!showMenu)}
-            >
-              <Ionicons name="ellipsis-horizontal" size={20} color="#3F4360" />
-            </TouchableOpacity>
-            {showMenu && (
-              <View style={styles.menuContainer}>
-                <TouchableOpacity
-                  style={styles.menuItem}
-                  onPress={() => setShowMenu(false)}
-                >
-                  <Text style={styles.menuItemTextDelete}>삭제하기</Text>
-                  <Image
-                    source={require("@/assets/images/event/eventTrash.png")}
-                    style={styles.menuIcon}
-                    resizeMode="contain"
-                  />
-                </TouchableOpacity>
-                <View style={styles.menuDivider} />
-                <TouchableOpacity
-                  style={styles.menuItem}
-                  onPress={() => setShowMenu(false)}
-                >
-                  <Text style={styles.menuItemText}>공유하기</Text>
-                  <Ionicons name="share-outline" size={20} color="#FFFFFF" />
-                </TouchableOpacity>
+          {/* 제목 섹션 */}
+          <View style={styles.titleSection}>
+            <View style={styles.titleColorBar} />
+            <View style={styles.titleContent}>
+              <Text style={styles.titleText}>잇타 회의</Text>
+              <TouchableOpacity style={styles.moreButton} 
+                onPress={() => setShowMenu(!showMenu)}
+                activeOpacity={0.7}>
+                <Ionicons name="ellipsis-horizontal" size={20} color="#3F4360" />
+              </TouchableOpacity>
+              {showMenu && (
+                <View style={styles.menuContainer}>
+                  <TouchableOpacity style={styles.menuItem} 
+                                    onPress={() => setShowMenu(false)}
+                                    activeOpacity={0.7}
+                                  >
+                    <Text style={styles.menuItemTextDelete}>삭제하기</Text>
+                    <Image
+                      source={require("@/assets/images/event/eventTrash.png")}
+                      style={styles.menuIcon}
+                      resizeMode="contain"
+                    />
+                  </TouchableOpacity>
+                  <View style={styles.menuDivider} />
+                  <TouchableOpacity 
+                          style={styles.menuItem} 
+                          onPress={() => setShowMenu(false)}
+                          activeOpacity={0.7}
+                                    >
+                    <Text style={styles.menuItemText}>공유하기</Text>
+                    <Ionicons name="share-outline" size={20} color="#FFFFFF" />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          </View>
+          <View style={styles.divider} />
+
+          {/* 일정 섹션 */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>일정</Text>
+            <View style={styles.timeContainer}>
+              <View style={styles.timeBlock}>
+                <Text style={styles.timeDate}>9월 26일 (토)</Text>
+                <Text style={styles.timeValue}>12:00</Text>
               </View>
-            )}
-          </View>
-        </View>
-        <View style={styles.divider} />
-
-        {/* 일정 섹션 */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>일정</Text>
-          <View style={styles.timeContainer}>
-            <View style={styles.timeBlock}>
-              <Text style={styles.timeDate}>9월 26일 (토)</Text>
-              <Text style={styles.timeValue}>12:00</Text>
-            </View>
-            <Ionicons
-              name="chevron-forward"
-              style={styles.timeArrow}
-              resizeMode="contain"
-            />
-            <View style={styles.timeBlock}>
-              <Text style={styles.timeDate}>9월 26일 (토)</Text>
-              <Text style={styles.timeValue}>13:00</Text>
+              <Ionicons name="chevron-forward" 
+                        style={styles.timeArrow} 
+                        resizeMode="contain" 
+                        activeOpacity={0.7} />
+              <View style={styles.timeBlock}>
+                <Text style={styles.timeDate}>9월 26일 (토)</Text>
+                <Text style={styles.timeValue}>13:00</Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        {/* 캘린더 섹션 */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>캘린더</Text>
-          <TouchableOpacity
-            style={styles.calendarButton}
-            onPress={() => setIsCalendarVisible(true)}
-          >
-            <View style={styles.calendarIcon} />
-            <Text style={styles.calendarText}>잇타 회의</Text>
-          </TouchableOpacity>
-        </View>
+          {/* 캘린더 섹션 */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>캘린더</Text>
+            <TouchableOpacity 
+                  style={styles.calendarButton} 
+                  onPress={() => setIsCalendarVisible(true)}
+                  activeOpacity={0.7}
+                  >
+              <View style={styles.calendarIcon} />
+              <Text style={styles.calendarText}>잇타 회의</Text>
+            </TouchableOpacity>
+          </View>
 
-        {/* 반복 섹션 */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>반복</Text>
-          <TouchableOpacity style={styles.repeatButton}>
-            <Text style={styles.repeatText}>안함</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.divider} />
+          {/* 반복 섹션 */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>반복</Text>
+            <TouchableOpacity style={styles.repeatButton}>
+              <Text style={styles.repeatText}>안함</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.divider} />
 
-        {/* 할 일 섹션 */}
-        <TaskBottomSheetTaskList />
+          {/* 할 일 섹션 */}
+          <TaskBottomSheetTaskList />
         </BottomSheetView>
       </BottomSheet>
-      <TaskBottomSheetCategory
-        onClose={() => setIsCalendarVisible(false)}
-        isVisible={isCalendarVisible}
-      />
+      <TaskBottomSheetCategory 
+          onClose={() => setIsCalendarVisible(false)} 
+          isVisible={isCalendarVisible}
+          />
     </>
   );
 };

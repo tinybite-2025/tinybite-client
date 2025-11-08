@@ -2,14 +2,14 @@ import { CategoryIndex } from "@/types/category";
 import { Ionicons } from "@expo/vector-icons";
 import React, { memo } from "react";
 import {
-    Animated,
-    StyleProp,
-    StyleSheet,
-    Text,
-    TextStyle,
-    TouchableOpacity,
-    View,
-    ViewStyle,
+  Animated,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
@@ -56,7 +56,13 @@ const CategoryIndexItem = memo(({
           style={[styles.colorIndicator, { backgroundColor: item.color }, colorIndicatorStyle]}
         />
         <Text style={[styles.name, nameTextStyle]}>{item.name}</Text>
-        {isSelected && <Ionicons name="checkmark" size={20} color="#FFFFFF" />}
+        {isSelected && (
+          <Ionicons 
+                        name="checkmark" 
+                        size={20} 
+                        color="#FFFFFF" 
+                        />
+        )}
       </TouchableOpacity>
     </Swipeable>
   );

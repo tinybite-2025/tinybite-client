@@ -1,9 +1,9 @@
 import AddButton from "@/components/AddButton";
 import CalendarHeader from "@/components/calendar/CalendarHeader";
 import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
+import TaskBottomSheet from "@/components/task/bottomSheet/TaskBottomSheet";
 import ScheduleCard from "@/components/task/schedule/ScheduleCard";
-import TaskBottomSheet from "@/components/TaskBottomSheet";
-import TaskList from "@/components/TaskList";
+import TodaySomedayTaskItem from "@/components/task/todaySomeday/TodaySomedayTaskItem";
 import { useCallback, useState } from "react";
 import {
   ScrollView,
@@ -122,7 +122,7 @@ export default function HomeScreen() {
           <Text style={styles.taskTitle}>오늘의 할 일</Text>
           <View style={styles.taskList}>
             {todayTasks.map((task) => (
-              <TaskList
+              <TodaySomedayTaskItem
                 key={task.id}
                 id={task.id}
                 title={task.title}
@@ -142,7 +142,7 @@ export default function HomeScreen() {
           </Text>
           <View style={styles.taskList}>
             {somedayTasks.map((task) => (
-              <TaskList
+              <TodaySomedayTaskItem
                 key={task.id}
                 id={task.id}
                 title={task.title}
