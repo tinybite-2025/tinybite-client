@@ -105,7 +105,7 @@ export default function HomeScreen() {
       <CalendarHeader />
       <ScrollView contentContainerStyle={{ paddingBottom: 12, gap: 12 }}>
         <MonthlyCalendar />
-
+        <View style={styles.scheduleCardWrapper}>
         <ScheduleCard
           id={0}
           title="FE 회의"
@@ -117,6 +117,8 @@ export default function HomeScreen() {
           onPress={handleOpenBottomSheet}
           style={styles.openButton}
         />
+        </View>
+        
 
         <View style={styles.contentContainer}>
           <Text style={styles.taskTitle}>오늘의 할 일</Text>
@@ -176,6 +178,9 @@ const styles = StyleSheet.create({
   contentContainer: {
     alignItems: "center",
   },
+  scheduleCardWrapper: {
+    gap: 4,
+  },
   taskTitle: {
     fontSize: 18,
     lineHeight: 23.4,
@@ -190,7 +195,6 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   taskList: {
-    gap: 1,
     width: "100%",
     alignItems: "center",
   },
