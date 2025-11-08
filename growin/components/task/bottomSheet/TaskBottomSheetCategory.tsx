@@ -1,10 +1,10 @@
-import CategoryColorPicker from "@/components/task/category/CategoryColorPicker";
+import CategoryIndexEditor from "@/components/task/category/CategoryIndexEditor";
 import CategoryIndexItem from "@/components/task/category/CategoryIndexItem";
-import { CategoryColorPalette, CategoryIndex } from "@/types/category";
+import { CategoryColor, CategoryColorPalette, CategoryIndex } from "@/types/category";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface TaskBottomSheetCategoryProps {
   onClose: () => void;
@@ -23,14 +23,19 @@ const INITIAL_INDEXES: CategoryIndex[] = [
   { id: "cal-3", color: "#FF8D28", name: "도서관" },
 ];
 
-const TaskBottomSheetCategory = ({ onClose, isVisible }: TaskBottomSheetCategoryProps) => {
+const TaskBottomSheetCategory = ({
+  onClose,
+  isVisible,
+}: TaskBottomSheetCategoryProps) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ["85%"], []);
   const [calendarIndexes, setCalendarIndexes] = useState<CategoryIndex[]>(INITIAL_INDEXES);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedColor, setSelectedColor] = useState(
-    INITIAL_INDEXES[0]?.color ?? COLOR_PALETTE[0]
-  );
+  const [editorMode, setEditorMode] = useState<"add" | "edit" | null>(null);
+  const [editorName, setEditorName] = useState("");
+  const [editorColor, setEditorColor] = useState<CategoryColor>(COLOR_PALETTE[0]);
+
+  const isEditorMode = editorMode !== null;
 
   useEffect(() => {
     if (isVisible) {
@@ -39,46 +44,53 @@ const TaskBottomSheetCategory = ({ onClose, isVisible }: TaskBottomSheetCategory
       }, 100);
     } else {
       bottomSheetRef.current?.close();
+      setEditorMode(null);
+      setEditorName("");
+      setEditorColor(COLOR_PALETTE[0]);
+      setSelectedIndex(0);
     }
   }, [isVisible]);
 
-  const renderIndexRightActions = (
-    progress: Animated.AnimatedInterpolation<number>,
-    dragX: Animated.AnimatedInterpolation<number>,
-    itemId: string
-  ) => {
-    const scale = dragX.interpolate({
-      inputRange: [-100, 0],
-      outputRange: [1, 0],
-      extrapolate: "clamp",
-    });
+  const handleIndexDelete = (id: string) => {
+    setCalendarIndexes((prev) => {
+      const deleteIndex = prev.findIndex((category) => category.id === id);
+      if (deleteIndex === -1) {
+        return prev;
+      }
 
-    return (
-      <View style={styles.rightActions}>
-        <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity style={styles.actionButton}>
-            <Image
-              source={require("@/assets/images/task/taskEdit.png")}
-              style={styles.actionIcon}
-              resizeMode="contain"
-            />
-            <Text style={styles.actionText}>수정</Text>
-          </TouchableOpacity>
-        </Animated.View>
-        <Animated.View style={{ transform: [{ scale }] }}>
-          <TouchableOpacity style={styles.actionButton} 
-                            onPress={() => handleIndexDelete(itemId)}
-                          >
-            <Image
-              source={require("@/assets/images/task/taskDelete.png")}
-              style={styles.actionIcon}
-              resizeMode="contain"
-            />
-            <Text style={styles.actionText}>삭제</Text>
-          </TouchableOpacity>
-        </Animated.View>
-      </View>
-    );
+      const updated = prev.filter((category) => category.id !== id);
+
+      setSelectedIndex((prevSelected) => {
+        if (updated.length === 0) {
+          return -1;
+        }
+
+        if (prevSelected > deleteIndex) {
+          return prevSelected - 1;
+        }
+
+        if (prevSelected === deleteIndex) {
+          return Math.min(deleteIndex, updated.length - 1);
+        }
+
+        return prevSelected;
+      });
+
+      return updated;
+    });
+  };
+
+  const handleIndexEdit = (id: string) => {
+    const targetIndex = calendarIndexes.findIndex((category) => category.id === id);
+    if (targetIndex === -1) {
+      return;
+    }
+
+    const target = calendarIndexes[targetIndex];
+    setEditorMode("edit");
+    setEditorName(target.name);
+    setEditorColor(target.color);
+    setSelectedIndex(targetIndex);
   };
 
   const handleClose = () => {
@@ -86,11 +98,31 @@ const TaskBottomSheetCategory = ({ onClose, isVisible }: TaskBottomSheetCategory
     onClose();
   };
 
-  const handleIndexDelete = (id: string) => {
-    setCalendarIndexes((prev) => 
-      prev.filter((category) => 
-        category.id !== id));
+  const handleAddIndexPress = () => {
+    setEditorMode("add");
+    setEditorName("");
+    setEditorColor(COLOR_PALETTE[0]);
   };
+
+  const handleEditorConfirm = () => {
+    if (!isEditorMode) {
+      handleClose();
+      return;
+    }
+
+    if (editorName.trim().length === 0) {
+      return;
+    }
+
+    setEditorMode(null);
+  };
+
+  const handleEditorCancel = () => {
+    setEditorMode(null);
+  };
+
+  const isConfirmDisabled = isEditorMode && editorName.trim().length === 0;
+  const editorTitle = editorMode === "edit" ? "인덱스 수정" : "인덱스 추가";
 
   return (
     <BottomSheet
@@ -103,49 +135,63 @@ const TaskBottomSheetCategory = ({ onClose, isVisible }: TaskBottomSheetCategory
     >
       <BottomSheetView style={styles.calendarBottomSheetContent}>
         <View style={styles.calendarHeader}>
-          <TouchableOpacity onPress={handleClose}>
-            <Ionicons name="chevron-back" 
-                      size={24} 
-                      color="#FFFFFF" 
-                      />
+          <TouchableOpacity
+            onPress={isEditorMode ? handleEditorCancel : handleClose}
+          >
+            <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
           </TouchableOpacity>
-          <Text style={styles.calendarBottomSheetTitle}>캘린더</Text>
-          <TouchableOpacity onPress={handleClose}>
-            <Text style={styles.calendarConfirmButton}>확인</Text>
+          <Text style={styles.calendarBottomSheetTitle}>
+            {isEditorMode ? editorTitle : "캘린더"}
+          </Text>
+          <TouchableOpacity
+            onPress={handleEditorConfirm}
+            disabled={isConfirmDisabled}
+          >
+            <Text
+              style={[
+                styles.calendarConfirmButton,
+                isConfirmDisabled && styles.calendarConfirmButtonDisabled,
+              ]}
+            >
+              확인
+            </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.colorSection}>
-          <Text style={styles.sectionTitle}>컬러</Text>
-          <CategoryColorPicker 
-                  colors={COLOR_PALETTE} 
-                  selectedColor={selectedColor} 
-                  onSelect={setSelectedColor} />
-        </View>
-
-        {/* 인덱스 섹션 */}
-        <View style={styles.indexSection}>
-          <Text style={styles.sectionTitle}>인덱스</Text>
-          <View style={styles.indexList}>
-            {calendarIndexes.map((indexItem, i) => (
-              <CategoryIndexItem
-                key={indexItem.id}
-                item={indexItem}
-                isSelected={selectedIndex === i}
-                onPress={() => setSelectedIndex(i)}
-                renderRightActions={renderIndexRightActions}
-              />
-            ))}
-            <View style={styles.addIndexItem}>
-              <View style={styles.addIndexCircle}>
-                <Ionicons name="add" 
-                          size={20} 
-                          color="#FFFFFF" 
-                          />
-              </View>
+        {isEditorMode ? (
+          <CategoryIndexEditor
+            colors={COLOR_PALETTE}
+            color={editorColor}
+            name={editorName}
+            onColorChange={setEditorColor}
+            onNameChange={setEditorName}
+          />
+        ) : (
+          <View style={styles.indexSection}>
+            <Text style={styles.sectionTitle}>인덱스</Text>
+            <View style={styles.indexList}>
+              {calendarIndexes.map((indexItem, i) => (
+                <CategoryIndexItem
+                  key={indexItem.id}
+                  item={indexItem}
+                  isSelected={selectedIndex === i}
+                  onPress={() => setSelectedIndex(i)}
+                  onEdit={handleIndexEdit}
+                  onDelete={handleIndexDelete}
+                />
+              ))}
+              <TouchableOpacity
+                style={styles.addIndexItem}
+                activeOpacity={0.8}
+                onPress={handleAddIndexPress}
+              >
+                <View style={styles.addIndexCircle}>
+                  <Ionicons name="add" size={20} color="#FFFFFF" />
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
-        </View>
+        )}
       </BottomSheetView>
     </BottomSheet>
   );
@@ -178,15 +224,15 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#FFFFFF",
   },
+  calendarConfirmButtonDisabled: {
+    color: "#6D728F",
+  },
   sectionTitle: {
     fontSize: 18,
     fontFamily: "Pretendard",
     fontWeight: "500",
     color: "#FFFFFF",
     marginBottom: 8,
-  },
-  colorSection: {
-    marginBottom: 24,
   },
   indexSection: {},
   indexList: {
@@ -209,31 +255,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#2A2C45",
     alignItems: "center",
     justifyContent: "center",
-  },
-  rightActions: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    width: 100,
-  },
-  actionButton: {
-    width: 50,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 15,
-  },
-  actionIcon: {
-    width: 18,
-    height: 18,
-  },
-  actionText: {
-    fontSize: 8,
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-    color: "#8E8E93",
-    marginTop: 4,
-    textAlign: "center",
   },
 });
 
