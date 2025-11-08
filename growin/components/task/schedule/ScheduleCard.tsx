@@ -1,5 +1,5 @@
-import ScheduleCardTodo from "@/components/ScheduleCardTodo";
-import { ScheduleCardTodoType } from "@/types/Schedule";
+import ScheduleCardTodo from "@/components/task/schedule/ScheduleCardTaskItem";
+import { ScheduleCardTaskItemType } from "@/types/Schedule";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -8,7 +8,7 @@ interface ScheduleCardProps {
   id: number;
   title: string;
   time: string;
-  todos: ScheduleCardTodoType[];
+  todos: ScheduleCardTaskItemType[];
 }
 
 const ScheduleCard = ({ id, title, time, todos }: ScheduleCardProps) => {
