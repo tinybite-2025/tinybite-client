@@ -1,9 +1,11 @@
 import AddButton from "@/components/AddButton";
 import CalendarHeader from "@/components/calendar/CalendarHeader";
 import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
+import ConfirmModal from "@/components/modal/ConfirmModal";
 import ScheduleCard from "@/components/ScheduleCard";
 import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
+import { withdraw } from "@/constants/modalMessage";
 import { useCallback, useState } from "react";
 import {
   ScrollView,
@@ -21,11 +23,17 @@ interface Task {
 
 export default function HomeScreen() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const todos = [
     { id: 0, text: "동역사 스타벅스 가기", done: false },
     { id: 1, text: "노트북 환경 설정", done: true },
   ];
+
+  // 임시 모달 토글
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
 
   // 바텀시트 열기
   const handleOpenBottomSheet = useCallback(() => {
@@ -107,6 +115,10 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={{ paddingBottom: 12, gap: 12 }}>
         <MonthlyCalendar />
 
+        <TouchableOpacity style={styles.openButton} onPress={toggleModal}>
+          <Text style={styles.openButtonText}>임시 모달 토글</Text>
+        </TouchableOpacity>
+
         <ScheduleCard
           id={0}
           title="FE 회의"
@@ -163,6 +175,14 @@ export default function HomeScreen() {
 
         {isBottomSheetOpen && (
           <TaskBottomSheet onClose={handleCloseBottomSheet} />
+        )}
+
+        {isModalOpen && (
+          <ConfirmModal
+            title={withdraw.title}
+            text_15_500={withdraw.text_15_500}
+            text_18_600={withdraw.text_18_600}
+          />
         )}
       </ScrollView>
     </View>
