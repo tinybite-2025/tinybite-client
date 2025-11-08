@@ -1,7 +1,7 @@
+import CategoryColorSwatchItem from "@/components/CategoryColorSwatchItem";
 import { CategoryColor, CategoryColorPalette } from "@/types/category";
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 interface CategoryColorPickerProps {
   colors: CategoryColorPalette;
@@ -14,18 +14,12 @@ const CategoryColorPicker = ({ colors, selectedColor, onSelect }:
   return (
     <View style={styles.colorGrid}>
       {colors.map((color) => (
-        <TouchableOpacity
+        <CategoryColorSwatchItem
           key={color}
-          style={styles.colorSwatch}
-          onPress={() => onSelect(color)}
-        >
-          <View style={[styles.colorCircle, { backgroundColor: color }]}
-          >
-            {selectedColor === color && (
-              <Ionicons name="checkmark" size={24} color="#FFFFFF" />
-            )}
-          </View>
-        </TouchableOpacity>
+          color={color}
+          isSelected={selectedColor === color}
+          onPress={onSelect}
+        />
       ))}
     </View>
   );
@@ -39,18 +33,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 15,
     marginTop: 4,
-  },
-  colorSwatch: {
-    width: "12.5%",
-    padding: 4,
-  },
-  colorCircle: {
-    width: 32,
-    height: 32,
-    aspectRatio: 1,
-    borderRadius: 1000,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
