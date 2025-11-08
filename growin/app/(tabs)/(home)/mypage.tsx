@@ -4,12 +4,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 // 마이페이지 설정 항목 리스트
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 30,
     borderRadius: 100,
-    backgroundColor: "#3F4360",
+    backgroundColor: "#8E8E93",
     padding: 4,
     justifyContent: "center",
   },
