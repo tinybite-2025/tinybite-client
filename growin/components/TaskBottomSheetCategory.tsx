@@ -1,10 +1,10 @@
 import CategoryColorPicker from "@/components/CategoryColorPicker";
+import CategoryIndexItem from "@/components/CategoryIndexItem";
 import { CategoryColorPalette, CategoryIndex } from "@/types/category";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Swipeable } from "react-native-gesture-handler";
 
 interface TaskBottomSheetCategoryProps {
   onClose: () => void;
@@ -133,22 +133,13 @@ const TaskBottomSheetCategory = ({
           <Text style={styles.sectionTitle}>인덱스</Text>
           <View style={styles.indexList}>
             {calendarIndexes.map((indexItem, i) => (
-              <Swipeable
+              <CategoryIndexItem
                 key={indexItem.id}
-                renderRightActions={(progress, dragX) => renderIndexRightActions(progress, dragX, indexItem.id)}
-                rightThreshold={40}
-              >
-                <TouchableOpacity 
-                  style={styles.indexItem}
-                  onPress={() => setSelectedIndex(i)}
-                >
-                  <View style={[styles.indexColor, { backgroundColor: indexItem.color }]} />
-                  <Text style={styles.indexName}>{indexItem.name}</Text>
-                  {selectedIndex === i && (
-                    <Ionicons name="checkmark" size={20} color="#FFFFFF" />
-                  )}
-                </TouchableOpacity>
-              </Swipeable>
+                item={indexItem}
+                isSelected={selectedIndex === i}
+                onPress={() => setSelectedIndex(i)}
+                renderRightActions={renderIndexRightActions}
+              />
             ))}
             <View style={styles.addIndexItem}>
               <View style={styles.addIndexCircle}>
@@ -205,28 +196,6 @@ const styles = StyleSheet.create({
   indexSection: {},
   indexList: {
     marginTop: 4,
-  },
-  indexItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#3F4360",
-    borderRadius: 15,
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    marginBottom: 4,
-  },
-  indexColor: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    marginRight: 8,
-  },
-  indexName: {
-    flex: 1,
-    fontSize: 15,
-    fontFamily: "Pretendard",
-    fontWeight: "500",
-    color: "#FFFFFF",
   },
   addIndexItem: {
     flexDirection: "row",
