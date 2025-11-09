@@ -5,7 +5,7 @@ export default function HomeStackLayout() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
       <Stack.Screen name="mypage" />
-      <Stack.Screen name="mypageAccount" />
+      <Stack.Screen name="account-actions" />
     </Stack>
   );
 }

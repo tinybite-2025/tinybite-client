@@ -4,12 +4,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 // 마이페이지 설정 항목 리스트
@@ -18,7 +18,7 @@ const MY_PAGE_SETTINGS_LIST = [
   {
     label: "로그아웃 및 회원 탈퇴",
     onPress: (router: ReturnType<typeof useRouter>) => {
-      router.push("/(tabs)/(home)/mypageAccount");
+      router.push("/(tabs)/(home)/account-actions");
     },
   },
 ];
