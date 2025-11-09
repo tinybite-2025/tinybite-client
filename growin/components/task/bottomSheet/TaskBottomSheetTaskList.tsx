@@ -2,13 +2,13 @@ import { TaskBottomSheetTodoList, TaskBottomSheetTodoType } from "@/types/task";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
-    Animated,
-    Image,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Animated,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
@@ -72,7 +72,7 @@ const TaskBottomSheetTaskList = () => {
                 onPress={() => setEditingId(itemId)}
                 >
             <Image
-              source={require("@/assets/images/task/taskEdit.png")}
+              source={require("@/assets/images/task/task-edit.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />
@@ -85,7 +85,7 @@ const TaskBottomSheetTaskList = () => {
                 onPress={() => deleteTodo(itemId)}
                 >
             <Image
-              source={require("@/assets/images/task/taskDelete.png")}
+              source={require("@/assets/images/task/task-delete.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />

@@ -25,16 +25,16 @@ export default function Layout() {
 
           if (route.name === "index") {
             icon = focused
-              ? require("../../assets/images/gnb/gnb-home-selected.png")
-              : require("../../assets/images/gnb/gnb-home.png");
+              ? require("@/assets/images/gnb/gnb-home-selected.png")
+              : require("@/assets/images/gnb/gnb-home.png");
           } else if (route.name === "activity") {
             icon = focused
-              ? require("../../assets/images/gnb/gnb-activity-selected.png")
-              : require("../../assets/images/gnb/gnb-activity.png");
+              ? require("@/assets/images/gnb/gnb-activity-selected.png")
+              : require("@/assets/images/gnb/gnb-activity.png");
           } else if (route.name === "record") {
             icon = focused
-              ? require("../../assets/images/gnb/gnb-record-selected.png")
-              : require("../../assets/images/gnb/gnb-record.png");  
+              ? require("@/assets/images/gnb/gnb-record-selected.png")
+              : require("@/assets/images/gnb/gnb-record.png");  
           }
 
           return (

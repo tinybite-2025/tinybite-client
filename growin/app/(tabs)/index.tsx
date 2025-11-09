@@ -11,7 +11,8 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  View
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 interface Task {
@@ -194,7 +195,7 @@ export default function HomeScreen() {
           text_18_600="정말로 탈퇴하시겠습니까?"
         />
       <FloatingButton onPress={() => {}} 
-        iconSource={require("@/assets/images/task/taskEdit.png")} />
+        iconSource={require("@/assets/images/task/task-edit.png")} />
     </View>
     
   );
@@ -240,5 +241,12 @@ const styles = StyleSheet.create({
     width: "100%",
     alignSelf: "center",
     
+  },
+  openButtonText: {
+    fontSize: 16,
+    fontFamily: "Pretendard",
+    fontWeight: "500",
+    color: "#FFFFFF",
+    textAlign: "center",
   },
 });

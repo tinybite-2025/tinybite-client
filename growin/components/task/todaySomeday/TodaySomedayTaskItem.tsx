@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import {
-    Animated,
-    Image,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Animated,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 
@@ -66,7 +66,7 @@ const TodaySomedayTaskItem = ({
           >
             <Animated.View style={{ transform: [{ scale }] }}>
               <Image
-                source={require("@/assets/images/task/taskRepeat.png")}
+                source={require("@/assets/images/task/task-repeat.png")}
                 style={styles.actionIcon}
                 resizeMode="contain"
               />
@@ -81,7 +81,7 @@ const TodaySomedayTaskItem = ({
         >
           <Animated.View style={{ transform: [{ scale }] }}>
             <Image
-              source={require("@/assets/images/task/taskEdit.png")}
+              source={require("@/assets/images/task/task-edit.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />
@@ -95,7 +95,7 @@ const TodaySomedayTaskItem = ({
         >
           <Animated.View style={{ transform: [{ scale }] }}>
             <Image
-              source={require("@/assets/images/task/taskDelete.png")}
+              source={require("@/assets/images/task/task-delete.png")}
               style={styles.actionIcon}
               resizeMode="contain"
             />

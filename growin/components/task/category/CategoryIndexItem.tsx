@@ -60,7 +60,7 @@ const CategoryIndexItem = memo(
                     onPress={() => onEdit(item.id)}
                   >
                     <Image
-                      source={require("@/assets/images/task/taskEdit.png")}
+                      source={require("@/assets/images/task/task-edit.png")}
                       style={styles.actionIcon}
                       resizeMode="contain"
                     />
@@ -75,7 +75,7 @@ const CategoryIndexItem = memo(
                     onPress={() => onDelete(item.id)}
                   >
                     <Image
-                      source={require("@/assets/images/task/taskDelete.png")}
+                      source={require("@/assets/images/task/task-delete.png")}
                       style={styles.actionIcon}
                       resizeMode="contain"
                     />

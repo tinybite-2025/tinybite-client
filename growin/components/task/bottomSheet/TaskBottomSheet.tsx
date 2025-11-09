@@ -46,7 +46,7 @@ const TaskBottomSheet = ({ onClose }: TaskBottomSheetProps) => {
                                   >
                     <Text style={styles.menuItemTextDelete}>삭제하기</Text>
                     <Image
-                      source={require("@/assets/images/event/eventTrash.png")}
+                      source={require("@/assets/images/event/event-trash.png")}
                       style={styles.menuIcon}
                       resizeMode="contain"
                     />

@@ -17,7 +17,7 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <View style={styles.logoContainer}>
         <Image 
-          source={require('../../assets/images/login/growin_login_logo.png')} 
+          source={require('@/assets/images/login/growin-login-logo.png')} 
           style={styles.logo}
           resizeMode="contain"
         />
@@ -27,7 +27,7 @@ export default function LoginScreen() {
           <TouchableOpacity onPress={handleKakaoLogin} style={styles.kakaoLoginContainer}>
             <View style={styles.kakaoLoginContent}>
               <Image 
-                source={require('../../assets/images/login/logo_kakao.png')}
+                source={require('@/assets/images/login/logo-kakao.png')}
                 style={styles.kakaoLoginLogo}
                 resizeMode="contain"
               />
@@ -37,7 +37,7 @@ export default function LoginScreen() {
         <TouchableOpacity onPress={handleAppleLogin} style={styles.appleLoginContainer}>
           <View style={styles.appleLoginContent}>
             <Image 
-              source={require('../../assets/images/login/logo_apple.png')}
+              source={require('@/assets/images/login/logo-apple.png')}
               style={styles.appleLoginLogo}
               resizeMode="contain"
             />
