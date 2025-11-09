@@ -1,18 +1,13 @@
 import AddButton from "@/components/AddButton";
 import CalendarHeader from "@/components/calendar/CalendarHeader";
 import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
+import FloatingButton from "@/components/FloatingButton";
 import ConfirmModal from "@/components/modal/ConfirmModal";
 import ScheduleCard from "@/components/task/schedule/ScheduleCard";
 import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
 import { useCallback, useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface Task {
   id: string;
@@ -189,6 +184,8 @@ export default function HomeScreen() {
           text_18_600="정말로 탈퇴하시겠습니까?"
         />
       </ScrollView>
+      <FloatingButton onPress={() => {}} 
+        iconSource={require("@/assets/images/task/taskEdit.png")} />
     </View>
   );
 }
