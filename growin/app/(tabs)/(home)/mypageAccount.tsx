@@ -1,5 +1,5 @@
 // 마이페이지 > 계정 설정 화면 - 로그아웃 및 회원 탈퇴 등 계정 관련 기능 안내
-import ProfileHeader from "@/components/ProfileHeader";
+import ProfileHeader from "@/components/mypage/ProfileHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";

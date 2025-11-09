@@ -1,15 +1,15 @@
 // 마이페이지 화면 - 사용자 프로필과 설정, 메뉴 항목을 보여주는 화면
-import ProfileHeader from "@/components/ProfileHeader";
+import ProfileHeader from "@/components/mypage/ProfileHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    SafeAreaView,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from "react-native";
 
 // 마이페이지 설정 항목 리스트
