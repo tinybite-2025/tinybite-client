@@ -1,4 +1,5 @@
 // 마이페이지 화면 - 사용자 프로필과 설정, 메뉴 항목을 보여주는 화면
+import PageHeader from "@/components/common/PageHeader";
 import ProfileHeader from "@/components/mypage/ProfileHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -27,11 +28,6 @@ export default function MyPageScreen() {
   const router = useRouter();
   const [isPushNotificationEnabled, setIsPushNotificationEnabled] = useState(true);
 
-  // 홈으로 돌아가기 (이전 화면으로 복귀)
-  const handlePressBack = () => {
-    router.back();
-  };
-
   // 푸시 알람 설정 토글 핸들러
   const handleTogglePushNotification = (value: boolean) => {
     setIsPushNotificationEnabled(value);
@@ -42,17 +38,7 @@ export default function MyPageScreen() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.wrapper}>
           {/* 헤더 영역 */}
-          <View style={styles.header}>
-            <TouchableOpacity
-              style={styles.headerBackButton}
-              onPress={handlePressBack}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>마이페이지</Text>
-            <View style={styles.headerRightPlaceholder} />
-          </View>
+          <PageHeader title="마이페이지" />
 
           {/* 프로필 영역 */}
           <ProfileHeader />
@@ -115,29 +101,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 24,
     backgroundColor: "#10121F",
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  headerBackButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerTitle: {
-    fontSize: 20,
-    lineHeight: 26,
-    fontFamily: "Pretendard",
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  headerRightPlaceholder: {
-    width: 32,
-    height: 32,
   },
   profileDivider: {
     width: 350,

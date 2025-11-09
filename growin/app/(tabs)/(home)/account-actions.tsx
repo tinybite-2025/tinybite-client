@@ -1,4 +1,5 @@
 // 마이페이지 > 계정 설정 화면 - 로그아웃 및 회원 탈퇴 등 계정 관련 기능 안내
+import PageHeader from "@/components/common/PageHeader";
 import ProfileHeader from "@/components/mypage/ProfileHeader";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -29,17 +30,9 @@ export default function MyPageAccountScreen() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.wrapper}>
           {/* 헤더 */}
-          <View style={styles.header}>
-            <TouchableOpacity
-              style={styles.headerBackButton}
-              onPress={handlePressBack}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
-            </TouchableOpacity>
-            <Text style={styles.headerTitle}>로그아웃 및 회원 탈퇴</Text>
-            <View style={styles.headerRightPlaceholder} />
-          </View>
+          <PageHeader
+            title="로그아웃 및 회원 탈퇴"
+          />
 
           {/* 프로필 영역 */}
           <ProfileHeader />
@@ -82,29 +75,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 24,
     backgroundColor: "#10121F",
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  headerBackButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerTitle: {
-    fontSize: 20,
-    lineHeight: 26,
-    fontFamily: "Pretendard",
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  headerRightPlaceholder: {
-    width: 32,
-    height: 32,
   },
   profileDivider: {
     width: 350,
