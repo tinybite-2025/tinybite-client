@@ -2,6 +2,7 @@ import AddButton from "@/components/AddButton";
 import CalendarHeader from "@/components/calendar/CalendarHeader";
 import MonthlyCalendar from "@/components/calendar/MonthlyCalendar";
 import FloatingButton from "@/components/FloatingButton";
+import ConfirmModal from "@/components/modal/ConfirmModal";
 import ScheduleCard from "@/components/task/schedule/ScheduleCard";
 import TaskBottomSheet from "@/components/TaskBottomSheet";
 import TaskList from "@/components/TaskList";
@@ -16,11 +17,18 @@ interface Task {
 
 export default function HomeScreen() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const todos = [
     { id: 0, text: "동역사 스타벅스 가기", done: false },
     { id: 1, text: "노트북 환경 설정", done: true },
   ];
+
+  // 모달 확인 버튼 클릭
+  const handleConfirm = () => {
+    console.log("예 클릭");
+    setModalVisible(false);
+  };
 
   // 바텀시트 열기
   const handleOpenBottomSheet = useCallback(() => {
@@ -102,6 +110,13 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={{ paddingBottom: 12, gap: 12 }}>
         <MonthlyCalendar />
 
+        <TouchableOpacity
+          style={styles.openButton}
+          onPress={() => setModalVisible(true)}
+        >
+          <Text style={styles.openButtonText}>탈퇴 모달 열기</Text>
+        </TouchableOpacity>
+
         <ScheduleCard
           id={0}
           title="FE 회의"
@@ -159,6 +174,15 @@ export default function HomeScreen() {
         {isBottomSheetOpen && (
           <TaskBottomSheet onClose={handleCloseBottomSheet} />
         )}
+
+        <ConfirmModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onConfirm={handleConfirm}
+          title="회원 탈퇴"
+          text_15_500="회원 탈퇴 시 작성한 모든 게시글과 서비스 이용기록이 삭제됩니다."
+          text_18_600="정말로 탈퇴하시겠습니까?"
+        />
       </ScrollView>
       <FloatingButton onPress={() => {}} 
         iconSource={require("@/assets/images/task/taskEdit.png")} />
