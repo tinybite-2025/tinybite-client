@@ -1,25 +1,21 @@
 {
   "expo": {
-    "name": "growin",
-    "slug": "growin",
+    "name": "한입만",
+    "slug": "TinyBite",
+    "owner": "tinybite-2025",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "growin",
+    "scheme": "tinybite",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.tinybite2025.TinyBite"
     },
     "web": {
       "output": "static",
@@ -43,6 +39,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "9b29b0aa-7e69-4749-894f-40efacaa1eb8"
+      }
     }
   }
 }
