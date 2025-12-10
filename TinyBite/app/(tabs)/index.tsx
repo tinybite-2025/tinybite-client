@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
   },
   listWrapper: {
     marginTop: 4,
+    gap: 16,
+    alignItems: "center",
   },
 });
 
