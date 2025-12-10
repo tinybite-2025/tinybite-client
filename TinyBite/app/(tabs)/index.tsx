@@ -1,20 +1,28 @@
+import MainHeader from "@/components/mainHeader";
 import MainList from "@/components/mainList";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.screen}>
-      <MainList />
-    </View>
+    <ScrollView style={styles.scroll} contentContainerStyle={styles.screen}>
+      <MainHeader />
+      <View style={styles.listWrapper}>
+        <MainList />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
+  scroll: {
     flex: 1,
     backgroundColor: "#FCFBFF",
-    justifyContent: "center",
+  },
+  screen: {
     alignItems: "center",
+  },
+  listWrapper: {
+    marginTop: 8,
   },
 });
 
