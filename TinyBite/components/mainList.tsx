@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 export default function MainList() {
   return (
     <View style={styles.card}>
-      <Image source={require("@/assets/mainlist/food1.jpg")} style={styles.thumbnail} />
+      <Image source={require("@/assets/images/mainlist/food1.jpg")} style={styles.thumbnail} />
       <View style={styles.cardBody}>
         <View>
           <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
