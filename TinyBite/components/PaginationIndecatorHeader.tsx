@@ -18,7 +18,7 @@ const PaginationIndecatorHeader = ({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => router.push("/signup/verify")}>
+      <TouchableOpacity onPress={() => router.back()}>
         <Image
           source={require("../assets/images/chevron/chevron-left-44.png")}
           resizeMode="contain"
