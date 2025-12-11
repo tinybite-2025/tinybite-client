@@ -84,16 +84,25 @@ export default function TermsScreen() {
     return (
       <View>
         <TouchableOpacity
-          style={styles.checkRow}
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
           onPress={() => toggle(checkKey)}
         >
+          <View style={styles.checkRow}>
+            <Image
+              source={isChecked ? CHECKBOX_ON_IMAGE : CHECKBOX_OFF_IMAGE}
+              style={styles.checkBoxImage}
+            />
+            <Text style={styles.checkText}>
+              <Text>{required ? "(필수)" : "(선택)"}</Text> {content}
+            </Text>
+          </View>
           <Image
-            source={isChecked ? CHECKBOX_ON_IMAGE : CHECKBOX_OFF_IMAGE}
-            style={styles.checkBoxImage}
+            source={require("../../../assets/images/chevron/chevron-right-24.png")}
           />
-          <Text style={styles.checkText}>
-            <Text>{required ? "(필수)" : "(선택)"}</Text> {content}
-          </Text>
         </TouchableOpacity>
       </View>
     );
