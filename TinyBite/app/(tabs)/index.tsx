@@ -1,6 +1,6 @@
+import MainCard from "@/components/mainCard";
 import MainCategory from "@/components/mainCategory";
 import MainHeader from "@/components/mainHeader";
-import MainList from "@/components/mainList";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
@@ -9,7 +9,11 @@ export default function HomeScreen() {
       <MainHeader />
       <MainCategory />
       <View style={styles.listWrapper}>
-        <MainList />
+        <MainCard />
+        <MainCard />
+        <MainCard />
+        <MainCard />
+        <MainCard />
       </View>
     </ScrollView>
   );

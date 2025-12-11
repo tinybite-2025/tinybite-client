@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const MainList = () => (
+const MainCard = () => (
   <View style={styles.card}>
       <Image source={require("@/assets/images/mainlist/food1.jpg")} style={styles.thumbnail} />
       <View style={styles.cardBody}>
@@ -18,7 +18,7 @@ const MainList = () => (
     </View>
   );
 
-export default MainList;
+export default MainCard;
 
 const styles = StyleSheet.create({
   card: {
