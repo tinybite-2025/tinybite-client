@@ -133,7 +133,7 @@ export default function TermsScreen() {
       <TouchableOpacity
         style={[styles.nextBtn, !isNextButtonEnabled && styles.disabled]}
         disabled={!isNextButtonEnabled}
-        onPress={() => router.push("./signup/verify")}
+        onPress={() => router.push("/signup/verify")}
       >
         <Text style={styles.nextText}>다음</Text>
       </TouchableOpacity>
