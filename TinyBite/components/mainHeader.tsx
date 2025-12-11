@@ -34,7 +34,7 @@ export default MainHeader;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 189,
+    height: 179,
     backgroundColor: PRIMARY_COLOR,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
