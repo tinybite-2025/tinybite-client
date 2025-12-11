@@ -46,7 +46,8 @@ export default MainCategory;
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingVertical: 8,
+    marginTop: 18,
+    marginBottom: 35,
     gap: 12
   },
   chip: {

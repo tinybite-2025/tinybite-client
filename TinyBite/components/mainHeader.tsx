@@ -34,15 +34,17 @@ export default MainHeader;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 219,
+    height: 189,
     backgroundColor: PRIMARY_COLOR,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     position: "relative",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     paddingHorizontal: 20,
+    paddingTop: 22,
     overflow: "hidden",
+    marginBottom: 0,
   },
   textBlock: {
     flex: 1,
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    marginTop: 22,
   },
   location: {
     fontSize: 20,
@@ -66,7 +67,6 @@ const styles = StyleSheet.create({
     height: 28,
   },
   mainLogoWrapper: {
-    padding: 0,
     width: 23.99945,
     height: 27.99909,
     alignItems: "center",
