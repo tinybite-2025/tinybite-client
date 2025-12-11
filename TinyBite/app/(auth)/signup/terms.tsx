@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 32.4,
     marginBottom: 28,
-    color: "#FF7A00",
+    color: "#FE870F",
   },
 
   checkRow: {
