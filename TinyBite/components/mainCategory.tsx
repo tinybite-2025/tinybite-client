@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     marginTop: 18,
-    marginBottom: 35,
+    marginBottom: 32,
     gap: 12
   },
   chip: {
