@@ -143,7 +143,7 @@ export default function TermsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#FCFBFF" },
-  inner: { paddingHorizontal: 20, paddingTop: 20 },
+  inner: { paddingHorizontal: 20 },
 
   title: {
     fontSize: 24,
