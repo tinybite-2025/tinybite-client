@@ -24,9 +24,8 @@ const items = [
   },
 ];
 
-export default function MainCategory() {
-  return (
-    <ScrollView
+const MainCategory = () => (
+  <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.container}
@@ -41,7 +40,8 @@ export default function MainCategory() {
       ))}
     </ScrollView>
   );
-}
+
+export default MainCategory;
 
 const styles = StyleSheet.create({
   container: {

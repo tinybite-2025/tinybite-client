@@ -2,9 +2,8 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 const PRIMARY_COLOR = "#FE870F";
 
-export default function MainHeader() {
-  return (
-    <View style={styles.container}>
+const MainHeader = () => (
+  <View style={styles.container}>
       <View style={styles.textBlock}>
         <View style={styles.locationRow}>
           <View style={styles.mainLogoWrapper}>
@@ -29,7 +28,8 @@ export default function MainHeader() {
       </View>
     </View>
   );
-}
+
+export default MainHeader;
 
 const styles = StyleSheet.create({
   container: {
