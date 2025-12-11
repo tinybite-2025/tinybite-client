@@ -1,7 +1,12 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
-const MainList = () => (
-  <View style={styles.card}>
+type Props = {
+  onPress?: () => void;
+};
+
+export default function MainList({ onPress }: Props) {
+  return (
+    <Pressable style={styles.card} onPress={onPress}>
       <Image source={require("@/assets/images/mainlist/food1.jpg")} style={styles.thumbnail} />
       <View style={styles.cardBody}>
         <View>
@@ -15,10 +20,9 @@ const MainList = () => (
           <Text style={styles.meta}>10KM 이내 | 10분 전</Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
-
-export default MainList;
+}
 
 const styles = StyleSheet.create({
   card: {
