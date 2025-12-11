@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 8,
+    gap: 12,
   },
   dot: {
     width: DOT_SIZE,
