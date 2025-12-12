@@ -19,12 +19,12 @@ export default function HomeScreen() {
           contentContainerStyle={styles.listWrapper}
         >
           <View style={styles.cardWrapper}>
+            <MainCard onPress={() => router.push("/mainCardDetail" as const)} />
             <MainCard />
             <MainCard />
             <MainCard />
             <MainCard />
             <MainCard />
-            <MainCard onPress={() => router.push("/detail" as const)} />
           </View>
         </ScrollView>
       </View>
