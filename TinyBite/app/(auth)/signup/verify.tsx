@@ -3,7 +3,6 @@ import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import {
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -33,19 +32,21 @@ export default function VerifyScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.inner}>
+      <View style={styles.inner}>
         {/* 헤더 */}
-        <PaginationIndecatorHeader page={1} />
+        <View style={{ marginBottom: 24 }}>
+          <PaginationIndecatorHeader page={1} />
+        </View>
 
         {/* 인증 번호 입력 */}
         <Text style={styles.title}>{`인증 번호를 \n입력해 주세요.`}</Text>
-
         <View style={styles.verifyContainer}>
           <View style={styles.inputContainer}>
             <TextInput
               value={code}
               onChangeText={handleCodeChange}
               placeholder="00000"
+              placeholderTextColor="#888"
               keyboardType="numeric"
               style={styles.input}
               maxLength={5}
@@ -63,26 +64,26 @@ export default function VerifyScreen() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.row}>
+        <View style={styles.timerContainer}>
           <Text style={styles.timer}>남은 시간 3:00</Text>
         </View>
-      </ScrollView>
 
-      {/* 다음 버튼 */}
-      <TouchableOpacity
-        style={[styles.nextBtn, !verified && styles.disabled]}
-        disabled={!verified}
-        onPress={() => router.push("/signup/nickname")}
-      >
-        <Text style={styles.nextText}>다음</Text>
-      </TouchableOpacity>
+        {/* 다음 버튼 */}
+        <TouchableOpacity
+          style={[styles.nextBtn, !verified && styles.disabled]}
+          disabled={!verified}
+          onPress={() => router.push("/signup/nickname")}
+        >
+          <Text style={styles.nextText}>다음</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FCFBFF" },
-  inner: { paddingHorizontal: 20 },
+  container: { flex: 1, paddingHorizontal: 20 },
+  inner: { flex: 1, position: "relative" },
 
   title: {
     fontSize: 24,
@@ -92,7 +93,6 @@ const styles = StyleSheet.create({
     color: "#FE870F",
   },
   verifyContainer: {
-    flex: 1,
     flexDirection: "row",
     gap: 12,
     marginBottom: 8,
@@ -143,13 +143,16 @@ const styles = StyleSheet.create({
     lineHeight: 24.3,
   },
 
-  row: {
+  timerContainer: {
     flexDirection: "row",
   },
   timer: { color: "#888", fontSize: 15, fontWeight: 600, lineHeight: 20.25 },
 
   nextBtn: {
-    marginHorizontal: 20,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: "#FE870F",
     justifyContent: "center",
     alignItems: "center",
