@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#000",
     padding: 0,
+    alignSelf: "stretch",
   },
 });
 
