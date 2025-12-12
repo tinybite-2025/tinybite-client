@@ -21,7 +21,7 @@ const PaginationIndecatorHeader = ({
       <TouchableOpacity onPress={() => router.back()}>
         <Image
           style={styles.backImage}
-          source={require("../assets/images/chevron/chevron-left-44.png")}
+          source={require("@/assets/images/chevron/chevron-left-44.png")}
         />
       </TouchableOpacity>
 

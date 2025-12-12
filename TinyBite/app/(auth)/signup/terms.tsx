@@ -6,8 +6,8 @@ import { StatusBar } from "expo-status-bar";
 import { useMemo, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-const CHECKBOX_ON_IMAGE = require("../../../assets/images/checkbox/checkbox-on.png");
-const CHECKBOX_OFF_IMAGE = require("../../../assets/images/checkbox/checkbox-off.png");
+const CHECKBOX_ON_IMAGE = require("@/assets/images/checkbox/checkbox-on.png");
+const CHECKBOX_OFF_IMAGE = require("@/assets/images/checkbox/checkbox-off.png");
 
 const initialChecks = {
   age: false,
@@ -95,7 +95,7 @@ export default function TermsScreen() {
             </Text>
           </View>
           <Image
-            source={require("../../../assets/images/chevron/chevron-right-24.png")}
+            source={require("@/assets/images/chevron/chevron-right-24.png")}
           />
         </TouchableOpacity>
       </View>

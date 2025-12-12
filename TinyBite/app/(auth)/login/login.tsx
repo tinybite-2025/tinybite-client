@@ -34,9 +34,7 @@ export default function LoginScreen() {
           style={[styles.socialButton, styles.kakao]}
           onPress={() => handleLoginPress("kakao")}
         >
-          <Image
-            source={require("../../../assets/images/login/icon-kakao.png")}
-          />
+          <Image source={require("@/assets/images/login/icon-kakao.png")} />
           <Text style={styles.socialText}>카카오로 시작하기</Text>
         </TouchableOpacity>
 
@@ -44,9 +42,7 @@ export default function LoginScreen() {
           style={[styles.socialButton, styles.google]}
           onPress={() => handleLoginPress("google")}
         >
-          <Image
-            source={require("../../../assets/images/login/icon-google.png")}
-          />
+          <Image source={require("@/assets/images/login/icon-google.png")} />
           <Text style={styles.socialText}>Google로 시작하기</Text>
         </TouchableOpacity>
 
@@ -54,9 +50,7 @@ export default function LoginScreen() {
           style={[styles.socialButton, styles.apple]}
           onPress={() => handleLoginPress("apple")}
         >
-          <Image
-            source={require("../../../assets/images/login/icon-apple.png")}
-          />
+          <Image source={require("@/assets/images/login/icon-apple.png")} />
           <Text style={styles.socialText}>Apple로 시작하기</Text>
         </TouchableOpacity>
       </View>

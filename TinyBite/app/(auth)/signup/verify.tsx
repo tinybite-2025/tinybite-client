@@ -11,8 +11,8 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-const CHECKBOX_ON_IMAGE = require("../../../assets/images/verify-number/verify-number-on.png");
-const CHECKBOX_OFF_IMAGE = require("../../../assets/images/verify-number/verify-number-off.png");
+const CHECKBOX_ON_IMAGE = require("@/assets/images/verify-number/verify-number-on.png");
+const CHECKBOX_OFF_IMAGE = require("@/assets/images/verify-number/verify-number-off.png");
 
 export default function VerifyScreen() {
   const router = useRouter();
