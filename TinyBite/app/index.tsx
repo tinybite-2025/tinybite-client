@@ -32,7 +32,7 @@ export default function Index() {
         clearTimeout(innerTimeout);
       }
     };
-  }, []);
+  }, [opacity]);
 
   const aStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
