@@ -4,30 +4,33 @@ const PRIMARY_COLOR = "#FE870F";
 
 const MainHeader = () => (
   <View style={styles.container}>
-      <View style={styles.textBlock}>
-        <View style={styles.locationRow}>
-          <View style={styles.mainLogoWrapper}>
-            <Image
-              source={require("@/assets/images/main/mainlogo.png")}
-              style={styles.mainLogo}
-              resizeMode="contain"
-            />
-          </View>
-          <Text style={styles.location}>역삼동</Text>
+    <View style={styles.textBlock}>
+      <View style={styles.locationRow}>
+        <View style={styles.mainLogoWrapper}>
+          <Image
+            source={require("@/assets/images/main/mainlogo.png")}
+            style={styles.mainLogo}
+            resizeMode="contain"
+          />
         </View>
-          <Text style={styles.greetingLine1}>
-            가짜대학생<Text style={styles.greetingLine2}>님,{"\n"}오늘은 무엇을 나눌까요 ?</Text>
-          </Text>
-        </View>
-      <View style={styles.characterWrapper}>
-        <Image
-          source={require("@/assets/images/main/character.png")}
-          style={styles.character}
-          resizeMode="contain"
-        />
+        <Text style={styles.location}>역삼동</Text>
       </View>
+      <Text style={styles.greetingLine1}>
+        가짜대학생
+        <Text style={styles.greetingLine2}>
+          님,{"\n"}오늘은 무엇을 나눌까요 ?
+        </Text>
+      </Text>
     </View>
-  );
+    <View style={styles.characterWrapper}>
+      <Image
+        source={require("@/assets/images/main/character.png")}
+        style={styles.character}
+        resizeMode="contain"
+      />
+    </View>
+  </View>
+);
 
 export default MainHeader;
 
@@ -97,4 +100,3 @@ const styles = StyleSheet.create({
     height: 167.88554,
   },
 });
-

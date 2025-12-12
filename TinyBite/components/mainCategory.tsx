@@ -26,20 +26,30 @@ const items = [
 
 const MainCategory = () => (
   <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.container}
-    >
-      {items.map(({ label, icon, active }) => (
-        <View key={label} style={[styles.chip, active ? styles.chipActive : styles.chipInactive]}>
-          {icon ? (
-            <Image source={icon} style={styles.iconImage} resizeMode="contain" />
-          ) : null}
-          <Text style={[styles.text, active ? styles.textActive : styles.textInactive]}>{label}</Text>
-        </View>
-      ))}
-    </ScrollView>
-  );
+    horizontal
+    showsHorizontalScrollIndicator={false}
+    contentContainerStyle={styles.container}
+  >
+    {items.map(({ label, icon, active }) => (
+      <View
+        key={label}
+        style={[styles.chip, active ? styles.chipActive : styles.chipInactive]}
+      >
+        {icon ? (
+          <Image source={icon} style={styles.iconImage} resizeMode="contain" />
+        ) : null}
+        <Text
+          style={[
+            styles.text,
+            active ? styles.textActive : styles.textInactive,
+          ]}
+        >
+          {label}
+        </Text>
+      </View>
+    ))}
+  </ScrollView>
+);
 
 export default MainCategory;
 
@@ -48,7 +58,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginTop: 18,
     marginBottom: 32,
-    gap: 12
+    gap: 12,
   },
   chip: {
     flexDirection: "row",
@@ -91,4 +101,3 @@ const styles = StyleSheet.create({
     height: 24,
   },
 });
-

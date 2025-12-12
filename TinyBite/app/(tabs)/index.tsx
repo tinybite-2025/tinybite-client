@@ -10,7 +10,7 @@ export default function HomeScreen() {
       <View style={styles.container}>
         <MainHeader />
         <MainCategory />
-        <ScrollView 
+        <ScrollView
           style={styles.scroll}
           contentContainerStyle={styles.listWrapper}
         >
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   scroll: {
     marginTop: 18,
     backgroundColor: "#FCFBFF",
-  },  
+  },
   listWrapper: {
     marginTop: 4,
     alignItems: "center",
@@ -50,4 +50,3 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 });
-

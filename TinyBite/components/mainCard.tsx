@@ -2,21 +2,24 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 const MainCard = () => (
   <View style={styles.card}>
-      <Image source={require("@/assets/images/mainlist/food1.jpg")} style={styles.thumbnail} />
-      <View style={styles.cardBody}>
-        <View>
-          <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
-          <Text style={styles.price}>5,000원</Text>
+    <Image
+      source={require("@/assets/images/mainlist/food1.jpg")}
+      style={styles.thumbnail}
+    />
+    <View style={styles.cardBody}>
+      <View>
+        <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
+        <Text style={styles.price}>5,000원</Text>
+      </View>
+      <View style={styles.footerRow}>
+        <View style={styles.badge}>
+          <Text style={styles.badgeText}>1/4명</Text>
         </View>
-        <View style={styles.footerRow}>
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>1/4명</Text>
-          </View>
-          <Text style={styles.meta}>10KM 이내 | 10분 전</Text>
-        </View>
+        <Text style={styles.meta}>10KM 이내 | 10분 전</Text>
       </View>
     </View>
-  );
+  </View>
+);
 
 export default MainCard;
 
