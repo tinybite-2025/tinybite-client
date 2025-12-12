@@ -4,7 +4,6 @@ import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import {
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -29,12 +28,14 @@ export default function RegionScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.inner}>
+      <View style={styles.inner}>
         {/* 헤더 */}
-        <PaginationIndecatorHeader page={3} />
+        <View style={{ marginBottom: 24 }}>
+          <PaginationIndecatorHeader page={3} />
+        </View>
 
+        {/* 동네 설정 */}
         <View style={{ marginBottom: 10 }}>
-          {/* 동네 설정 */}
           <Text
             style={styles.title}
           >{`내 동네를 설정하고 \n근처 이웃과 딱 필요한 만큼 나눠요!`}</Text>
@@ -68,23 +69,23 @@ export default function RegionScreen() {
         </View>
 
         <LocationSearchResult />
-      </ScrollView>
 
-      {/* 다음 버튼 */}
-      <TouchableOpacity
-        style={[styles.nextBtn, !verified && styles.disabled]}
-        disabled={!verified}
-        onPress={() => router.replace("/(auth)/signup/complete")}
-      >
-        <Text style={styles.nextText}>다음</Text>
-      </TouchableOpacity>
+        {/* 다음 버튼 */}
+        <TouchableOpacity
+          style={[styles.nextBtn, !verified && styles.disabled]}
+          disabled={!verified}
+          onPress={() => router.replace("/(auth)/signup/complete")}
+        >
+          <Text style={styles.nextText}>다음</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FCFBFF" },
-  inner: { paddingHorizontal: 20 },
+  container: { flex: 1, paddingHorizontal: 20 },
+  inner: { flex: 1, position: "relative" },
 
   title: {
     fontSize: 24,
@@ -137,7 +138,10 @@ const styles = StyleSheet.create({
   },
 
   nextBtn: {
-    marginHorizontal: 20,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: "#FE870F",
     justifyContent: "center",
     alignItems: "center",
