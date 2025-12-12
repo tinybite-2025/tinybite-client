@@ -1,28 +1,52 @@
-import { StyleSheet, Text, View } from "react-native";
+import MainCard from "@/components/mainCard";
+import MainCategory from "@/components/mainCategory";
+import MainHeader from "@/components/mainHeader";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>홈</Text>
-    </View>
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
+      <View style={styles.container}>
+        <MainHeader />
+        <MainCategory />
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.listWrapper}
+        >
+          <View style={styles.cardWrapper}>
+            <MainCard />
+            <MainCard />
+            <MainCard />
+            <MainCard />
+            <MainCard />
+            <MainCard />
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#FE870F",
+  },
   container: {
     flex: 1,
     backgroundColor: "#FCFBFF",
-    justifyContent: "center",
+  },
+  scroll: {
+    marginTop: 18,
+    backgroundColor: "#FCFBFF",
+  },
+  listWrapper: {
+    marginTop: 4,
     alignItems: "center",
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "700",
-    marginBottom: 8,
-  },
-  description: {
-    fontSize: 16,
-    color: "#666",
+  cardWrapper: {
+    gap: 16,
+    marginBottom: 16,
   },
 });
-
