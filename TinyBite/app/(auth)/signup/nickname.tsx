@@ -2,7 +2,6 @@ import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import {
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -28,13 +27,14 @@ export default function NicknameScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.inner}>
+      <View style={styles.inner}>
         {/* 헤더 */}
-        <PaginationIndecatorHeader page={2} />
+        <View style={{ marginBottom: 24 }}>
+          <PaginationIndecatorHeader page={2} />
+        </View>
 
         {/* 닉네임 입력 */}
         <Text style={styles.title}>{`사용하실 닉네임을 \n입력해 주세요.`}</Text>
-
         <View style={styles.inputContainer}>
           <Text style={styles.label}>닉네임</Text>
           <View style={{ alignSelf: "stretch" }}>
@@ -53,23 +53,23 @@ export default function NicknameScreen() {
         <View style={styles.row}>
           <Text style={styles.status}>이미 사용 중인 닉네임입니다.</Text>
         </View>
-      </ScrollView>
 
-      {/* 다음 버튼 */}
-      <TouchableOpacity
-        style={[styles.nextBtn, !verified && styles.disabled]}
-        disabled={!verified}
-        onPress={() => router.push("/signup/region")}
-      >
-        <Text style={styles.nextText}>다음</Text>
-      </TouchableOpacity>
+        {/* 다음 버튼 */}
+        <TouchableOpacity
+          style={[styles.nextBtn, !verified && styles.disabled]}
+          disabled={!verified}
+          onPress={() => router.push("/signup/region")}
+        >
+          <Text style={styles.nextText}>다음</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FCFBFF" },
-  inner: { paddingHorizontal: 20 },
+  container: { flex: 1, paddingHorizontal: 20 },
+  inner: { flex: 1, position: "relative" },
 
   title: {
     fontSize: 24,
@@ -125,7 +125,10 @@ const styles = StyleSheet.create({
   status: { color: "#E93838", fontSize: 16, fontWeight: 500, lineHeight: 21.6 },
 
   nextBtn: {
-    marginHorizontal: 20,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: "#FE870F",
     justifyContent: "center",
     alignItems: "center",
