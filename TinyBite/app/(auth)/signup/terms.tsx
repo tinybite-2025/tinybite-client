@@ -2,6 +2,7 @@ import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import PhoneNumberInput from "@/components/PhoneNumberInput";
 import { SignupTerms } from "@/constants/terms";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useMemo, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -103,6 +104,8 @@ export default function TermsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="dark" />
+
       <View style={styles.inner}>
         {/* 헤더 */}
         <View style={{ marginBottom: 24 }}>

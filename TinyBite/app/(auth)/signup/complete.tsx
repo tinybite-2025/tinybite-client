@@ -1,10 +1,13 @@
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CompleteScreen() {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="dark" />
+
       <View style={styles.inner}>
         <View style={styles.content}>
           <Text

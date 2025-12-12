@@ -1,6 +1,7 @@
 import LocationSearchResult from "@/components/location-settings/LocationSearchResult";
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
 import {
   Image,
@@ -28,6 +29,8 @@ export default function RegionScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="dark" />
+
       <View style={styles.inner}>
         {/* 헤더 */}
         <View style={{ marginBottom: 24 }}>
