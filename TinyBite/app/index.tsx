@@ -45,6 +45,7 @@ export default function Index() {
       <Image
         source={require("@/assets/images/splash.png")}
         style={styles.image}
+        resizeMode="contain"
       />
     </Animated.View>
   );
