@@ -79,6 +79,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         onChangeText={handleTextChange}
         value={displayValue}
         placeholder="010 - 1234 - 5678"
+        placeholderTextColor="#888"
         keyboardType="numeric"
         maxLength={13} // 하이픈 포함
       />
@@ -90,7 +91,6 @@ const styles = StyleSheet.create({
   container: {
     gap: 8,
     padding: 12,
-    justifyContent: "center",
     alignItems: "flex-start",
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
     color: "#888",
   },
   input: {
-    flex: 1,
     fontSize: 18,
     fontWeight: "600",
     color: "#000",
