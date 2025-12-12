@@ -29,9 +29,14 @@ export default function CompleteScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 20, position: "relative" },
-  inner: { flex: 1, position: "relative" },
-  content: { paddingTop: 120, alignItems: "center" },
+  container: { flex: 1, paddingHorizontal: 20 },
+  inner: { flex: 1 },
+
+  content: {
+    flex: 1,
+    paddingTop: 120,
+    alignItems: "center",
+  },
   contentText: {
     color: "#FE870F",
     textAlign: "center",
@@ -46,10 +51,6 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderRadius: 16,
     backgroundColor: "#FE870F",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
   nextText: {
     color: "#fff",
