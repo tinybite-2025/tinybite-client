@@ -21,61 +21,62 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.inner}>
-        <View style={styles.logoBox}>
+      <Image
+        style={styles.logo}
+        source={require("@/assets/images/splash.png")}
+      />
+
+      <View style={styles.buttons}>
+        <TouchableOpacity
+          style={[styles.socialButton, styles.kakao]}
+          onPress={() => handleLoginPress("kakao")}
+        >
           <Image
-            source={require("../../../assets/images/splash.png")}
-            resizeMode="contain"
+            source={require("../../../assets/images/login/icon-kakao.png")}
           />
-        </View>
+          <Text style={styles.socialText}>카카오로 시작하기</Text>
+        </TouchableOpacity>
 
-        <View style={styles.buttons}>
-          <TouchableOpacity
-            style={[styles.socialButton, styles.kakao]}
-            onPress={() => handleLoginPress("kakao")}
-          >
-            <Image
-              source={require("../../../assets/images/login/icon-kakao.png")}
-              resizeMode="contain"
-            />
-            <Text style={styles.socialText}>카카오로 시작하기</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.socialButton, styles.google]}
+          onPress={() => handleLoginPress("google")}
+        >
+          <Image
+            source={require("../../../assets/images/login/icon-google.png")}
+          />
+          <Text style={styles.socialText}>Google로 시작하기</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.socialButton, styles.google]}
-            onPress={() => handleLoginPress("google")}
-          >
-            <Image
-              source={require("../../../assets/images/login/icon-google.png")}
-              resizeMode="contain"
-            />
-            <Text style={styles.socialText}>Google로 시작하기</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.socialButton, styles.apple]}
-            onPress={() => handleLoginPress("apple")}
-          >
-            <Image
-              source={require("../../../assets/images/login/icon-apple.png")}
-              resizeMode="contain"
-            />
-            <Text style={styles.socialText}>Apple로 시작하기</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[styles.socialButton, styles.apple]}
+          onPress={() => handleLoginPress("apple")}
+        >
+          <Image
+            source={require("../../../assets/images/login/icon-apple.png")}
+          />
+          <Text style={styles.socialText}>Apple로 시작하기</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FE870F" },
-  inner: { flex: 1, paddingHorizontal: 20, justifyContent: "center" },
+  container: {
+    flex: 1,
+    gap: 120,
+    paddingHorizontal: 20,
+    backgroundColor: "#FE870F",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-  logoBox: { alignItems: "center", marginTop: 139, marginBottom: 120 },
+  logo: {
+    width: 362,
+    aspectRatio: 362 / 252,
+  },
 
-  buttons: { gap: 16 },
-
+  buttons: { gap: 16, alignSelf: "stretch" },
   socialButton: {
     flexDirection: "row",
     gap: 8,
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
   google: { backgroundColor: "#FFFFFF" },
   apple: { backgroundColor: "#FFFFFF" },
   socialText: {
+    color: "#222",
     fontSize: 18,
     fontStyle: "normal",
     fontWeight: 600,
