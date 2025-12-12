@@ -42,8 +42,8 @@ export default function TabsLayout() {
             <Image
               source={
                 focused
-                  ? require("../../assets/images/gnb/home-selected.png")
-                  : require("../../assets/images/gnb/home.png")
+                  ? require("@/assets/images/gnb/home-selected.png")
+                  : require("@/assets/images/gnb/home.png")
               }
               style={{
                 width: 28,
@@ -63,8 +63,8 @@ export default function TabsLayout() {
             <Image
               source={
                 focused
-                  ? require("../../assets/images/gnb/chat-selected.png")
-                  : require("../../assets/images/gnb/chat.png")
+                  ? require("@/assets/images/gnb/chat-selected.png")
+                  : require("@/assets/images/gnb/chat.png")
               }
               style={{
                 width: 28,
@@ -84,8 +84,8 @@ export default function TabsLayout() {
             <Image
               source={
                 focused
-                  ? require("../../assets/images/gnb/profile-selected.png")
-                  : require("../../assets/images/gnb/profile.png")
+                  ? require("@/assets/images/gnb/profile-selected.png")
+                  : require("@/assets/images/gnb/profile.png")
               }
               style={{
                 width: 28,

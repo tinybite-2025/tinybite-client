@@ -22,7 +22,7 @@ export default function Index() {
 
       innerTimeout = setTimeout(() => {
         setShow(false);
-        router.replace("/(tabs)");
+        router.replace("./(auth)/login/login");
       }, 600);
     }, 3000);
 
