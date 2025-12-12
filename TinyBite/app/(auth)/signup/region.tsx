@@ -74,7 +74,7 @@ export default function RegionScreen() {
       <TouchableOpacity
         style={[styles.nextBtn, !verified && styles.disabled]}
         disabled={!verified}
-        onPress={() => router.push("/signup/complete")}
+        onPress={() => router.replace("/(auth)/signup/complete")}
       >
         <Text style={styles.nextText}>다음</Text>
       </TouchableOpacity>
