@@ -42,11 +42,11 @@ export default function NicknameScreen() {
               style={styles.input}
               onChangeText={handleTextChange}
               value={nickname}
-              placeholder="닉네임 (2~8자)"
+              placeholder="닉네임 (2~12자)"
               keyboardType="default"
-              maxLength={8}
+              maxLength={12}
             />
-            <Text style={styles.count}>({nickname.length}/8)</Text>
+            <Text style={styles.count}>({nickname.length}/12)</Text>
           </View>
         </View>
 
