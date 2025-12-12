@@ -1,0 +1,61 @@
+import { router } from "expo-router";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+export default function CompleteScreen() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inner}>
+        <View style={styles.content}>
+          <Text
+            style={styles.contentText}
+          >{`한입만에 오신 걸\n환영합니다!`}</Text>
+          <Image
+            style={styles.contentImage}
+            source={require("@/assets/images/signup-completion-congrats.png")}
+          />
+        </View>
+
+        {/* 다음 버튼 */}
+        <TouchableOpacity
+          style={styles.nextBtn}
+          onPress={() => router.replace("/(tabs)")}
+        >
+          <Text style={styles.nextText}>내 동네 파티 목록 확인하기</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, paddingHorizontal: 20, position: "relative" },
+  inner: { flex: 1, position: "relative" },
+  content: { paddingTop: 120, alignItems: "center" },
+  contentText: {
+    color: "#FE870F",
+    textAlign: "center",
+    fontSize: 32,
+    fontWeight: 700,
+    lineHeight: 48,
+    marginBottom: 50,
+  },
+  contentImage: { width: 301, aspectRatio: 301 / 293 },
+
+  nextBtn: {
+    paddingVertical: 16,
+    borderRadius: 16,
+    backgroundColor: "#FE870F",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  nextText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: 600,
+    lineHeight: 24.3,
+    textAlign: "center",
+  },
+});
