@@ -1,14 +1,12 @@
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Dimensions, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-
-const { width } = Dimensions.get("window");
 
 export default function Index() {
   const [show, setShow] = useState(true);
@@ -41,7 +39,6 @@ export default function Index() {
       <Image
         source={require("@/assets/images/splash.png")}
         style={styles.image}
-        resizeMode="contain"
       />
     </Animated.View>
   );
@@ -55,8 +52,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: Math.min(width * 0.85, 1200),
-    height: undefined,
-    aspectRatio: 1.0,
+    width: "100%",
   },
 });
