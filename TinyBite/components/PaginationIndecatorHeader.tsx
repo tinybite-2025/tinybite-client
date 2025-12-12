@@ -20,8 +20,8 @@ const PaginationIndecatorHeader = ({
     <View style={styles.container}>
       <TouchableOpacity onPress={() => router.back()}>
         <Image
+          style={styles.backImage}
           source={require("../assets/images/chevron/chevron-left-44.png")}
-          resizeMode="contain"
         />
       </TouchableOpacity>
 
@@ -39,12 +39,16 @@ const PaginationIndecatorHeader = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     paddingRight: 44,
-    paddingBottom: 24,
   },
+
+  backImage: {
+    width: 44,
+    aspectRatio: 1 / 1,
+  },
+
   indicatorContainer: {
     flex: 1,
     flexDirection: "row",
