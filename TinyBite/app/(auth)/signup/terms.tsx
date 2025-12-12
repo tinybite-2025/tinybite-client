@@ -3,14 +3,7 @@ import PhoneNumberInput from "@/components/PhoneNumberInput";
 import { SignupTerms } from "@/constants/terms";
 import { useRouter } from "expo-router";
 import { useMemo, useState } from "react";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 const CHECKBOX_ON_IMAGE = require("../../../assets/images/checkbox/checkbox-on.png");
 const CHECKBOX_OFF_IMAGE = require("../../../assets/images/checkbox/checkbox-off.png");
@@ -110,13 +103,15 @@ export default function TermsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.inner}>
+      <View style={styles.inner}>
         {/* 헤더 */}
-        <PaginationIndecatorHeader page={0} />
+        <View style={{ marginBottom: 24 }}>
+          <PaginationIndecatorHeader page={0} />
+        </View>
 
         {/* 전화번호 입력 */}
         <Text style={styles.title}>{`전화번호를 \n입력해 주세요.`}</Text>
-        <View style={{ paddingBottom: 60 }}>
+        <View style={{ marginBottom: 60 }}>
           <PhoneNumberInput onChangeText={handlePhoneNumberChange} />
         </View>
 
@@ -136,23 +131,23 @@ export default function TermsScreen() {
             />
           ))}
         </View>
-      </ScrollView>
 
-      {/* 다음 버튼 */}
-      <TouchableOpacity
-        style={[styles.nextBtn, !isNextButtonEnabled && styles.disabled]}
-        disabled={!isNextButtonEnabled}
-        onPress={() => router.push("/signup/verify")}
-      >
-        <Text style={styles.nextText}>다음</Text>
-      </TouchableOpacity>
+        {/* 다음 버튼 */}
+        <TouchableOpacity
+          style={[styles.nextBtn, !isNextButtonEnabled && styles.disabled]}
+          disabled={!isNextButtonEnabled}
+          onPress={() => router.push("/signup/verify")}
+        >
+          <Text style={styles.nextText}>다음</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FCFBFF" },
-  inner: { paddingHorizontal: 20 },
+  container: { flex: 1, paddingHorizontal: 20 },
+  inner: { flex: 1, position: "relative" },
 
   title: {
     fontSize: 24,
@@ -190,7 +185,10 @@ const styles = StyleSheet.create({
   },
 
   nextBtn: {
-    marginHorizontal: 20,
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: "#FE870F",
     justifyContent: "center",
     alignItems: "center",
