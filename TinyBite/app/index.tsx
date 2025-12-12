@@ -13,19 +13,25 @@ export default function Index() {
   const opacity = useSharedValue(1);
 
   useEffect(() => {
+    let innerTimeout: NodeJS.Timeout | number | undefined;
     const t = setTimeout(() => {
       opacity.value = withTiming(0, {
         duration: 600,
         easing: Easing.out(Easing.cubic),
       });
 
-      setTimeout(() => {
+      innerTimeout = setTimeout(() => {
         setShow(false);
         router.replace("/(tabs)");
       }, 600);
     }, 3000);
 
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(t);
+      if (innerTimeout !== undefined) {
+        clearTimeout(innerTimeout);
+      }
+    };
   }, []);
 
   const aStyle = useAnimatedStyle(() => ({
