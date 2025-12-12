@@ -1,3 +1,4 @@
+import LocationSearchResult from "@/components/location-settings/LocationSearchResult";
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
@@ -32,37 +33,41 @@ export default function RegionScreen() {
         {/* 헤더 */}
         <PaginationIndecatorHeader page={3} />
 
-        {/* 동네 설정 */}
-        <Text
-          style={styles.title}
-        >{`내 동네를 설정하고 \n근처 이웃과 딱 필요한 만큼 나눠요!`}</Text>
+        <View style={{ marginBottom: 10 }}>
+          {/* 동네 설정 */}
+          <Text
+            style={styles.title}
+          >{`내 동네를 설정하고 \n근처 이웃과 딱 필요한 만큼 나눠요!`}</Text>
 
-        <View style={styles.inputContainer}>
-          <Image
-            source={require("@/assets/images/location.png")}
-            style={{ width: 24, height: 24, aspectRatio: 1 / 1 }}
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={handleTextChange}
-            value={text}
-            placeholder="동명(읍,면)으로 검색 (ex.역삼동)"
-            placeholderTextColor="#888"
-            keyboardType="default"
-            maxLength={8}
-          />
+          <View style={styles.inputContainer}>
+            <Image
+              source={require("@/assets/images/location.png")}
+              style={{ width: 24, height: 24, aspectRatio: 1 / 1 }}
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={handleTextChange}
+              value={text}
+              placeholder="동명(읍,면)으로 검색 (ex.역삼동)"
+              placeholderTextColor="#888"
+              keyboardType="default"
+              maxLength={8}
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.findBtn}
+            onPress={handleFindLocationClick}
+          >
+            <Image
+              source={require("@/assets/images/location-tracking.png")}
+              style={{ width: 24, height: 24, aspectRatio: 1 / 1 }}
+            />
+            <Text style={styles.findText}>현재 위치로 주소 찾기</Text>
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          style={styles.findBtn}
-          onPress={handleFindLocationClick}
-        >
-          <Image
-            source={require("@/assets/images/location-tracking.png")}
-            style={{ width: 24, height: 24, aspectRatio: 1 / 1 }}
-          />
-          <Text style={styles.findText}>현재 위치로 주소 찾기</Text>
-        </TouchableOpacity>
+        <LocationSearchResult />
       </ScrollView>
 
       {/* 다음 버튼 */}
