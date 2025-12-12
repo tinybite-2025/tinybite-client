@@ -1,7 +1,7 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
-const MainCard = () => (
-  <View style={styles.card}>
+const MainCard = ({ onPress }: { onPress?: () => void }) => (
+  <Pressable onPress={onPress} style={styles.card}>
     <Image
       source={require("@/assets/images/mainlist/food1.jpg")}
       style={styles.thumbnail}
@@ -18,7 +18,7 @@ const MainCard = () => (
         <Text style={styles.meta}>10KM 이내 | 10분 전</Text>
       </View>
     </View>
-  </View>
+  </Pressable>
 );
 
 export default MainCard;
