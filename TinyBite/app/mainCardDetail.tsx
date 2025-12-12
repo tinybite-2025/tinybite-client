@@ -7,7 +7,6 @@ import React, { useRef } from "react";
 import {
   Animated,
   Image,
-  ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -21,105 +20,107 @@ const MainCardDetail = () => {
 
   const cardTranslateY = scrollY.interpolate({
     inputRange: [0, 200],
-    outputRange: [0, 60],
+    outputRange: [0, 70],
     extrapolate: "clamp",
   });
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={["top"]}>
-      <View style={styles.page}>
-        <ImageBackground
-          source={require("@/assets/images/mainlist/food1.jpg")}
-          style={styles.heroImage}
-          resizeMode="cover"
-        />
-        <TouchableOpacity
-          onPress={() => router.back()}
-          style={styles.backButton}
-        >
-          <Text style={styles.backButtonText}>‹</Text>
-        </TouchableOpacity>
-
-        <Animated.ScrollView
-          style={styles.contentScroll}
-          contentContainerStyle={styles.contentContainer}
-          bounces={false}
-          alwaysBounceVertical={false}
-          overScrollMode="never"
-          decelerationRate="fast"
-          scrollEventThrottle={16}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-            { useNativeDriver: true }
-          )}
-        >
-          <Animated.View
-            style={[
-              styles.detailCard,
-              { transform: [{ translateY: cardTranslateY }] },
-            ]}
+    <View style={{ flex: 1, position: "relative" }}>
+      <Image
+        style={styles.heroImage}
+        source={require("@/assets/images/mainlist/food1.jpg")}
+        resizeMode="cover"
+      />
+      <SafeAreaView style={styles.safeArea} edges={["top"]}>
+        <View style={styles.page}>
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.backButton}
           >
-            <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
-
-            <View style={styles.pillsRow}>
-              <View style={styles.pill}>
-                <Image
-                  source={require("@/assets/images/main/category/delivery.png")}
-                  style={styles.pillIcon}
-                  resizeMode="contain"
-                />
-                <Text style={styles.pillText}>배달</Text>
-              </View>
-              <View style={styles.pill}>
-                <Text style={styles.pillText}>10분전</Text>
-              </View>
-            </View>
-
-            <MainCardDetailHost
-              avatar={require("@/assets/images/mainlist/detail/profile-character.png")}
-              name="엽떡조아"
-              location="서울시 강남구 역삼동"
-            />
-
-            <View style={styles.divider} />
-
-            <MainCardDetailInfo
-              items={[
-                {
-                  type: "location",
-                  title: "역삼 래미안 앞",
-                  meta: "내 위치에서 150M",
-                },
-                {
-                  type: "group",
-                  title: "2/4명 모집 중",
-                  meta: "2명 남았어요!",
-                },
-                {
-                  type: "money",
-                  title: "1인당 5,000원",
-                  meta: "총 20,000원",
-                },
-              ]}
-            />
-
-            <MainCardDetailProductLink
-              headerLabel="구매 예정 상품"
-              productTitle="코스트코 베이글 & 크림치즈"
-              productUrl="https://www.costco.co.kr/"
-            />
-
-            <MainCardDetailHostNote body="배달 팁 나누실 분 구해요! 엽떡 매운맛 시킬 예정입니다. 쿨피스는 제가 쏠게요." />
-          </Animated.View>
-        </Animated.ScrollView>
-
-        <View style={styles.ctaContainer}>
-          <TouchableOpacity style={styles.cta}>
-            <Text style={styles.ctaText}>5,000원으로 참여하기</Text>
+            <Text style={styles.backButtonText}>‹ </Text>
           </TouchableOpacity>
+
+          <Animated.ScrollView
+            style={styles.contentScroll}
+            contentContainerStyle={styles.contentContainer}
+            bounces={false}
+            alwaysBounceVertical={false}
+            overScrollMode="never"
+            decelerationRate="fast"
+            scrollEventThrottle={16}
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+              { useNativeDriver: true }
+            )}
+          >
+            <Animated.View
+              style={[
+                styles.detailCard,
+                { transform: [{ translateY: cardTranslateY }] },
+              ]}
+            >
+              <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
+
+              <View style={styles.pillsRow}>
+                <View style={styles.pill}>
+                  <Image
+                    source={require("@/assets/images/main/category/delivery.png")}
+                    style={styles.pillIcon}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.pillText}>배달</Text>
+                </View>
+                <View style={styles.pill}>
+                  <Text style={styles.pillText}>10분전</Text>
+                </View>
+              </View>
+
+              <MainCardDetailHost
+                avatar={require("@/assets/images/mainlist/detail/profile-character.png")}
+                name="엽떡조아"
+                location="서울시 강남구 역삼동"
+              />
+
+              <View style={styles.divider} />
+
+              <MainCardDetailInfo
+                items={[
+                  {
+                    type: "location",
+                    title: "역삼 래미안 앞",
+                    meta: "내 위치에서 150M",
+                  },
+                  {
+                    type: "group",
+                    title: "2/4명 모집 중",
+                    meta: "2명 남았어요!",
+                  },
+                  {
+                    type: "money",
+                    title: "1인당 5,000원",
+                    meta: "총 20,000원",
+                  },
+                ]}
+              />
+
+              <MainCardDetailProductLink
+                headerLabel="구매 예정 상품"
+                productTitle="코스트코 베이글 & 크림치즈"
+                productUrl="https://www.costco.co.kr/"
+              />
+
+              <MainCardDetailHostNote body="배달 팁 나누실 분 구해요! 엽떡 매운맛 시킬 예정입니다. 쿨피스는 제가 쏠게요." />
+            </Animated.View>
+          </Animated.ScrollView>
+
+          <View style={styles.ctaContainer}>
+            <TouchableOpacity style={styles.cta}>
+              <Text style={styles.ctaText}>5,000원으로 참여하기</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </View>
   );
 };
 
@@ -131,7 +132,6 @@ const styles = StyleSheet.create({
   },
   page: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
     fontFamily: "Pretendard",
     position: "relative",
   },
@@ -145,12 +145,12 @@ const styles = StyleSheet.create({
   },
   heroImage: {
     position: "absolute",
+    backgroundColor: "#000000",
     top: 0,
     left: 0,
     right: 0,
     height: 300,
     width: "100%",
-    zIndex: 0,
   },
   backButton: {
     position: "absolute",
