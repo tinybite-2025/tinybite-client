@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
 
   nextBtn: {
     marginHorizontal: 20,
-    backgroundColor: "#FF7A00",
+    backgroundColor: "#FE870F",
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 16,

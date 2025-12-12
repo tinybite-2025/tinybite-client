@@ -6,7 +6,7 @@ interface PaginationIndecatorHeaderProps {
 }
 
 const DOT_SIZE = 8;
-const ACTIVE_COLOR = "#FF7A00";
+const ACTIVE_COLOR = "#FE870F";
 const INACTIVE_COLOR = "#D9D9D9";
 
 const PaginationIndecatorHeader = ({
