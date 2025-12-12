@@ -4,45 +4,50 @@ const PRIMARY_COLOR = "#FE870F";
 
 const MainHeader = () => (
   <View style={styles.container}>
-      <View style={styles.textBlock}>
-        <View style={styles.locationRow}>
-          <View style={styles.mainLogoWrapper}>
-            <Image
-              source={require("@/assets/images/main/mainlogo.png")}
-              style={styles.mainLogo}
-              resizeMode="contain"
-            />
-          </View>
-          <Text style={styles.location}>역삼동</Text>
+    <View style={styles.textBlock}>
+      <View style={styles.locationRow}>
+        <View style={styles.mainLogoWrapper}>
+          <Image
+            source={require("@/assets/images/main/mainlogo.png")}
+            style={styles.mainLogo}
+            resizeMode="contain"
+          />
         </View>
-          <Text style={styles.greetingLine1}>
-            가짜대학생<Text style={styles.greetingLine2}>님,{"\n"}오늘은 무엇을 나눌까요 ?</Text>
-          </Text>
-        </View>
-      <View style={styles.characterWrapper}>
-        <Image
-          source={require("@/assets/images/main/character.png")}
-          style={styles.character}
-          resizeMode="contain"
-        />
+        <Text style={styles.location}>역삼동</Text>
       </View>
+      <Text style={styles.greetingLine1}>
+        가짜대학생
+        <Text style={styles.greetingLine2}>
+          님,{"\n"}오늘은 무엇을 나눌까요 ?
+        </Text>
+      </Text>
     </View>
-  );
+    <View style={styles.characterWrapper}>
+      <Image
+        source={require("@/assets/images/main/character.png")}
+        style={styles.character}
+        resizeMode="contain"
+      />
+    </View>
+  </View>
+);
 
 export default MainHeader;
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 219,
+    height: 179,
     backgroundColor: PRIMARY_COLOR,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     position: "relative",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     paddingHorizontal: 20,
+    paddingTop: 22,
     overflow: "hidden",
+    marginBottom: 0,
   },
   textBlock: {
     flex: 1,
@@ -52,7 +57,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    marginTop: 22,
   },
   location: {
     fontSize: 20,
@@ -66,7 +70,6 @@ const styles = StyleSheet.create({
     height: 28,
   },
   mainLogoWrapper: {
-    padding: 0,
     width: 23.99945,
     height: 27.99909,
     alignItems: "center",
@@ -97,4 +100,3 @@ const styles = StyleSheet.create({
     height: 167.88554,
   },
 });
-
