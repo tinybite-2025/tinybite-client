@@ -1,4 +1,4 @@
-import LocationSearchResult from "@/components/location-settings/LocationSearchResult";
+import LocationSearchResult from "@/components/LocationSearchResult";
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
