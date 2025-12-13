@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function ChatScreen() {
@@ -11,7 +12,7 @@ export default function ChatScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FCFBFF",
+    backgroundColor: colors.background,
     justifyContent: "center",
     alignItems: "center",
   },

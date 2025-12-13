@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 type InfoType = "location" | "group" | "money";
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "#FFEFD8",
+    backgroundColor: colors.sub,
     paddingHorizontal: 3,
     paddingVertical: 4,
     alignItems: "center",
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16.2,
     fontWeight: "500",
-    color: "#888888",
+    color: colors.gray[1],
     fontFamily: "Pretendard",
   },
 });

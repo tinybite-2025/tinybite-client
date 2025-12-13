@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 120,
     paddingHorizontal: 20,
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -83,8 +84,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   kakao: { backgroundColor: "#FEE500" },
-  google: { backgroundColor: "#FFFFFF" },
-  apple: { backgroundColor: "#FFFFFF" },
+  google: { backgroundColor: colors.white },
+  apple: { backgroundColor: colors.white },
   socialText: {
     color: "#222",
     fontSize: 18,

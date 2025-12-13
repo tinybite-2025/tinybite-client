@@ -3,6 +3,7 @@ import MainCardDetailHostNote from "@/components/main/main-card-detail/MainCardD
 import MainCardDetailInfo from "@/components/main/main-card-detail/MainCardDetailInfo";
 import MainCardDetailPill from "@/components/main/main-card-detail/MainCardDetailPill";
 import MainCardDetailProductLink from "@/components/main/main-card-detail/MainCardDetailProductLink";
+import { colors } from "@/styles/colors";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 220,
     width: "100%",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.white,
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingHorizontal: 20,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     width: "100%",
     height: 4,
-    backgroundColor: "#F1F1F1",
+    backgroundColor: colors.gray[4],
     marginBottom: 16,
   },
 
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 18,
     paddingHorizontal: 20,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000000",
@@ -194,12 +195,12 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingVertical: 16,
     borderRadius: 16,
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
     alignItems: "center",
     justifyContent: "center",
   },
   ctaText: {
-    color: "#FFFFFF",
+    color: colors.white,
     fontSize: 18,
     fontWeight: "600",
     fontFamily: "Pretendard",

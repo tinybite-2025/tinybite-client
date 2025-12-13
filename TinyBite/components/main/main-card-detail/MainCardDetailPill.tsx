@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 type PillType = "delivery" | "grocery" | "essentials" | "time";
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   pillText: {
     fontSize: 12,
     fontWeight: "500",
-    color: "#888888",
+    color: colors.gray[1],
     fontFamily: "Pretendard",
   },
   pillIcon: {

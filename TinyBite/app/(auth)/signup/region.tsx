@@ -1,5 +1,6 @@
 import LocationSearchResult from "@/components/LocationSearchResult";
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
+import { colors } from "@/styles/colors";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 32.4,
     marginBottom: 28,
-    color: "#FE870F",
+    color: colors.main,
   },
 
   inputContainer: {
@@ -131,24 +132,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
     borderRadius: 16,
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
   },
   findText: {
-    color: "#ffffff",
+    color: colors.white,
     fontSize: 15,
     fontWeight: 600,
     lineHeight: 20.25,
   },
 
   nextBtn: {
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 16,
     borderRadius: 16,
   },
   nextText: {
-    color: "#ffffff",
+    color: colors.white,
     fontSize: 18,
     fontWeight: 600,
     lineHeight: 24.3,

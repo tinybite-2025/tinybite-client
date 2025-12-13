@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 interface MainCardDetailHostNoteProps {
@@ -25,7 +26,7 @@ export default MainCardDetailHostNote;
 const styles = StyleSheet.create({
   noteBox: {
     width: "100%",
-    backgroundColor: "#FCFBFF",
+    backgroundColor: colors.background,
     borderRadius: 16,
     padding: 12,
     marginTop: 16,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 17.55,
     fontWeight: "600",
-    color: "#888888",
+    color: colors.gray[1],
     fontFamily: "Pretendard",
   },
   noteHeader: {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 19.5,
     fontWeight: "600",
-    color: "#222222",
+    color: colors.black,
     fontFamily: "Pretendard",
   },
 });

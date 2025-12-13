@@ -1,9 +1,10 @@
+import { colors } from "@/styles/colors";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const PRIMARY_COLOR = "#FE870F";
-const ACTIVE_BG = "#FFEFD8";
-const INACTIVE_BG = "#FFFFFF";
-const GRAY_TEXT = "#888888";
+const ACTIVE_BG = colors.sub;
+const INACTIVE_BG = colors.white;
+const GRAY_TEXT = colors.gray[1];
 
 const items = [
   { label: "전체", icon: null, active: true },

@@ -1,8 +1,9 @@
+import { colors } from "@/styles/colors";
 import { Tabs } from "expo-router";
 import { Image } from "react-native";
 
-const PRIMARY_COLOR = "#FE870F";
-const INACTIVE_COLOR = "#AAAAAA";
+const PRIMARY_COLOR = colors.main;
+const INACTIVE_COLOR = colors.gray[2];
 
 export default function TabsLayout() {
   return (
@@ -23,7 +24,7 @@ export default function TabsLayout() {
           height: 92,
           paddingTop: 12,
           paddingBottom: 12,
-          backgroundColor: "#FFFFFF",
+          backgroundColor: colors.white,
           borderTopWidth: 0,
           shadowColor: "rgba(0,0,0,0.25)",
           shadowOpacity: 0.25,

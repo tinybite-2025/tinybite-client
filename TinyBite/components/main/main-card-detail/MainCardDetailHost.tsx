@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 interface MainCardDetailHostProps {
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 17.55,
     fontWeight: "600",
-    color: "#888888",
+    color: colors.gray[1],
     fontFamily: "Pretendard",
   },
 });

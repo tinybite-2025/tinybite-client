@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   contentText: {
-    color: "#FE870F",
+    color: colors.main,
     textAlign: "center",
     fontSize: 32,
     fontWeight: 700,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   nextBtn: {
     paddingVertical: 16,
     borderRadius: 16,
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
   },
   nextText: {
     color: "#fff",

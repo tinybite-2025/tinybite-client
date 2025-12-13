@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 const PRIMARY_COLOR = "#FE870F";
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 27,
     fontWeight: "700",
-    color: "#FFFFFF",
+    color: colors.white,
     fontFamily: "Pretendard",
   },
   mainLogo: {
@@ -80,14 +81,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 30,
     fontWeight: "700",
-    color: "#FFFFFF",
+    color: colors.white,
     fontFamily: "Pretendard",
   },
   greetingLine2: {
     fontSize: 18,
     lineHeight: 27,
     fontWeight: "700",
-    color: "#FFFFFF",
+    color: colors.white,
     fontFamily: "Pretendard",
   },
   characterWrapper: {

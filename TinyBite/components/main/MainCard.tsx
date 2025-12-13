@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 const MainCard = ({ onPress }: { onPress?: () => void }) => (
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
   card: {
     width: 362,
     height: 122,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.white,
     borderRadius: 16,
     paddingHorizontal: 12,
     paddingVertical: 16,
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   badgeText: {
-    color: "#FFFFFF",
+    color: colors.white,
     fontSize: 14,
     fontWeight: "700",
   },
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 17.55,
     fontWeight: "600",
-    color: "#888888",
+    color: colors.gray[1],
     fontFamily: "Pretendard",
   },
 });

@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 interface MainCardDetailProductLinkProps {
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "100%",
     height: 110,
-    backgroundColor: "#FCFBFF",
+    backgroundColor: colors.background,
     borderRadius: 16,
     padding: 12,
     shadowColor: "#000000",
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 17.55,
     fontWeight: "600",
-    color: "#222222",
+    color: colors.black,
     fontFamily: "Pretendard",
   },
   linkPhoto: {
@@ -87,14 +88,14 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 19.5,
     fontWeight: "600",
-    color: "#222222",
+    color: colors.black,
     fontFamily: "Pretendard",
   },
   linkUrl: {
     fontSize: 13,
     lineHeight: 17.55,
     fontWeight: "500",
-    color: "#888888",
+    color: colors.gray[1],
     fontFamily: "Pretendard",
   },
 });

@@ -1,4 +1,5 @@
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
+import { colors } from "@/styles/colors";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 32.4,
     marginBottom: 28,
-    color: "#FE870F",
+    color: colors.main,
   },
 
   inputContainer: {
@@ -125,21 +126,26 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
   },
-  status: { color: "#E93838", fontSize: 16, fontWeight: 500, lineHeight: 21.6 },
+  status: {
+    color: colors.red[1],
+    fontSize: 16,
+    fontWeight: 500,
+    lineHeight: 21.6,
+  },
 
   nextBtn: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 16,
     borderRadius: 16,
   },
   nextText: {
-    color: "#ffffff",
+    color: colors.white,
     fontSize: 18,
     fontWeight: 600,
     lineHeight: 24.3,

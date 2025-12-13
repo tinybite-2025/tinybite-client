@@ -1,4 +1,5 @@
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
+import { colors } from "@/styles/colors";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 32.4,
     marginBottom: 28,
-    color: "#FE870F",
+    color: colors.main,
   },
   verifyContainer: {
     flexDirection: "row",
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderRadius: 16,
-    backgroundColor: "#ffffff",
+    backgroundColor: colors.white,
     borderWidth: 0,
     // 그림자 효과 (iOS)
     shadowColor: "#000",
@@ -133,14 +134,14 @@ const styles = StyleSheet.create({
   },
   resend: {
     flex: 1,
-    backgroundColor: "#FFEFD8",
+    backgroundColor: colors.sub,
     padding: 12,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 16,
   },
   resendText: {
-    color: "#FE870F",
+    color: colors.main,
     fontSize: 18,
     fontWeight: 600,
     lineHeight: 24.3,
@@ -156,14 +157,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 16,
     borderRadius: 16,
   },
   nextText: {
-    color: "#ffffff",
+    color: colors.white,
     fontSize: 18,
     fontWeight: 600,
     lineHeight: 24.3,

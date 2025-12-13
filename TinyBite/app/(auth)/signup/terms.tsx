@@ -1,6 +1,7 @@
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import PhoneNumberInput from "@/components/PhoneNumberInput";
 import { SignupTerms } from "@/constants/terms";
+import { colors } from "@/styles/colors";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useMemo, useState } from "react";
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 32.4,
     marginBottom: 28,
-    color: "#FE870F",
+    color: colors.main,
   },
 
   checkRow: {
@@ -192,14 +193,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "#FE870F",
+    backgroundColor: colors.main,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 16,
     borderRadius: 16,
   },
   nextText: {
-    color: "#ffffff",
+    color: colors.white,
     fontSize: 18,
     fontWeight: 600,
     lineHeight: 24.3,
