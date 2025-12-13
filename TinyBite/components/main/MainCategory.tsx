@@ -1,4 +1,5 @@
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const PRIMARY_COLOR = "#FE870F";
@@ -42,6 +43,7 @@ const MainCategory = () => (
         <Text
           style={[
             styles.text,
+            textStyles.body16_SB135,
             active ? styles.textActive : styles.textInactive,
           ]}
         >
@@ -85,11 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: INACTIVE_BG,
   },
   text: {
-    fontSize: 16,
-    fontWeight: "600",
-    lineHeight: 21.6,
     textAlign: "center",
-    fontFamily: "Pretendard",
   },
   textActive: {
     color: PRIMARY_COLOR,

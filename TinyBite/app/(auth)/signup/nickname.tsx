@@ -1,5 +1,6 @@
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
@@ -38,24 +39,30 @@ export default function NicknameScreen() {
         </View>
 
         {/* 닉네임 입력 */}
-        <Text style={styles.title}>{`사용하실 닉네임을 \n입력해 주세요.`}</Text>
+        <Text
+          style={[styles.title, textStyles.title24_SB135]}
+        >{`사용하실 닉네임을 \n입력해 주세요.`}</Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>닉네임</Text>
+          <Text style={[styles.label, textStyles.body16_SB135]}>닉네임</Text>
           <View style={{ alignSelf: "stretch" }}>
             <TextInput
-              style={styles.input}
+              style={[styles.input, textStyles.title18_SB135]}
               onChangeText={handleTextChange}
               value={nickname}
               placeholder="닉네임 (2~12자)"
               keyboardType="default"
               maxLength={12}
             />
-            <Text style={styles.count}>({nickname.length}/12)</Text>
+            <Text style={[styles.count, textStyles.body12_M135]}>
+              ({nickname.length}/12)
+            </Text>
           </View>
         </View>
 
         <View style={styles.row}>
-          <Text style={styles.status}>이미 사용 중인 닉네임입니다.</Text>
+          <Text style={[styles.status, textStyles.body16_M135]}>
+            이미 사용 중인 닉네임입니다.
+          </Text>
         </View>
 
         {/* 다음 버튼 */}
@@ -64,7 +71,7 @@ export default function NicknameScreen() {
           disabled={!verified}
           onPress={() => router.push("/signup/region")}
         >
-          <Text style={styles.nextText}>다음</Text>
+          <Text style={[styles.nextText, textStyles.title18_SB135]}>다음</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -76,9 +83,6 @@ const styles = StyleSheet.create({
   inner: { flex: 1, position: "relative" },
 
   title: {
-    fontSize: 24,
-    fontWeight: "600",
-    lineHeight: 32.4,
     marginBottom: 28,
     color: colors.main,
   },
@@ -101,24 +105,15 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   label: {
-    fontSize: 16,
-    fontWeight: 600,
-    lineHeight: 21.6,
     color: "#888",
   },
   input: {
     alignSelf: "stretch",
-    fontSize: 18,
-    fontWeight: "600",
-    lineHeight: 24.3,
     color: "#000",
     padding: 0,
     margin: 0,
   },
   count: {
-    fontSize: 12,
-    fontWeight: 500,
-    lineHeight: 16.2,
     color: "#aaa",
     textAlign: "right",
   },
@@ -128,9 +123,6 @@ const styles = StyleSheet.create({
   },
   status: {
     color: colors.red[1],
-    fontSize: 16,
-    fontWeight: 500,
-    lineHeight: 21.6,
   },
 
   nextBtn: {
@@ -146,9 +138,6 @@ const styles = StyleSheet.create({
   },
   nextText: {
     color: colors.white,
-    fontSize: 18,
-    fontWeight: 600,
-    lineHeight: 24.3,
   },
   disabled: { opacity: 0.3 },
 });

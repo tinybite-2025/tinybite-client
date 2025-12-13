@@ -2,6 +2,7 @@ import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import PhoneNumberInput from "@/components/PhoneNumberInput";
 import { SignupTerms } from "@/constants/terms";
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useMemo, useState } from "react";
@@ -63,7 +64,9 @@ export default function TermsScreen() {
             source={allChecked ? CHECKBOX_ON_IMAGE : CHECKBOX_OFF_IMAGE}
             style={styles.allCheckBoxImage}
           />
-          <Text style={styles.allCheckText}>약관 전체 동의</Text>
+          <Text style={[styles.allCheckText, textStyles.title20_SB135]}>
+            약관 전체 동의
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -91,7 +94,7 @@ export default function TermsScreen() {
               source={isChecked ? CHECKBOX_ON_IMAGE : CHECKBOX_OFF_IMAGE}
               style={styles.checkBoxImage}
             />
-            <Text style={styles.checkText}>
+            <Text style={[styles.checkText, textStyles.body16_M135]}>
               <Text>{required ? "(필수)" : "(선택)"}</Text> {content}
             </Text>
           </View>
@@ -114,7 +117,9 @@ export default function TermsScreen() {
         </View>
 
         {/* 전화번호 입력 */}
-        <Text style={styles.title}>{`전화번호를 \n입력해 주세요.`}</Text>
+        <Text
+          style={[styles.title, textStyles.title24_SB135]}
+        >{`전화번호를 \n입력해 주세요.`}</Text>
         <View style={{ marginBottom: 60 }}>
           <PhoneNumberInput onChangeText={handlePhoneNumberChange} />
         </View>
@@ -142,7 +147,7 @@ export default function TermsScreen() {
           disabled={!isNextButtonEnabled}
           onPress={() => router.push("/signup/verify")}
         >
-          <Text style={styles.nextText}>다음</Text>
+          <Text style={[styles.nextText, textStyles.title18_SB135]}>다음</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -154,9 +159,6 @@ const styles = StyleSheet.create({
   inner: { flex: 1, position: "relative" },
 
   title: {
-    fontSize: 24,
-    fontWeight: "600",
-    lineHeight: 32.4,
     marginBottom: 28,
     color: colors.main,
   },
@@ -176,16 +178,10 @@ const styles = StyleSheet.create({
   },
 
   allCheckText: {
-    fontSize: 20,
-    fontWeight: 600,
     color: "#222",
-    lineHeight: 27,
   },
   checkText: {
-    fontSize: 16,
-    fontWeight: 500,
     color: "#888",
-    lineHeight: 21.6,
   },
 
   nextBtn: {
@@ -201,9 +197,6 @@ const styles = StyleSheet.create({
   },
   nextText: {
     color: colors.white,
-    fontSize: 18,
-    fontWeight: 600,
-    lineHeight: 24.3,
   },
   disabled: { opacity: 0.3 },
 });

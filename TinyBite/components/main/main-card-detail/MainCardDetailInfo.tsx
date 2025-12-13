@@ -1,4 +1,5 @@
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 type InfoType = "location" | "group" | "money";
@@ -40,8 +41,12 @@ const MainCardDetailInfo = ({ items }: MainCardDetailInfoProps) => {
               />
             </View>
             <View style={styles.infoBlock}>
-              <Text style={styles.infoTitle}>{item.title}</Text>
-              <Text style={styles.infoMeta}>{item.meta}</Text>
+              <Text style={[styles.infoTitle, textStyles.body16_SB135]}>
+                {item.title}
+              </Text>
+              <Text style={[styles.infoMeta, textStyles.body12_M135]}>
+                {item.meta}
+              </Text>
             </View>
           </View>
         ))}
@@ -65,11 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   infoTitle: {
-    fontSize: 16,
-    lineHeight: 21.6,
-    fontWeight: "600",
     color: "#000000",
-    fontFamily: "Pretendard",
   },
   infoIconWrap: {
     width: 44,
@@ -86,10 +87,6 @@ const styles = StyleSheet.create({
     height: 32,
   },
   infoMeta: {
-    fontSize: 12,
-    lineHeight: 16.2,
-    fontWeight: "500",
     color: colors.gray[1],
-    fontFamily: "Pretendard",
   },
 });

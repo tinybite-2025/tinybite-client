@@ -1,4 +1,5 @@
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 type PillType = "delivery" | "grocery" | "essentials" | "time";
@@ -47,7 +48,9 @@ const MainCardDetailPill = ({ type, label }: MainCardDetailPillProps) => {
       {icon && (
         <Image source={icon} style={styles.pillIcon} resizeMode="contain" />
       )}
-      <Text style={styles.pillText}>{displayLabel}</Text>
+      <Text style={[styles.pillText, textStyles.body12_M135]}>
+        {displayLabel}
+      </Text>
     </View>
   );
 };
@@ -65,10 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   pillText: {
-    fontSize: 12,
-    fontWeight: "500",
     color: colors.gray[1],
-    fontFamily: "Pretendard",
   },
   pillIcon: {
     width: 24,

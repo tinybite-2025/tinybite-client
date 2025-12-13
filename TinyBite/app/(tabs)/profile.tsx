@@ -1,10 +1,11 @@
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>내정보</Text>
+      <Text style={[styles.title, textStyles.title24_SB135]}>내정보</Text>
     </View>
   );
 }
@@ -17,8 +18,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 24,
-    fontWeight: "700",
     marginBottom: 8,
   },
 });

@@ -1,5 +1,6 @@
 import PaginationIndecatorHeader from "@/components/PaginationIndecatorHeader";
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
@@ -43,7 +44,9 @@ export default function VerifyScreen() {
         </View>
 
         {/* 인증 번호 입력 */}
-        <Text style={styles.title}>{`인증 번호를 \n입력해 주세요.`}</Text>
+        <Text
+          style={[styles.title, textStyles.title24_SB135]}
+        >{`인증 번호를 \n입력해 주세요.`}</Text>
         <View style={styles.verifyContainer}>
           <View style={styles.inputContainer}>
             <TextInput
@@ -52,7 +55,7 @@ export default function VerifyScreen() {
               placeholder="00000"
               placeholderTextColor="#888"
               keyboardType="numeric"
-              style={styles.input}
+              style={[styles.input, textStyles.title18_SB135]}
               maxLength={5}
               autoFocus={true}
             />
@@ -63,13 +66,17 @@ export default function VerifyScreen() {
           </View>
           <TouchableOpacity>
             <View style={styles.resend}>
-              <Text style={styles.resendText}>재발송</Text>
+              <Text style={[styles.resendText, textStyles.title18_SB135]}>
+                재발송
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
 
         <View style={styles.timerContainer}>
-          <Text style={styles.timer}>남은 시간 3:00</Text>
+          <Text style={[styles.timer, textStyles.body15_SB135]}>
+            남은 시간 3:00
+          </Text>
         </View>
 
         {/* 다음 버튼 */}
@@ -78,7 +85,7 @@ export default function VerifyScreen() {
           disabled={!verified}
           onPress={() => router.push("/signup/nickname")}
         >
-          <Text style={styles.nextText}>다음</Text>
+          <Text style={[styles.nextText, textStyles.title18_SB135]}>다음</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -90,9 +97,6 @@ const styles = StyleSheet.create({
   inner: { flex: 1, position: "relative" },
 
   title: {
-    fontSize: 24,
-    fontWeight: "600",
-    lineHeight: 32.4,
     marginBottom: 28,
     color: colors.main,
   },
@@ -121,9 +125,6 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontSize: 18,
-    fontWeight: 600,
-    lineHeight: 24.3,
     padding: 0,
     margin: 0,
   },
@@ -142,15 +143,12 @@ const styles = StyleSheet.create({
   },
   resendText: {
     color: colors.main,
-    fontSize: 18,
-    fontWeight: 600,
-    lineHeight: 24.3,
   },
 
   timerContainer: {
     flexDirection: "row",
   },
-  timer: { color: "#888", fontSize: 15, fontWeight: 600, lineHeight: 20.25 },
+  timer: { color: "#888" },
 
   nextBtn: {
     position: "absolute",
@@ -165,9 +163,6 @@ const styles = StyleSheet.create({
   },
   nextText: {
     color: colors.white,
-    fontSize: 18,
-    fontWeight: 600,
-    lineHeight: 24.3,
   },
   disabled: { opacity: 0.3 },
 });

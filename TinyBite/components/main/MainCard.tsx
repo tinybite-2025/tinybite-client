@@ -1,4 +1,5 @@
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 const MainCard = ({ onPress }: { onPress?: () => void }) => (
@@ -9,14 +10,18 @@ const MainCard = ({ onPress }: { onPress?: () => void }) => (
     />
     <View style={styles.cardBody}>
       <View>
-        <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
-        <Text style={styles.price}>5,000원</Text>
+        <Text style={[styles.title, textStyles.body16_B150]}>
+          후문 엽떡 나누실 분 ㅃㄹ
+        </Text>
+        <Text style={[styles.price, textStyles.body15_SB135]}>5,000원</Text>
       </View>
       <View style={styles.footerRow}>
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>1/4명</Text>
+          <Text style={[styles.badgeText, textStyles.body13_SB135]}>1/4명</Text>
         </View>
-        <Text style={styles.meta}>10KM 이내 | 10분 전</Text>
+        <Text style={[styles.meta, textStyles.body13_SB135]}>
+          10KM 이내 | 10분 전
+        </Text>
       </View>
     </View>
   </Pressable>
@@ -54,19 +59,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   title: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: "700",
     color: "#000000",
-    fontFamily: "Pretendard",
   },
   price: {
     marginTop: 6,
-    fontSize: 15,
-    lineHeight: 20.25,
-    fontWeight: "600",
     color: "#000000",
-    fontFamily: "Pretendard",
   },
   footerRow: {
     flexDirection: "row",
@@ -86,14 +83,8 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: colors.white,
-    fontSize: 14,
-    fontWeight: "700",
   },
   meta: {
-    fontSize: 13,
-    lineHeight: 17.55,
-    fontWeight: "600",
     color: colors.gray[1],
-    fontFamily: "Pretendard",
   },
 });

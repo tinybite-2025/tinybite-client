@@ -1,4 +1,5 @@
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { Tabs } from "expo-router";
 import { Image } from "react-native";
 
@@ -13,12 +14,9 @@ export default function TabsLayout() {
         tabBarActiveTintColor: PRIMARY_COLOR,
         tabBarInactiveTintColor: INACTIVE_COLOR,
         tabBarLabelStyle: {
-          fontSize: 13,
-          lineHeight: 17.5,
-          fontFamily: "Pretendard",
-          fontWeight: "600",
           textAlign: "center",
           marginTop: 4,
+          ...textStyles.body13_SB135,
         },
         tabBarStyle: {
           height: 92,

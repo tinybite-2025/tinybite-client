@@ -1,4 +1,5 @@
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 interface MainCardDetailHostNoteProps {
@@ -14,9 +15,11 @@ const MainCardDetailHostNote = ({ body }: MainCardDetailHostNoteProps) => {
           style={styles.noteIcon}
           resizeMode="contain"
         />
-        <Text style={styles.noteTitle}>호스트의 한마디</Text>
+        <Text style={[styles.noteTitle, textStyles.body13_SB135]}>
+          호스트의 한마디
+        </Text>
       </View>
-      <Text style={styles.noteBody}>{body}</Text>
+      <Text style={[styles.noteBody, textStyles.body13_SB150]}>{body}</Text>
     </View>
   );
 };
@@ -37,11 +40,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   noteTitle: {
-    fontSize: 13,
-    lineHeight: 17.55,
-    fontWeight: "600",
     color: colors.gray[1],
-    fontFamily: "Pretendard",
   },
   noteHeader: {
     flexDirection: "row",
@@ -54,10 +53,6 @@ const styles = StyleSheet.create({
     height: 20,
   },
   noteBody: {
-    fontSize: 13,
-    lineHeight: 19.5,
-    fontWeight: "600",
     color: colors.black,
-    fontFamily: "Pretendard",
   },
 });

@@ -1,3 +1,4 @@
+import { textStyles } from "@/styles/typography/textStyles";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
@@ -71,11 +72,11 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   return (
     <View style={styles.container}>
       {/* 레이블 텍스트 */}
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, textStyles.body16_SB135]}>{label}</Text>
 
       {/* 입력 영역 */}
       <TextInput
-        style={styles.input}
+        style={[styles.input, textStyles.title18_SB135]}
         onChangeText={handleTextChange}
         value={displayValue}
         placeholder="010 - 1234 - 5678"
@@ -104,14 +105,9 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   label: {
-    fontSize: 16,
-    fontWeight: 600,
-    lineHeight: 21.6,
     color: "#888",
   },
   input: {
-    fontSize: 18,
-    fontWeight: "600",
     color: "#000",
     padding: 0,
     alignSelf: "stretch",

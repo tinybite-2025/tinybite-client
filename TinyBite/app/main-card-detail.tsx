@@ -4,6 +4,7 @@ import MainCardDetailInfo from "@/components/main/main-card-detail/MainCardDetai
 import MainCardDetailPill from "@/components/main/main-card-detail/MainCardDetailPill";
 import MainCardDetailProductLink from "@/components/main/main-card-detail/MainCardDetailProductLink";
 import { colors } from "@/styles/colors";
+import { textStyles } from "@/styles/typography/textStyles";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -46,7 +47,9 @@ export default function MainCardDetailScreen() {
 
             <ScrollView style={styles.contentContainer} bounces={false}>
               <View style={[styles.content]}>
-                <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
+                <Text style={[styles.title, textStyles.title20_B135]}>
+                  후문 엽떡 나누실 분 ㅃㄹ
+                </Text>
 
                 <View style={styles.pillsRow}>
                   <MainCardDetailPill type="delivery" />
@@ -96,7 +99,9 @@ export default function MainCardDetailScreen() {
         {/* 참여하기 버튼 */}
         <SafeAreaView style={styles.ctaContainer} edges={["bottom"]}>
           <TouchableOpacity style={styles.cta}>
-            <Text style={styles.ctaText}>5,000원으로 참여하기</Text>
+            <Text style={[styles.ctaText, textStyles.title18_SB135]}>
+              5,000원으로 참여하기
+            </Text>
           </TouchableOpacity>
         </SafeAreaView>
       </View>
@@ -156,10 +161,6 @@ const styles = StyleSheet.create({
     paddingVertical: 28,
   },
   title: {
-    fontSize: 20,
-    lineHeight: 27,
-    fontFamily: "Pretendard",
-    fontWeight: "700",
     color: "#000000",
     marginBottom: 8,
   },
@@ -199,9 +200,5 @@ const styles = StyleSheet.create({
   },
   ctaText: {
     color: colors.white,
-    fontSize: 18,
-    fontWeight: "600",
-    fontFamily: "Pretendard",
-    lineHeight: 24.3,
   },
 });
