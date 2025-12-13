@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     borderRadius: 16,
-    backgroundColor: "#F2F2F2",
   },
   cardBody: {
     flex: 1,
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   badge: {
-    backgroundColor: "#FF8900",
+    backgroundColor: colors.main,
     padding: 0.5,
     width: 51,
     height: 26,

@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { textStyles } from "@/styles/typography/textStyles";
 import {
   FlatList,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, paddingVertical: 12 },
   title: {
     alignSelf: "stretch",
-    color: "#888",
+    color: colors.gray[1],
     marginBottom: 24,
   },
 
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   },
   resultText: {
     alignSelf: "stretch",
-    color: "#222",
+    color: colors.black,
   },
 });
 

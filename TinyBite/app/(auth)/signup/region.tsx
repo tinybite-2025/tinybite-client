@@ -55,7 +55,7 @@ export default function RegionScreen() {
               onChangeText={handleTextChange}
               value={text}
               placeholder="동명(읍,면)으로 검색 (ex.역삼동)"
-              placeholderTextColor="#888"
+              placeholderTextColor={colors.gray[1]}
               keyboardType="default"
               maxLength={8}
             />
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     gap: 4,
     padding: 12,
     marginBottom: 12,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     borderRadius: 16,
     borderWidth: 0,
     // 그림자 효과 (iOS)

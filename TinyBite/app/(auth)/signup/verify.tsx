@@ -53,7 +53,7 @@ export default function VerifyScreen() {
               value={code}
               onChangeText={handleCodeChange}
               placeholder="00000"
-              placeholderTextColor="#888"
+              placeholderTextColor={colors.gray[1]}
               keyboardType="numeric"
               style={[styles.input, textStyles.title18_SB135]}
               maxLength={5}
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   timerContainer: {
     flexDirection: "row",
   },
-  timer: { color: "#888" },
+  timer: { color: colors.gray[1] },
 
   nextBtn: {
     position: "absolute",

@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     justifyContent: "center",
     alignItems: "flex-start",
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     borderRadius: 16,
     borderWidth: 0,
     // 그림자 효과 (iOS)
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   label: {
-    color: "#888",
+    color: colors.gray[1],
   },
   input: {
     alignSelf: "stretch",
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   count: {
-    color: "#aaa",
+    color: colors.gray[2],
     textAlign: "right",
   },
 

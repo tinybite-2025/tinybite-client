@@ -2,7 +2,7 @@ import { colors } from "@/styles/colors";
 import { textStyles } from "@/styles/typography/textStyles";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const PRIMARY_COLOR = "#FE870F";
+const PRIMARY_COLOR = colors.main;
 
 const MainHeader = () => (
   <View style={styles.container}>

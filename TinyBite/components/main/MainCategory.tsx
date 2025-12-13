@@ -2,7 +2,7 @@ import { colors } from "@/styles/colors";
 import { textStyles } from "@/styles/typography/textStyles";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
-const PRIMARY_COLOR = "#FE870F";
+const PRIMARY_COLOR = colors.main;
 const ACTIVE_BG = colors.sub;
 const INACTIVE_BG = colors.white;
 const GRAY_TEXT = colors.gray[1];

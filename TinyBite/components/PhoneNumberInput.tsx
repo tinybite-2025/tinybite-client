@@ -1,3 +1,4 @@
+import { colors } from "@/styles/colors";
 import { textStyles } from "@/styles/typography/textStyles";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
@@ -80,7 +81,7 @@ const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         onChangeText={handleTextChange}
         value={displayValue}
         placeholder="010 - 1234 - 5678"
-        placeholderTextColor="#888"
+        placeholderTextColor={colors.gray[1]}
         keyboardType="numeric"
         maxLength={13} // 하이픈 포함
       />
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     gap: 8,
     padding: 12,
     alignItems: "flex-start",
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     borderRadius: 16,
     borderWidth: 0,
     // 그림자 효과 (iOS)
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   label: {
-    color: "#888",
+    color: colors.gray[1],
   },
   input: {
     color: "#000",

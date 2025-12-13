@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.main,
   },
   nextText: {
-    color: "#fff",
+    color: colors.white,
     textAlign: "center",
   },
 });

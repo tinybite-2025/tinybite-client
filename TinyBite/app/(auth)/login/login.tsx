@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
   google: { backgroundColor: colors.white },
   apple: { backgroundColor: colors.white },
   socialText: {
-    color: "#222",
+    color: colors.black,
   },
 });

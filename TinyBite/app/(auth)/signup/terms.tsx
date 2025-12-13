@@ -178,10 +178,10 @@ const styles = StyleSheet.create({
   },
 
   allCheckText: {
-    color: "#222",
+    color: colors.black,
   },
   checkText: {
-    color: "#888",
+    color: colors.gray[1],
   },
 
   nextBtn: {
