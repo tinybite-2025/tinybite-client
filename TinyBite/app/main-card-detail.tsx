@@ -104,7 +104,6 @@ const MainCardDetail = () => {
               />
 
               <MainCardDetailProductLink
-                headerLabel="구매 예정 상품"
                 productTitle="코스트코 베이글 & 크림치즈"
                 productUrl="https://www.costco.co.kr/"
               />

@@ -1,13 +1,11 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
 interface MainCardDetailProductLinkProps {
-  headerLabel: string;
   productTitle: string;
   productUrl: string;
 }
 
 const MainCardDetailProductLink = ({
-  headerLabel,
   productTitle,
   productUrl,
 }: MainCardDetailProductLinkProps) => {
@@ -19,7 +17,7 @@ const MainCardDetailProductLink = ({
           style={styles.linkIcon}
           resizeMode="contain"
         />
-        <Text style={styles.linkLabel}>{headerLabel}</Text>
+        <Text style={styles.linkLabel}>구매 예정 상품</Text>
       </View>
       <View style={styles.linkContent}>
         <Image
