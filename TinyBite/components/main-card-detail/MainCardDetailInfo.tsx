@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16.2,
     fontWeight: "500",
-    color: "#8D8D8D",
+    color: "#888888",
     fontFamily: "Pretendard",
   },
 });

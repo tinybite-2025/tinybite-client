@@ -38,17 +38,16 @@ export default MainCardDetailProductLink;
 
 const styles = StyleSheet.create({
   linkSection: {
-    marginTop: 12,
+    marginTop: 16,
     alignSelf: "center",
     width: "100%",
+    height: 110,
     backgroundColor: "#FCFBFF",
     borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-    marginBottom: 16,
+    padding: 12,
     shadowColor: "#000000",
     shadowOpacity: 0.25,
-    shadowRadius: 2,
+    shadowRadius: 4,
     shadowOffset: { width: 0, height: 0 },
     elevation: 4,
   },
@@ -56,11 +55,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   linkContent: {
     flexDirection: "row",
-    gap: 12,
+    gap: 8,
     alignItems: "center",
   },
   linkIcon: {
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
   },
   linkTexts: {
     flex: 1,
-    gap: 4,
+    gap: 2,
     justifyContent: "center",
   },
   linkTitle: {

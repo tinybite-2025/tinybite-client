@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     fontFamily: "Pretendard",
   },
   hostMetaRow: {
+    marginTop: 2,
     flexDirection: "row",
     alignItems: "center",
   },

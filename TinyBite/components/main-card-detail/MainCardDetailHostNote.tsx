@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#FCFBFF",
     borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
+    padding: 12,
+    marginTop: 16,
     shadowColor: "#000000",
     shadowOpacity: 0.25,
     shadowRadius: 2,
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
   noteHeader: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
-    marginBottom: 6,
+    gap: 4,
+    marginBottom: 8,
   },
   noteIcon: {
     width: 20,

@@ -3,10 +3,10 @@ import MainCardDetailHostNote from "@/components/main-card-detail/MainCardDetail
 import MainCardDetailInfo from "@/components/main-card-detail/MainCardDetailInfo";
 import MainCardDetailProductLink from "@/components/main-card-detail/MainCardDetailProductLink";
 import { useRouter } from "expo-router";
-import React, { useRef } from "react";
+import React from "react";
 import {
-  Animated,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -16,110 +16,93 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const MainCardDetail = () => {
   const router = useRouter();
-  const scrollY = useRef(new Animated.Value(0)).current;
-
-  const cardTranslateY = scrollY.interpolate({
-    inputRange: [0, 200],
-    outputRange: [0, 70],
-    extrapolate: "clamp",
-  });
 
   return (
-    <View style={{ flex: 1, position: "relative" }}>
+    <View style={styles.container}>
+      {/* 상단 이미지 */}
       <Image
         style={styles.heroImage}
         source={require("@/assets/images/mainlist/food1.jpg")}
         resizeMode="cover"
       />
-      <SafeAreaView style={styles.safeArea} edges={["top"]}>
-        <View style={styles.page}>
-          <TouchableOpacity
-            onPress={() => router.back()}
-            style={styles.backButton}
-          >
-            <Text style={styles.backButtonText}>‹ </Text>
-          </TouchableOpacity>
 
-          <Animated.ScrollView
-            style={styles.contentScroll}
-            contentContainerStyle={styles.contentContainer}
-            bounces={false}
-            alwaysBounceVertical={false}
-            overScrollMode="never"
-            decelerationRate="fast"
-            scrollEventThrottle={16}
-            onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-              { useNativeDriver: true }
-            )}
-          >
-            <Animated.View
-              style={[
-                styles.detailCard,
-                { transform: [{ translateY: cardTranslateY }] },
-              ]}
+      {/* 컨텐츠 */}
+      <View style={{ flex: 1 }}>
+        {/* 내용 */}
+        <SafeAreaView style={styles.safeArea} edges={["top"]}>
+          <View style={styles.inner}>
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={styles.backButton}
             >
-              <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
-
-              <View style={styles.pillsRow}>
-                <View style={styles.pill}>
-                  <Image
-                    source={require("@/assets/images/main/category/delivery.png")}
-                    style={styles.pillIcon}
-                    resizeMode="contain"
-                  />
-                  <Text style={styles.pillText}>배달</Text>
-                </View>
-                <View style={styles.pill}>
-                  <Text style={styles.pillText}>10분전</Text>
-                </View>
-              </View>
-
-              <MainCardDetailHost
-                //url="https://www.google.com"
-                avatar={require("@/assets/images/mainlist/detail/default-host-profile.png")}
-                name="엽떡조아"
-                location="서울시 강남구 역삼동"
-              />
-
-              <View style={styles.divider} />
-
-              <MainCardDetailInfo
-                items={[
-                  {
-                    type: "location",
-                    title: "역삼 래미안 앞",
-                    meta: "내 위치에서 150M",
-                  },
-                  {
-                    type: "group",
-                    title: "2/4명 모집 중",
-                    meta: "2명 남았어요!",
-                  },
-                  {
-                    type: "money",
-                    title: "1인당 5,000원",
-                    meta: "총 20,000원",
-                  },
-                ]}
-              />
-
-              <MainCardDetailProductLink
-                productTitle="코스트코 베이글 & 크림치즈"
-                productUrl="https://www.costco.co.kr/"
-              />
-
-              <MainCardDetailHostNote body="배달 팁 나누실 분 구해요! 엽떡 매운맛 시킬 예정입니다. 쿨피스는 제가 쏠게요." />
-            </Animated.View>
-          </Animated.ScrollView>
-
-          <View style={styles.ctaContainer}>
-            <TouchableOpacity style={styles.cta}>
-              <Text style={styles.ctaText}>5,000원으로 참여하기</Text>
+              <Text style={styles.backButtonText}>‹ </Text>
             </TouchableOpacity>
+
+            <ScrollView style={styles.contentContainer} bounces={false}>
+              <View style={[styles.content]}>
+                <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
+
+                <View style={styles.pillsRow}>
+                  <View style={styles.pill}>
+                    <Image
+                      source={require("@/assets/images/main/category/delivery.png")}
+                      style={styles.pillIcon}
+                      resizeMode="contain"
+                    />
+                    <Text style={styles.pillText}>배달</Text>
+                  </View>
+                  <View style={styles.pill}>
+                    <Text style={styles.pillText}>10분전</Text>
+                  </View>
+                </View>
+
+                <MainCardDetailHost
+                  //url="https://www.google.com"
+                  avatar={require("@/assets/images/mainlist/detail/default-host-profile.png")}
+                  name="엽떡조아"
+                  location="서울시 강남구 역삼동"
+                />
+
+                <View style={styles.divider} />
+
+                <MainCardDetailInfo
+                  items={[
+                    {
+                      type: "location",
+                      title: "역삼 래미안 앞",
+                      meta: "내 위치에서 150M",
+                    },
+                    {
+                      type: "group",
+                      title: "2/4명 모집 중",
+                      meta: "2명 남았어요!",
+                    },
+                    {
+                      type: "money",
+                      title: "1인당 5,000원",
+                      meta: "총 20,000원",
+                    },
+                  ]}
+                />
+
+                <MainCardDetailProductLink
+                  productTitle="코스트코 베이글 & 크림치즈"
+                  productUrl="https://www.costco.co.kr/"
+                />
+
+                <MainCardDetailHostNote body="배달 팁 나누실 분 구해요! 엽떡 매운맛 시킬 예정입니다. 쿨피스는 제가 쏠게요." />
+              </View>
+            </ScrollView>
           </View>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+
+        {/* 참여하기 버튼 */}
+        <SafeAreaView style={styles.ctaContainer} edges={["bottom"]}>
+          <TouchableOpacity style={styles.cta}>
+            <Text style={styles.ctaText}>5,000원으로 참여하기</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </View>
     </View>
   );
 };
@@ -127,35 +110,30 @@ const MainCardDetail = () => {
 export default MainCardDetail;
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  page: {
-    flex: 1,
-    fontFamily: "Pretendard",
-    position: "relative",
-  },
-  contentScroll: {
-    flex: 1,
-  },
-  contentContainer: {
-    paddingTop: 180,
-    paddingBottom: 180,
-    minHeight: "120%",
-  },
+  container: { flex: 1, position: "relative" },
+
   heroImage: {
     position: "absolute",
     backgroundColor: "#000000",
     top: 0,
     left: 0,
     right: 0,
-    height: 300,
     width: "100%",
+    height: 300,
   },
+
+  safeArea: {
+    flex: 1,
+  },
+  inner: {
+    flex: 1,
+    position: "relative",
+  },
+
   backButton: {
     position: "absolute",
-    top: 8,
-    left: 16,
+    padding: 2,
+    left: 20,
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -168,90 +146,88 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "700",
     color: "#FFFFFF",
-    fontFamily: "Pretendard",
   },
-  detailCard: {
-    position: "relative",
+
+  contentContainer: {
+    flex: 1,
     zIndex: 2,
+  },
+  content: {
+    marginTop: 220,
     width: "100%",
-    marginBottom: 12,
     backgroundColor: "#FFFFFF",
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingHorizontal: 20,
-    paddingTop: 28,
-    paddingBottom: 20,
+    paddingVertical: 28,
   },
   title: {
     fontSize: 20,
     lineHeight: 27,
+    fontFamily: "Pretendard",
     fontWeight: "700",
     color: "#000000",
-    marginBottom: 16,
-    fontFamily: "Pretendard",
+    marginBottom: 8,
   },
   pillsRow: {
     flexDirection: "row",
-    gap: 8,
+    gap: 12,
     marginBottom: 20,
   },
   pill: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
-    backgroundColor: "#F4F4F4",
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 16,
+    gap: 2,
+    backgroundColor: "#F1F1F1",
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 100,
   },
   pillText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#8D8D8D",
+    fontSize: 12,
+    fontWeight: "500",
+    color: "#888888",
     fontFamily: "Pretendard",
   },
   pillIcon: {
-    width: 20,
-    height: 20,
+    padding: 1,
+    width: 24,
+    height: 24,
   },
   divider: {
     alignSelf: "stretch",
     width: "100%",
     height: 4,
-    backgroundColor: "#E5E5E5",
-    borderRadius: 2,
-    marginBottom: 19,
+    backgroundColor: "#F1F1F1",
+    marginBottom: 16,
   },
+
   ctaContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 120,
-    paddingHorizontal: 20,
     paddingTop: 12,
+    paddingBottom: 18,
+    paddingHorizontal: 20,
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000000",
-    shadowOpacity: 0.15,
-    shadowRadius: 2,
-    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 0 },
     elevation: 4,
   },
   cta: {
     width: "100%",
-    height: 56,
+    paddingVertical: 16,
     borderRadius: 16,
-    backgroundColor: "#FF8900",
+    backgroundColor: "#FE870F",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 42,
   },
   ctaText: {
     color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: "800",
+    fontWeight: "600",
     fontFamily: "Pretendard",
+    lineHeight: 24.3,
   },
 });
