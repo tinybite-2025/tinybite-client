@@ -1,6 +1,6 @@
-import MainCard from "@/components/mainCard";
-import MainCategory from "@/components/mainCategory";
-import MainHeader from "@/components/mainHeader";
+import MainCard from "@/components/MainCard";
+import MainCategory from "@/components/MainCategory";
+import MainHeader from "@/components/MainHeader";
 import { useRouter } from "expo-router";
 
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -19,7 +19,7 @@ export default function HomeScreen() {
           contentContainerStyle={styles.listWrapper}
         >
           <View style={styles.cardWrapper}>
-            <MainCard onPress={() => router.push("/mainCardDetail" as const)} />
+            <MainCard onPress={() => router.push("/main-card-detail")} />
             <MainCard />
             <MainCard />
             <MainCard />
