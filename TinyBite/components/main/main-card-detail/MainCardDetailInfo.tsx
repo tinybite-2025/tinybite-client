@@ -28,21 +28,23 @@ const getIconByType = (type: InfoType) => {
 const MainCardDetailInfo = ({ items }: MainCardDetailInfoProps) => {
   return (
     <>
-      {items.map((item, index) => (
-        <View key={index} style={styles.infoRow}>
-          <View style={styles.infoIconWrap}>
-            <Image
-              source={getIconByType(item.type)}
-              style={styles.infoIcon}
-              resizeMode="contain"
-            />
+      <View style={styles.infoRowWrapper}>
+        {items.map((item, index) => (
+          <View key={index} style={styles.infoRow}>
+            <View style={styles.infoIconWrap}>
+              <Image
+                source={getIconByType(item.type)}
+                style={styles.infoIcon}
+                resizeMode="contain"
+              />
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoTitle}>{item.title}</Text>
+              <Text style={styles.infoMeta}>{item.meta}</Text>
+            </View>
           </View>
-          <View style={styles.infoBlock}>
-            <Text style={styles.infoTitle}>{item.title}</Text>
-            <Text style={styles.infoMeta}>{item.meta}</Text>
-          </View>
-        </View>
-      ))}
+        ))}
+      </View>
     </>
   );
 };
@@ -50,6 +52,9 @@ const MainCardDetailInfo = ({ items }: MainCardDetailInfoProps) => {
 export default MainCardDetailInfo;
 
 const styles = StyleSheet.create({
+  infoRowWrapper: {
+    gap: 12,
+  },
   infoRow: {
     flexDirection: "row",
     alignItems: "center",
