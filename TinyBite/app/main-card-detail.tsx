@@ -37,7 +37,7 @@ const MainCardDetail = () => {
               style={styles.backButton}
             >
               <Image
-                source={require("@/assets/images/mainlist/detail/back-button.png")}
+                source={require("@/assets/images/chevron/chevron-left-36.png")}
                 style={styles.backButtonImage}
                 resizeMode="contain"
               />
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     padding: 2,
-    left: 20,
+    marginLeft: 20,
     width: 40,
     height: 40,
     borderRadius: 20,
