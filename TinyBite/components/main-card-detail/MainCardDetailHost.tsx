@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 interface MainCardDetailHostProps {
   avatar: any;
+  //url: string;
   name: string;
   location: string;
 }
@@ -14,13 +15,12 @@ const MainCardDetailHost = ({
   return (
     <View style={styles.rowBetween}>
       <View style={styles.hostRow}>
-        <View style={styles.hostAvatar}>
-          <Image
-            source={avatar}
-            style={styles.hostAvatarImage}
-            resizeMode="contain"
-          />
-        </View>
+        <Image
+          //source={{ uri: url }}
+          source={require("@/assets/images/mainlist/detail/default-host-profile.png")}
+          style={styles.hostAvatarImage}
+          resizeMode="cover"
+        />
         <View>
           <Text style={styles.hostName}>{name}</Text>
           <View style={styles.hostMetaRow}>
@@ -44,32 +44,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 12,
   },
   hostRow: {
     flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-  },
-  hostAvatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: "#FE870F",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 1,
-    overflow: "hidden",
-    shadowColor: "#000000",
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    shadowOffset: { width: 0, height: 0 },
-    elevation: 2,
+    gap: 9,
   },
   hostAvatarImage: {
-    width: 36,
-    height: 45,
-    transform: [{ translateY: 3 }],
+    width: 40,
+    height: 40,
   },
   hostName: {
     fontSize: 15,
@@ -91,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 17.55,
     fontWeight: "600",
-    color: "#8D8D8D",
+    color: "#888888",
     fontFamily: "Pretendard",
   },
 });

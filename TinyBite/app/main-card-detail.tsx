@@ -76,7 +76,8 @@ const MainCardDetail = () => {
               </View>
 
               <MainCardDetailHost
-                avatar={require("@/assets/images/mainlist/detail/profile-character.png")}
+                //url="https://www.google.com"
+                avatar={require("@/assets/images/mainlist/detail/default-host-profile.png")}
                 name="엽떡조아"
                 location="서울시 강남구 역삼동"
               />
