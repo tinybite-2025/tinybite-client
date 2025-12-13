@@ -3,6 +3,7 @@ import MainCardDetailHostNote from "@/components/main/main-card-detail/MainCardD
 import MainCardDetailInfo from "@/components/main/main-card-detail/MainCardDetailInfo";
 import MainCardDetailPill from "@/components/main/main-card-detail/MainCardDetailPill";
 import MainCardDetailProductLink from "@/components/main/main-card-detail/MainCardDetailProductLink";
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -25,6 +26,12 @@ const MainCardDetail = () => {
         style={styles.heroImage}
         source={require("@/assets/images/mainlist/food1.jpg")}
         resizeMode="cover"
+      />
+      {/* 딤드 효과 */}
+      <LinearGradient
+        colors={["rgba(0, 0, 0, 0.3)", "rgba(0, 0, 0, 0)"]}
+        locations={[0, 0.5]}
+        style={styles.dimmedOverlay}
       />
 
       {/* 컨텐츠 */}
@@ -111,6 +118,14 @@ const styles = StyleSheet.create({
   heroImage: {
     position: "absolute",
     backgroundColor: "#000000",
+    top: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: 300,
+  },
+  dimmedOverlay: {
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
