@@ -1,10 +1,14 @@
-import MainCard from "@/components/mainCard";
-import MainCategory from "@/components/mainCategory";
-import MainHeader from "@/components/mainHeader";
+import MainCard from "@/components/main/MainCard";
+import MainCategory from "@/components/main/MainCategory";
+import MainHeader from "@/components/main/MainHeader";
+import { useRouter } from "expo-router";
+
 import { ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <View style={styles.container}>
@@ -15,7 +19,7 @@ export default function HomeScreen() {
           contentContainerStyle={styles.listWrapper}
         >
           <View style={styles.cardWrapper}>
-            <MainCard />
+            <MainCard onPress={() => router.push("/main-card-detail")} />
             <MainCard />
             <MainCard />
             <MainCard />
