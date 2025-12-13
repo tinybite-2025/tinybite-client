@@ -26,7 +26,7 @@ export default function Index() {
   });
 
   useEffect(() => {
-    if (!loaded && !error) {
+    if (loaded && !error) {
       let innerTimeout: NodeJS.Timeout | number | undefined;
       const t = setTimeout(() => {
         opacity.value = withTiming(0, {
