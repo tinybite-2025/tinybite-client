@@ -1,8 +1,8 @@
-import MainCardDetailHost from "@/components/main-card-detail/MainCardDetailHost";
-import MainCardDetailHostNote from "@/components/main-card-detail/MainCardDetailHostNote";
-import MainCardDetailInfo from "@/components/main-card-detail/MainCardDetailInfo";
-import MainCardDetailPill from "@/components/main-card-detail/MainCardDetailPill";
-import MainCardDetailProductLink from "@/components/main-card-detail/MainCardDetailProductLink";
+import MainCardDetailHost from "@/components/main/main-card-detail/MainCardDetailHost";
+import MainCardDetailHostNote from "@/components/main/main-card-detail/MainCardDetailHostNote";
+import MainCardDetailInfo from "@/components/main/main-card-detail/MainCardDetailInfo";
+import MainCardDetailPill from "@/components/main/main-card-detail/MainCardDetailPill";
+import MainCardDetailProductLink from "@/components/main/main-card-detail/MainCardDetailProductLink";
 import { useRouter } from "expo-router";
 import React from "react";
 import {

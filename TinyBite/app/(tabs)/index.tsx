@@ -1,6 +1,6 @@
-import MainCard from "@/components/MainCard";
-import MainCategory from "@/components/MainCategory";
-import MainHeader from "@/components/MainHeader";
+import MainCard from "@/components/main/MainCard";
+import MainCategory from "@/components/main/MainCategory";
+import MainHeader from "@/components/main/MainHeader";
 import { useRouter } from "expo-router";
 
 import { ScrollView, StyleSheet, View } from "react-native";
