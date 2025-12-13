@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const MainCardDetail = () => {
+export default function MainCardDetailScreen() {
   const router = useRouter();
 
   return (
@@ -102,9 +102,7 @@ const MainCardDetail = () => {
       </View>
     </View>
   );
-};
-
-export default MainCardDetail;
+}
 
 const styles = StyleSheet.create({
   container: { flex: 1, position: "relative" },
