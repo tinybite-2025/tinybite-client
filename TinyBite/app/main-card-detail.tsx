@@ -1,6 +1,7 @@
 import MainCardDetailHost from "@/components/main-card-detail/MainCardDetailHost";
 import MainCardDetailHostNote from "@/components/main-card-detail/MainCardDetailHostNote";
 import MainCardDetailInfo from "@/components/main-card-detail/MainCardDetailInfo";
+import MainCardDetailPill from "@/components/main-card-detail/MainCardDetailPill";
 import MainCardDetailProductLink from "@/components/main-card-detail/MainCardDetailProductLink";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -43,17 +44,8 @@ const MainCardDetail = () => {
                 <Text style={styles.title}>후문 엽떡 나누실 분 ㅃㄹ</Text>
 
                 <View style={styles.pillsRow}>
-                  <View style={styles.pill}>
-                    <Image
-                      source={require("@/assets/images/main/category/delivery.png")}
-                      style={styles.pillIcon}
-                      resizeMode="contain"
-                    />
-                    <Text style={styles.pillText}>배달</Text>
-                  </View>
-                  <View style={styles.pill}>
-                    <Text style={styles.pillText}>10분전</Text>
-                  </View>
+                  <MainCardDetailPill type="delivery" />
+                  <MainCardDetailPill type="time" label="10분전" />
                 </View>
 
                 <MainCardDetailHost
@@ -173,26 +165,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 12,
     marginBottom: 20,
-  },
-  pill: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 2,
-    backgroundColor: "#F1F1F1",
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 100,
-  },
-  pillText: {
-    fontSize: 12,
-    fontWeight: "500",
-    color: "#888888",
-    fontFamily: "Pretendard",
-  },
-  pillIcon: {
-    padding: 1,
-    width: 24,
-    height: 24,
   },
   divider: {
     alignSelf: "stretch",
