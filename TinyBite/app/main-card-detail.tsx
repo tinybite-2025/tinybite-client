@@ -36,7 +36,11 @@ const MainCardDetail = () => {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Text style={styles.backButtonText}>‹ </Text>
+              <Image
+                source={require("@/assets/images/mainlist/detail/back-button.png")}
+                style={styles.backButtonImage}
+                resizeMode="contain"
+              />
             </TouchableOpacity>
 
             <ScrollView style={styles.contentContainer} bounces={false}>
@@ -134,10 +138,9 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.3)",
     zIndex: 3,
   },
-  backButtonText: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#FFFFFF",
+  backButtonImage: {
+    width: 40,
+    height: 40,
   },
 
   contentContainer: {
